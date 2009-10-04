@@ -17,18 +17,18 @@ msgstr ""
 
 #: ../src/znchelper.c:60
 msgid "Buffer Playback..."
-msgstr ""
+msgstr "Wiedergabe des Zwischenspeichers..."
 
 #: ../src/znchelper.c:68
 msgid "Playback Complete."
-msgstr ""
+msgstr "Ende der Wiedergabe."
 
 #: ../src/znchelper.c:86
 #, c-format
 msgid ""
 "Timestamp could not be interpreted. Please use \"[%%Y-%%m-%%dT%%H:%%M:%%S]\" "
 "as timestamp format and prepend it to the message.\n"
-msgstr "Zeitstempel konnte nicht interpretiert werden. Bitte benutzen Sie als Zeitstempelformat  \"[%%Y-%%m-%%dT%%H:%%M:%%S]\" und lassen Sie es vor der eigentlichen Nachricht ausgeben (prepend)."
+msgstr "Zeitstempel konnte nicht interpretiert werden. Bitte benutzen Sie als Zeitstempelformat  \"[%%Y-%%m-%%dT%%H:%%M:%%S]\" und lassen Sie es vor der eigentlichen Nachricht ausgeben (prepend).\n"
 
 #: ../src/znchelper.c:113
 msgid "Uses ZNC Bouncer"
