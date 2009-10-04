@@ -1,0 +1,124 @@
+#
+# Makefile.mingw
+#
+#
+
+#
+# PATHS
+#
+
+PLUGIN_TOP :=		..
+-include $(PLUGIN_TOP)/local.mak
+PIDGIN_TREE_TOP ?=		../../../..
+include $(PIDGIN_TREE_TOP)/libpurple/win32/global.mak
+
+PLUGIN_VERSION := $(shell cat ${PLUGIN_TOP}/VERSION)
+
+##
+## VARIABLE DEFINITIONS
+##
+
+PLUGIN = znchelper
+
+# Compiler Options
+
+#CFLAGS = 
+
+DEFINES = -DPLUGIN_VERSION=\"$(PLUGIN_VERSION)\" -DGETTEXT_PACKAGE=\"$(PLUGIN)\" -DHAVE_CONFIG_H
+
+#LDFLAGS = 
+
+#-mwindows
+
+##
+## INCLUDE PATHS
+##
+
+INCLUDE_PATHS +=        -I. \
+			-I.. \
+                        -I$(PIDGIN_TREE_TOP) \
+                        -I$(PURPLE_TOP) \
+                        -I$(PURPLE_TOP)/win32 \
+                        -I$(PIDGIN_TOP) \
+                        -I$(PIDGIN_TOP)/win32 \
+                        -I$(GTK_TOP)/include \
+                        -I$(GTK_TOP)/include/gtk-2.0 \
+                        -I$(GTK_TOP)/include/glib-2.0 \
+                        -I$(GTK_TOP)/include/pango-1.0 \
+                        -I$(GTK_TOP)/include/atk-1.0 \
+                        -I$(GTK_TOP)/include/freetype2 \
+                        -I$(GTK_TOP)/lib/glib-2.0/include \
+                        -I$(GTK_TOP)/lib/gtk-2.0/include \
+                        -I$(PIDGIN_TREE_TOP)
+
+LIB_PATHS =             \
+                        -L$(PURPLE_TOP) \
+                        -L$(PIDGIN_TOP) \
+                        -L$(GTK_TOP)/lib
+
+
+
+##
+##  SOURCES, OBJECTS
+##
+
+PLUGIN_SRC =	\
+	znchelper.c
+
+
+PLUGIN_OBJ = $(PLUGIN_SRC:%.c=%.o)
+
+##
+## LIBRARIES
+##
+
+PLUGIN_LIBS = \
+        -lgtk-win32-2.0 \
+        -lglib-2.0 \
+        -lpango-1.0 \
+        -lpangoft2-1.0 \
+        -lgdk-win32-2.0 \
+        -lgdk_pixbuf-2.0 \
+        -lgobject-2.0 \
+        -lws2_32 \
+        -lintl \
+        -lpurple \
+        -lpidgin
+
+
+include $(PIDGIN_COMMON_RULES)
+
+##
+## TARGET DEFINITIONS
+##
+
+.PHONY: all clean install
+
+all: $(PLUGIN).dll
+
+install: all $(PIDGIN_INSTALL_PLUGINS_DIR)
+	cp $(PLUGIN).dll $(PIDGIN_INSTALL_PLUGINS_DIR)
+
+$(PLUGIN_OBJ): $(PLUGIN_TOP)/config.h $(PURPLE_VERSION_H)
+
+$(PLUGIN_TOP)/config.h: $(PLUGIN_TOP)/config.h.mingw
+	$(MAKE) -C $(PLUGIN_TOP) -f Makefile.mingw config.h
+
+##
+## BUILD DLL
+##
+
+$(PLUGIN).dll: $(PIDGIN_DLL).a $(PLUGIN_OBJ)
+	$(CC) -shared $(PLUGIN_OBJ) $(LIB_PATHS) $(PLUGIN_LIBS) $(DLL_LD_FLAGS) -o $(PLUGIN).dll
+	$(STRIP) --strip-unneeded $(PLUGIN).dll
+
+
+##
+## CLEAN RULES
+##
+
+clean:
+	rm -f *.o
+	rm -f $(PLUGIN).dll
+
+include $(PIDGIN_COMMON_TARGETS)

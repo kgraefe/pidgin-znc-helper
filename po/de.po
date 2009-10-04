@@ -1,0 +1,20 @@
+# German translation for ZNC HElper
+# Copyright (C) 2009 Konrad Gräfe <freakazoid@teamblind.de>
+# This file is distributed under the same license as the znchelper package.
+# Konrad Gräfe <freakazoid@teamblind.de>, 2009
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: core-freakazoid-znchelper 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-02 01:18+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Konrad Gräfe <freakazoid@teamblind.de>\n"
+"Language-Team: de_DE <freakazoid@teamblind.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/znchelper.c:85 ../src/znchelper.c:86 ../src/znchelper.c:87
+msgid "ZNC Helper"
+msgstr ""

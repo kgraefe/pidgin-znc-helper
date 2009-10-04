@@ -1,0 +1,43 @@
+#
+# Makefile.mingw
+#
+# Description: Makefile for win32 (mingw)
+#
+
+#
+# PATHS
+#
+
+PLUGIN_SRC :=		./src
+PLUGIN_PO :=		./po
+
+PLUGIN_TOP := .
+-include $(PLUGIN_TOP)/local.mak
+
+PIDGIN_TREE_TOP ?=		../../..
+include $(PIDGIN_TREE_TOP)/libpurple/win32/global.mak
+
+##
+## VARIABLE DEFINITIONS
+##
+
+PLUGIN_VERSION := $(shell cat ./VERSION)
+
+PIDGIN_VERSION := $(shell cat $(PIDGIN_TREE_TOP)/VERSION)
+
+.PHONY: all install installer clean
+
+all:
+	$(MAKE) -C $(PLUGIN_SRC) -f Makefile.mingw
+	$(MAKE) -C $(PLUGIN_PO) -f Makefile.mingw
+
+config.h: config.h.mingw
+	cp config.h.mingw config.h
+
+install: all
+	$(MAKE) -C $(PLUGIN_SRC) -f Makefile.mingw install
+	$(MAKE) -C $(PLUGIN_PO) -f Makefile.mingw install
+
+clean:
+	$(MAKE) -C $(PLUGIN_SRC) -f Makefile.mingw clean
+	rm -f config.h
