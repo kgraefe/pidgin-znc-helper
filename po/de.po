@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: core-freakazoid-znchelper 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-02 01:18+0200\n"
+"POT-Creation-Date: 2009-10-04 23:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Konrad Gräfe <freakazoid@teamblind.de>\n"
 "Language-Team: de_DE <freakazoid@teamblind.de>\n"
@@ -15,6 +15,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/znchelper.c:85 ../src/znchelper.c:86 ../src/znchelper.c:87
-msgid "ZNC Helper"
+#: ../src/znchelper.c:60
+msgid "Buffer Playback..."
 msgstr ""
+
+#: ../src/znchelper.c:68
+msgid "Playback Complete."
+msgstr ""
+
+#: ../src/znchelper.c:86
+#, c-format
+msgid ""
+"Timestamp could not be interpreted. Please use \"[%%Y-%%m-%%dT%%H:%%M:%%S]\" "
+"as timestamp format and prepend it to the message.\n"
+msgstr "Zeitstempel konnte nicht interpretiert werden. Bitte benutzen Sie als Zeitstempelformat  \"[%%Y-%%m-%%dT%%H:%%M:%%S]\" und lassen Sie es vor der eigentlichen Nachricht ausgeben (prepend)."
+
+#: ../src/znchelper.c:113
+msgid "Uses ZNC Bouncer"
+msgstr "Benutzt ZNC Bouncer"
+
+#: ../src/znchelper.c:170 ../src/znchelper.c:171 ../src/znchelper.c:172
+msgid "ZNC Helper"
+msgstr "ZNC Helper"

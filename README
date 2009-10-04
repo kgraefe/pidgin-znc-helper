@@ -1,4 +1,4 @@
-Talk Like A Pirate will work with PURPLE_MAJOR_VERSION 2, but you must compile
+ZNC Helper will work with PURPLE_MAJOR_VERSION 2, but you must compile
 it with the minor version of purple that you plan to use it with.
 
 You must have glib and purple development headers and libraries in order
@@ -15,3 +15,5 @@ make install
 
 Remember that "./configure --help" will show all the options available
 to help cope with odd setups, installations, and paths.
+
+After activating the plugin you have to tick the option "Uses ZNC Bouncer" in the preferences of your IRC account in order to have it work with the specific account. Please make sure that you have set the timestamp format of ZNC to "[%Y-%m-%dT%H:%M:%S]".

@@ -1,0 +1,25 @@
+Purple ZNC Helper
+=================
+
+To install the plugin, simply run the included install script which copies the contents of the
+archive to your .purple user dir (usually "~/.purple").
+
+After activating the plugin you have to tick the option "Uses ZNC Bouncer" in the preferences of your IRC account in order to have it work with the specific account. Please make sure that you have set the timestamp format of ZNC to "[%Y-%m-%dT%H:%M:%S]".
+
+Have fun. :o)
+
+Please note: You have to build the plugin from source in order to get a system wide installation!
+
+--------------------------------------
+
+Purple ZNC Helper
+=================
+
+Um das Plugin zu installieren, führen Sie das mitgelieferte Installationsskript aus, welches den Inhalt dieses
+Archivs in das .purple-Verzeichnis des Benutzers kopiert.
+
+Nachdem Sie das Plugin aktiviert haben, müssen Sie den Option "Benutzt ZNC Bouncer" in den Einstellungen des betreffenden IRC-Kontos aktivieren. Bitte sorgen Sie dafür, dass das Zeitstempelformat in den Einstellungen des ZNC auf "[%Y-%m-%dT%H:%M:%S]" gestellt ist.
+
+Viel Spaß. :o)
+
+Achtung: Sie müssen das Plugin aus dem Quellcode kompilieren um eine systemweite Installation zu bekommen!

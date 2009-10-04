@@ -1,0 +1,22 @@
+Purple ZNC Helper
+=================
+
+To install the plugin, simply extract the contents of the folder "pidgin" in this zip file to your
+pidgin install directory, which is "C:\Program Files\Pidgin" by default, or to your .purple user dir.
+
+After activating the plugin you have to tick the option "Uses ZNC Bouncer" in the preferences of your IRC account in order to have it work with the specific account. Please make sure that you have set the timestamp format of ZNC to "[%Y-%m-%dT%H:%M:%S]".
+
+Have fun. :o)
+
+--------------------------------------
+
+Purple ZNC Helper
+=================
+
+Um das Plugin zu installieren, einfach den Inhalt des "pidgin"-Ordners aus diesem Archiv in das
+Installationsverzeichnis von Pidgin (normalerweise "C:\Program Files\Pidgin") oder das eigene
+.purple-Verzeichnis entpacken.
+
+Nachdem Sie das Plugin aktiviert haben, müssen Sie den Option "Benutzt ZNC Bouncer" in den Einstellungen des betreffenden IRC-Kontos aktivieren. Bitte sorgen Sie dafür, dass das Zeitstempelformat in den Einstellungen des ZNC auf "[%Y-%m-%dT%H:%M:%S]" gestellt ist.
+
+Viel Spaß. :o)
