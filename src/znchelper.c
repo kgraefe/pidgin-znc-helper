@@ -49,8 +49,6 @@ static gboolean writing_chat_msg_cb(PurpleAccount *account, const char *who, cha
 	if(inuse) return FALSE;
 	if(!purple_account_get_bool(account, "uses_znc_bouncer", TRUE)) return cancel;
 	if(!(flags & PURPLE_MESSAGE_RECV)) return cancel;
-	
-	purple_debug_info(PLUGIN_STATIC_NAME, "message: %s\n", *message);
 
 	if(purple_utf8_strcasecmp(who, "***") == 0) {
 		if(purple_utf8_strcasecmp(*message, "Buffer Playback...") == 0) {
