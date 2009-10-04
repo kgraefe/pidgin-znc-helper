@@ -178,8 +178,8 @@ static void init_plugin(PurplePlugin *plugin) {
 #endif /* ENABLE_NLS */
 
         info.name        = _("ZNC Helper");
-        info.summary     = _("ZNC Helper");
-        info.description = _("ZNC Helper");
+        info.summary     = _("This plugin removes ugly double-timestamps when replaying messages from ZNC bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\".");
+        info.description = _("This plugin removes ugly double-timestamps when replaying messages from ZNC bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\".");
 }
 
 PURPLE_INIT_PLUGIN(plugin, init_plugin, info)

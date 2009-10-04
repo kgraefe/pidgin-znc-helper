@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: core-freakazoid-znchelper 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-04 23:56+0200\n"
+"POT-Creation-Date: 2009-10-05 02:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Konrad Gräfe <freakazoid@teamblind.de>\n"
 "Language-Team: de_DE <freakazoid@teamblind.de>\n"
@@ -28,12 +28,23 @@ msgstr "Ende der Wiedergabe."
 msgid ""
 "Timestamp could not be interpreted. Please use \"[%%Y-%%m-%%dT%%H:%%M:%%S]\" "
 "as timestamp format and prepend it to the message.\n"
-msgstr "Zeitstempel konnte nicht interpretiert werden. Bitte benutzen Sie als Zeitstempelformat  \"[%%Y-%%m-%%dT%%H:%%M:%%S]\" und lassen Sie es vor der eigentlichen Nachricht ausgeben (prepend).\n"
+msgstr ""
+"Zeitstempel konnte nicht interpretiert werden. Bitte benutzen Sie als "
+"Zeitstempelformat  \"[%%Y-%%m-%%dT%%H:%%M:%%S]\" und lassen Sie es vor der "
+"eigentlichen Nachricht ausgeben (prepend).\n"
 
 #: ../src/znchelper.c:113
 msgid "Uses ZNC Bouncer"
 msgstr "Benutzt ZNC Bouncer"
 
-#: ../src/znchelper.c:170 ../src/znchelper.c:171 ../src/znchelper.c:172
+#: ../src/znchelper.c:180
 msgid "ZNC Helper"
 msgstr "ZNC Helper"
+
+#: ../src/znchelper.c:181 ../src/znchelper.c:182
+msgid ""
+"This plugin removes ugly double-timestamps when replaying messages from ZNC "
+"bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\"."
+msgstr ""
+"Dieses Plugin entfernt hässliche doppelte Zeitstempel wenn man Nachrichten "
+"eines ZNC Bouncers anschaut, z.B. \"(13:00:00) [12:00:00] Mittag!\"."
