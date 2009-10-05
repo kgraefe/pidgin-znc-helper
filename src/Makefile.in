@@ -182,10 +182,22 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+EXTRA_DIST = \
+	internal.h \
+	messageparser.h \
+	timeparser.h \
+	Makefile.mingw
+
+
 plugindir = $(libdir)/pidgin
 
 plugin_LTLIBRARIES = znchelper.la
-znchelper_la_SOURCES = znchelper.c
+znchelper_la_SOURCES = \
+	znchelper.c \
+	messageparser.c \
+	timeparser.c
+
+
 znchelper_la_LDFLAGS = -module -avoid-version
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -195,13 +207,15 @@ CONFIG_CLEAN_FILES =
 LTLIBRARIES = $(plugin_LTLIBRARIES)
 
 znchelper_la_LIBADD =
-am_znchelper_la_OBJECTS = znchelper.lo
+am_znchelper_la_OBJECTS = znchelper.lo messageparser.lo timeparser.lo
 znchelper_la_OBJECTS = $(am_znchelper_la_OBJECTS)
 
 DEFAULT_INCLUDES =  -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
-@AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/znchelper.Plo
+@AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/messageparser.Plo \
+@AMDEP_TRUE@	./$(DEPDIR)/timeparser.Plo \
+@AMDEP_TRUE@	./$(DEPDIR)/znchelper.Plo
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) \
@@ -259,6 +273,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/messageparser.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/timeparser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/znchelper.Plo@am__quote@
 
 .c.o:

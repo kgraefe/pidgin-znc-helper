@@ -1,2 +1,7 @@
+Version 0.2 (2009/10/05):
+	* implemented own timestamp recognition to safely notice recognition failures
+	* changed ZNC timestamp format to "[%Y-%m-%d %H:%M:%S]" appended to the end of the message which fixes a bug when replaying /me-messages
+
 Version 0.1 (2009/10/02):
 	* ZNC Helper was born.
+

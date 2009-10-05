@@ -183,12 +183,11 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 EXTRA_DIST = \
+	ChangeLog \
 	VERSION \
 	Makefile.mingw \
-	src/Makefile.mingw \
 	po/Makefile.mingw \
-	config.h.mingw \
-	src/internal.h
+	config.h.mingw
 
 
 SUBDIRS = src po
@@ -397,7 +396,7 @@ distcleancheck_listfiles = find . -type f -print
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkinstalldirs) $(distdir)/po $(distdir)/src
+	$(mkinstalldirs) $(distdir)/po
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

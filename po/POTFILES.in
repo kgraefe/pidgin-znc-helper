@@ -1,1 +1,3 @@
+src/messageparser.c
+src/timeparser.c
 src/znchelper.c
