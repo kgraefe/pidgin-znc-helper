@@ -22,14 +22,20 @@
 
 #include "timeparser.h"
 
+#include "debug.h"
+
 time_t get_time(const char *timestamp) {
-	static struct tm t;
+	struct tm t;
 	
 	int read = 0;
 	int year = 0;
 	int month = 0;
 	
+	purple_debug_info(PLUGIN_STATIC_NAME, "Parsing timestamp: %s\n", timestamp);
 	read = sscanf(timestamp, "[%04d-%02d-%02d %02d:%02d:%02d]", &year, &month, &t.tm_mday, &t.tm_hour, &t.tm_min, &t.tm_sec);
+	t.tm_isdst = (-1);
+	
+	purple_debug_info(PLUGIN_STATIC_NAME, "hour: %i\n", t.tm_hour);
 	
 	if(read != 6 || year <= 1900) return 0;
 	

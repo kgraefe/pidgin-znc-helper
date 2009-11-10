@@ -17,6 +17,6 @@ Um das Plugin zu installieren, einfach den Inhalt des "pidgin"-Ordners aus diese
 Installationsverzeichnis von Pidgin (normalerweise "C:\Program Files\Pidgin") oder das eigene
 .purple-Verzeichnis entpacken.
 
-Nachdem Sie das Plugin aktiviert haben, müssen Sie den Option "Benutzt ZNC Bouncer" in den Einstellungen des betreffenden IRC-Kontos aktivieren. Bitte sorgen Sie dafür, dass das Zeitstempelformat in den Einstellungen des ZNC auf "[%Y-%m-%dT%H:%M:%S]" gestellt ist und dass es an die eigentliche Nachricht angehangen wird (append).
+Nachdem Sie das Plugin aktiviert haben, müssen Sie die Option "Benutzt ZNC Bouncer" in den Einstellungen des betreffenden IRC-Kontos aktivieren. Bitte sorgen Sie dafür, dass das Zeitstempelformat in den Einstellungen des ZNC auf "[%Y-%m-%d %H:%M:%S]" gestellt ist und dass es an die eigentliche Nachricht angehangen wird (append).
 
 Viel Spaß. :o)
