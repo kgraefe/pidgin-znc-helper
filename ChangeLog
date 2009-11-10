@@ -1,3 +1,7 @@
+Version 0.3 (2009/11/10):
+	* fixed issue with daylight saving time
+	* fixed Readme files
+
 Version 0.2 (2009/10/05):
 	* implemented own timestamp recognition to safely notice recognition failures
 	* changed ZNC timestamp format to "[%Y-%m-%d %H:%M:%S]" appended to the end of the message which fixes a bug when replaying /me-messages

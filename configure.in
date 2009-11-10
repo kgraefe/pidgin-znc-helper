@@ -2,12 +2,12 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.61)
-AC_INIT(znchelper, 0.2, freakazoid@teamblind.de)
+AC_INIT(znchelper, 0.3, freakazoid@teamblind.de)
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/znchelper.c])
 AC_CONFIG_HEADER([config.h])
 
-AC_DEFINE_UNQUOTED(PLUGIN_VERSION, ["0.2"], [Define the plugin version to be used])
+AC_DEFINE_UNQUOTED(PLUGIN_VERSION, ["0.3"], [Define the plugin version to be used])
 
 AC_DEFINE_UNQUOTED(PLUGIN_WEBSITE, ["http://freakazoid.teamblind.de/"], [Define the plugin website to be used])
 
