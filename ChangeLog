@@ -1,3 +1,9 @@
+Version 0.4 (2009/11/12):
+	* fixed Readme for Windows (again -.-')
+	* added an option to offset wrong times (for some friends :) I know it isn't really the plugins job)
+	* the plugin now blocks unloading to avoid orphan options in account settings
+	* new timestamp handler to avoid displaying the date on every message
+
 Version 0.3 (2009/11/10):
 	* fixed issue with daylight saving time
 	* fixed Readme files

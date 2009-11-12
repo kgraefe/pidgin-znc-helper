@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: core-freakazoid-znchelper 0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-05 21:28+0200\n"
+"POT-Creation-Date: 2009-11-12 01:52+0100\n"
 "PO-Revision-Date: 2009-10-05 21:21+0200\n"
 "Last-Translator: Konrad Gräfe <freakazoid@teamblind.de>\n"
 "Language-Team: de_DE <freakazoid@teamblind.de>\n"
@@ -15,19 +15,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/messageparser.c:47
-msgid "Uses ZNC Bouncer"
-msgstr "Benutzt ZNC Bouncer"
-
-#: ../src/messageparser.c:76
+#: ../src/messageparser.c:102
 msgid "Buffer Playback..."
 msgstr "Wiedergabe des Zwischenspeichers..."
 
-#: ../src/messageparser.c:84
+#: ../src/messageparser.c:113
 msgid "Playback Complete."
 msgstr "Ende der Wiedergabe."
 
-#: ../src/messageparser.c:104
+#: ../src/messageparser.c:137
 #, c-format
 msgid ""
 "Timestamp could not be interpreted. Please use \"[%%Y-%%m-%%d %%H:%%M:%%S]\" "
@@ -37,11 +33,19 @@ msgstr ""
 "Zeitstempelformat  \"[%%Y-%%m-%%d %%H:%%M:%%S]\" und lassen Sie es nach der "
 "eigentlichen Nachricht ausgeben (append).\n"
 
-#: ../src/znchelper.c:102
+#: ../src/messageparser.c:160
+msgid "Uses ZNC Bouncer"
+msgstr "Benutzt ZNC Bouncer"
+
+#: ../src/znchelper.c:56
+msgid "Time Offset (hours):"
+msgstr "Zeit-Ausgleich (Stunden):"
+
+#: ../src/znchelper.c:124
 msgid "ZNC Helper"
 msgstr "ZNC Helper"
 
-#: ../src/znchelper.c:103 ../src/znchelper.c:104
+#: ../src/znchelper.c:125 ../src/znchelper.c:126
 msgid ""
 "This plugin removes ugly double-timestamps when replaying messages from ZNC "
 "bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\"."

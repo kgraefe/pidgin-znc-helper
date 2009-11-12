@@ -22,6 +22,8 @@
 
 #include "timeparser.h"
 
+#include <prefs.h>
+
 time_t get_time(const char *timestamp) {
 	struct tm t;
 	
@@ -31,6 +33,8 @@ time_t get_time(const char *timestamp) {
 	
 	read = sscanf(timestamp, "[%04d-%02d-%02d %02d:%02d:%02d]", &year, &month, &t.tm_mday, &t.tm_hour, &t.tm_min, &t.tm_sec);
 	t.tm_isdst = (-1);
+	
+	t.tm_hour += purple_prefs_get_int(PLUGIN_PREFS_PREFIX "/offset");
 	
 	if(read != 6 || year <= 1900) return 0;
 	

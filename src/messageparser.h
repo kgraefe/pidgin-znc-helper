@@ -22,10 +22,6 @@
 
 #include <conversation.h>
 
-gboolean writing_chat_msg_cb(PurpleAccount *account, const char *who, char **message, PurpleConversation *conv, PurpleMessageFlags flags);
-
 void message_parser_init(PurplePlugin *plugin);
-
-void message_parser_destroy(void);
 
 #endif /* PURPLE_ZNC_HELPER_MESSAGE_PARSER_H */

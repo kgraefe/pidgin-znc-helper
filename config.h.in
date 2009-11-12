@@ -75,6 +75,9 @@
 /* Define the plugin website to be used */
 #undef PLUGIN_ID
 
+/* Define the plugin author to be used */
+#undef PLUGIN_PREFS_PREFIX
+
 /* Define the plugin website to be used */
 #undef PLUGIN_STATIC_NAME
 

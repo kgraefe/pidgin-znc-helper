@@ -19,8 +19,6 @@
 
 #include "config.h"
 
-/* #define PLUGIN_PREFS_PREFIX "/plugins/core/znchelper" */
-
 #ifndef PURPLE_PLUGINS
 #define PURPLE_PLUGINS
 #endif
@@ -44,10 +42,33 @@ static gboolean plugin_load(PurplePlugin *_plugin) {
 }
 
 static gboolean plugin_unload(PurplePlugin *plugin) {
-	message_parser_destroy();
-	
-	return TRUE;
+	/* unable to remove Account Options :'( */
+	return FALSE;
 }
+
+static PurplePluginPrefFrame *get_plugin_pref_frame(PurplePlugin *plugin) {
+	PurplePluginPrefFrame *frame;
+	PurplePluginPref *ppref;
+	
+	frame = purple_plugin_pref_frame_new();
+
+	ppref = purple_plugin_pref_new_with_name_and_label(PLUGIN_PREFS_PREFIX "/offset", _("Time Offset (hours):"));
+	purple_plugin_pref_set_bounds(ppref, -23, 23);
+	purple_plugin_pref_frame_add(frame, ppref);
+
+	return frame;
+}
+
+static PurplePluginUiInfo ui_info = {
+        get_plugin_pref_frame,
+        0,   					/* page_num (Reserved) */
+        NULL, 					/* frame (Reserved) */
+        /* Padding */
+        NULL,
+        NULL,
+        NULL,
+        NULL
+};
 
 static PurplePluginInfo info = {
 	PURPLE_PLUGIN_MAGIC,
@@ -74,7 +95,7 @@ static PurplePluginInfo info = {
 
 	NULL,						/**< ui_info        */
 	NULL,						/**< extra_info     */
-	NULL,				/**< prefs_info     */
+	&ui_info,					/**< prefs_info     */
 	NULL,						/**< actions        */
 	/* padding */
 	NULL,
@@ -99,9 +120,12 @@ static void init_plugin(PurplePlugin *plugin) {
 	g_free(plugins_locale_dir);
 #endif /* ENABLE_NLS */
 
-        info.name        = _("ZNC Helper");
-        info.summary     = _("This plugin removes ugly double-timestamps when replaying messages from ZNC bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\".");
-        info.description = _("This plugin removes ugly double-timestamps when replaying messages from ZNC bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\".");
+	info.name        = _("ZNC Helper");
+	info.summary     = _("This plugin removes ugly double-timestamps when replaying messages from ZNC bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\".");
+	info.description = _("This plugin removes ugly double-timestamps when replaying messages from ZNC bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\".");
+		
+	purple_prefs_add_none(PLUGIN_PREFS_PREFIX);
+	purple_prefs_add_int(PLUGIN_PREFS_PREFIX "/offset", 0);
 }
 
-PURPLE_INIT_PLUGIN(plugin, init_plugin, info)
+PURPLE_INIT_PLUGIN(PLUGIN_STATIC_NAME, init_plugin, info)

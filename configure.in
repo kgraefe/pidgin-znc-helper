@@ -2,20 +2,22 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.61)
-AC_INIT(znchelper, 0.3, freakazoid@teamblind.de)
+AC_INIT(znchelper, 0.4, freakazoid@teamblind.de)
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/znchelper.c])
 AC_CONFIG_HEADER([config.h])
 
-AC_DEFINE_UNQUOTED(PLUGIN_VERSION, ["0.3"], [Define the plugin version to be used])
+AC_DEFINE_UNQUOTED(PLUGIN_VERSION, ["0.4"], [Define the plugin version to be used])
 
 AC_DEFINE_UNQUOTED(PLUGIN_WEBSITE, ["http://freakazoid.teamblind.de/"], [Define the plugin website to be used])
 
-AC_DEFINE_UNQUOTED(PLUGIN_ID, ["core-freakazoid-znchelper"], [Define the plugin website to be used])
+AC_DEFINE_UNQUOTED(PLUGIN_ID, ["gtk-freakazoid-znchelper"], [Define the plugin website to be used])
 
 AC_DEFINE_UNQUOTED(PLUGIN_STATIC_NAME, ["znchelper"], [Define the plugin website to be used])
 
 AC_DEFINE_UNQUOTED(PLUGIN_AUTHOR, ["Konrad Gräfe <freakazoid@teamblind.de>"], [Define the plugin author to be used])
+
+AC_DEFINE_UNQUOTED(PLUGIN_PREFS_PREFIX, ["/plugins/gtk/znchelper"], [Define the plugin author to be used])
 
 
 # Checks for programs.
@@ -29,9 +31,9 @@ ALL_LINGUAS="de"
 AM_GLIB_GNU_GETTEXT
 
 # Checks for libraries.
-PKG_CHECK_MODULES(purple, [purple >= 2.6.0], , [AC_MSG_ERROR(purple >= 2.6.0 required!)])
-LIBS="$LIBS $purple_LIBS"
-CFLAGS="$CFLAGS $purple_CFLAGS -Wall"
+PKG_CHECK_MODULES(pidgin, [pidgin >= 2.6.0], , [AC_MSG_ERROR(pidgin >= 2.6.0 required!)])
+LIBS="$LIBS $pidgin_LIBS"
+CFLAGS="$CFLAGS $pidgin_CFLAGS -Wall"
 
 
 # Checks for header files.

@@ -62,25 +62,28 @@
 #define PACKAGE_NAME "znchelper"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "znchelper 0.3"
+#define PACKAGE_STRING "znchelper 0.4"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "znchelper"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "0.3"
+#define PACKAGE_VERSION "0.4"
 
 /* Define the plugin author to be used */
 #define PLUGIN_AUTHOR "Konrad Gräfe <freakazoid@teamblind.de>"
 
 /* Define the plugin website to be used */
-#define PLUGIN_ID "core-freakazoid-znchelper"
+#define PLUGIN_ID "gtk-freakazoid-znchelper"
+
+/* Define the plugin author to be used */
+#define PLUGIN_PREFS_PREFIX "/plugins/gtk/znchelper"
 
 /* Define the plugin website to be used */
 #define PLUGIN_STATIC_NAME "znchelper"
 
 /* Define the plugin version to be used */
-#define PLUGIN_VERSION "0.3"
+#define PLUGIN_VERSION "0.4"
 
 /* Define the plugin website to be used */
 #define PLUGIN_WEBSITE "http://freakazoid.teamblind.de/"
@@ -89,4 +92,4 @@
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "0.3"
+#define VERSION "0.4"
