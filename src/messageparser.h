@@ -17,11 +17,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1301, USA.
  */
 
-#ifndef PURPLE_ZNC_HELPER_MESSAGE_PARSER_H
-#define PURPLE_ZNC_HELPER_MESSAGE_PARSER_H
+#ifndef PIDGIN_ZNC_HELPER_MESSAGE_PARSER_H
+#define PIDGIN_ZNC_HELPER_MESSAGE_PARSER_H
 
 #include <conversation.h>
 
 void message_parser_init(PurplePlugin *plugin);
 
-#endif /* PURPLE_ZNC_HELPER_MESSAGE_PARSER_H */
+#endif /* PIDGIN_ZNC_HELPER_MESSAGE_PARSER_H */

@@ -1,7 +1,7 @@
 ZNC Helper will work with PURPLE_MAJOR_VERSION 2, but you must compile
 it with the minor version of purple that you plan to use it with.
 
-You must have glib and purple development headers and libraries in order
+You must have glib, purple and pidgin development headers and libraries in order
 to build this package.  On Debian Etch just do the following and you'll
 get everything you need:
 

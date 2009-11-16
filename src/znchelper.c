@@ -59,7 +59,7 @@ static PurplePluginPrefFrame *get_plugin_pref_frame(PurplePlugin *plugin) {
 	return frame;
 }
 
-static PurplePluginUiInfo ui_info = {
+static PurplePluginUiInfo prefs_info = {
         get_plugin_pref_frame,
         0,   					/* page_num (Reserved) */
         NULL, 					/* frame (Reserved) */
@@ -75,7 +75,7 @@ static PurplePluginInfo info = {
 	PURPLE_MAJOR_VERSION,
 	PURPLE_MINOR_VERSION,
 	PURPLE_PLUGIN_STANDARD,		/**< type           */
-	NULL,						/**< ui_requirement */
+	PIDGIN_PLUGIN_TYPE,			/**< ui_requirement */
 	0,							/**< flags          */
 	NULL,						/**< dependencies   */
 	PURPLE_PRIORITY_DEFAULT,	/**< priority       */
@@ -95,7 +95,7 @@ static PurplePluginInfo info = {
 
 	NULL,						/**< ui_info        */
 	NULL,						/**< extra_info     */
-	&ui_info,					/**< prefs_info     */
+	&prefs_info,				/**< prefs_info     */
 	NULL,						/**< actions        */
 	/* padding */
 	NULL,
