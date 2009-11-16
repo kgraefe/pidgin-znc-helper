@@ -25,7 +25,7 @@
 
 #include "internal.h"
 
-#include <plugin.h>
+#include <gtkplugin.h>
 #include <debug.h>
 #include <version.h>
 

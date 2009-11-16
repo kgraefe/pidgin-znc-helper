@@ -80,7 +80,7 @@ static gchar *conversation_timestamp_cb(PurpleConversation *conv, time_t mtime, 
 	return mdate;
 }
 
-static gboolean writing_chat_msg_cb(PurpleAccount *account, const char *who, char **message, PurpleConversation *conv, PurpleMessageFlags flags) {
+static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **message, PurpleConversation *conv, PurpleMessageFlags flags) {
 	PidginConversation *gtkconv;
 	gboolean cancel = FALSE;
 	
@@ -115,7 +115,7 @@ static gboolean writing_chat_msg_cb(PurpleAccount *account, const char *who, cha
 			
 			cancel = TRUE;
 		}
-	} else if(GPOINTER_TO_INT(g_hash_table_lookup(conversations, conv)) == 1)  {
+	} else if((purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT && GPOINTER_TO_INT(g_hash_table_lookup(conversations, conv)) == 1) || purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM)  {
 		pos = g_strrstr(*message, "[");
 		
 		if(pos != NULL) {
@@ -123,10 +123,17 @@ static gboolean writing_chat_msg_cb(PurpleAccount *account, const char *who, cha
 			if(stamp != 0) {
 				*pos = '\0';
 				
+				
+				purple_debug_info(PLUGIN_STATIC_NAME, "message: %s\n", *message);
+				
 				inuse = TRUE;
 				
 				purple_signal_connect(pidgin_conversations_get_handle(), "conversation-timestamp", plugin, PURPLE_CALLBACK(conversation_timestamp_cb), NULL);
-				purple_conv_chat_write(PURPLE_CONV_CHAT(conv), who, *message, flags, stamp);
+				if(purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT) {
+					purple_conv_chat_write(PURPLE_CONV_CHAT(conv), who, *message, flags, stamp);
+				} else if(purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM) {
+					purple_conv_im_write(PURPLE_CONV_IM(conv), who, *message, flags, stamp);
+				}
 				purple_signal_disconnect(pidgin_conversations_get_handle(), "conversation-timestamp", plugin, PURPLE_CALLBACK(conversation_timestamp_cb));
 				
 				inuse = FALSE;
@@ -163,5 +170,6 @@ void message_parser_init(PurplePlugin *_plugin) {
 		}
 	}
 	
-	purple_signal_connect(purple_conversations_get_handle(), "writing-chat-msg", plugin, PURPLE_CALLBACK(writing_chat_msg_cb), NULL);
+	purple_signal_connect(purple_conversations_get_handle(), "writing-chat-msg", plugin, PURPLE_CALLBACK(writing_msg_cb), NULL);
+	purple_signal_connect(purple_conversations_get_handle(), "writing-im-msg", plugin, PURPLE_CALLBACK(writing_msg_cb), NULL);
 }
