@@ -19,7 +19,7 @@
 
 GETTEXT_PACKAGE = znchelper
 PACKAGE = znchelper
-VERSION = 1.0
+VERSION = 1.01
 
 SHELL = /bin/sh
 
