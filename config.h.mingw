@@ -52,6 +52,10 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
 
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#define LT_OBJDIR ".libs/"
+
 /* Name of package */
 #define PACKAGE "znchelper"
 
@@ -62,13 +66,16 @@
 #define PACKAGE_NAME "znchelper"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "znchelper 1.01"
+#define PACKAGE_STRING "znchelper 1.1-pre1"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "znchelper"
 
+/* Define to the home page for this package. */
+#define PACKAGE_URL ""
+
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.01"
+#define PACKAGE_VERSION "1.1-pre1"
 
 /* Define the plugin author to be used */
 #define PLUGIN_AUTHOR "Konrad Gräfe <freakazoid@teamblind.de>"
@@ -83,7 +90,7 @@
 #define PLUGIN_STATIC_NAME "znchelper"
 
 /* Define the plugin version to be used */
-#define PLUGIN_VERSION "1.01"
+#define PLUGIN_VERSION "1.1-pre1"
 
 /* Define the plugin website to be used */
 #define PLUGIN_WEBSITE "http://freakazoid.teamblind.de/2009/11/16/pidgin-znc-helper/"
@@ -92,4 +99,4 @@
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "1.01"
+#define VERSION "1.1-pre1"

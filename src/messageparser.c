@@ -22,6 +22,7 @@
 
 #include "timeparser.h"
 #include "messageparser.h"
+#include "zncconversation.h"
 
 #include <conversation.h>
 #include <debug.h>
@@ -52,10 +53,11 @@ static gchar *conversation_timestamp_cb(PurpleConversation *conv, time_t mtime, 
 	
 	gtkconv = PIDGIN_CONVERSATION(conv);
 	
-	
 	time(&tnow);
 	localtime_r(&tnow, &tm_now);
 	localtime_r(&mtime, &tm_msg);
+	
+	purple_debug_info(PLUGIN_STATIC_NAME, "gtkconv->newday:  %i\n", (int)gtkconv->newday);
 	
 	/* First message in playback */
 	if (gtkconv->newday == (-1)) {
@@ -81,22 +83,27 @@ static gchar *conversation_timestamp_cb(PurpleConversation *conv, time_t mtime, 
 }
 
 static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **message, PurpleConversation *conv, PurpleMessageFlags flags) {
+	ZNCConversation *zncconv = NULL;
 	PidginConversation *gtkconv;
 	gboolean cancel = FALSE;
 	
 	static gboolean inuse = FALSE;
 	char *pos = NULL;
 	time_t stamp;
-	
-	gtkconv = PIDGIN_CONVERSATION(conv);
+
 	
 	if(inuse) return FALSE;
 	if(!purple_account_get_bool(account, "uses_znc_bouncer", TRUE)) return cancel;
 	if(!(flags & PURPLE_MESSAGE_RECV)) return cancel;
+	
+	gtkconv = PIDGIN_CONVERSATION(conv);
+
+	purple_debug_info(PLUGIN_STATIC_NAME, "*message: %s\n", *message);
 
 	if(purple_utf8_strcasecmp(who, "***") == 0) {
 		if(purple_utf8_strcasecmp(*message, "Buffer Playback...") == 0) {
-			g_hash_table_insert(conversations, conv, GINT_TO_POINTER(1)); /* GINT_TO_POINTER(1) to  distinguish from NULL */
+			zncconv = znc_conversation_new(conv);
+			g_hash_table_insert(conversations, conv, zncconv);
 			
 			inuse = TRUE;
 			purple_conv_chat_write(PURPLE_CONV_CHAT(conv), who, _("Buffer Playback..."), flags|PURPLE_MESSAGE_SYSTEM, time(NULL));
@@ -107,6 +114,8 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 			
 			cancel = TRUE;
 		} else if(purple_utf8_strcasecmp(*message, "Playback Complete.") == 0) {
+			zncconv = g_hash_table_lookup(conversations, conv);
+			znc_conversation_destroy(zncconv);
 			g_hash_table_remove(conversations, conv);
 			
 			inuse = TRUE;
@@ -115,7 +124,7 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 			
 			cancel = TRUE;
 		}
-	} else if((purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT && GPOINTER_TO_INT(g_hash_table_lookup(conversations, conv)) == 1) || purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM)  {
+	} else if((purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT && (zncconv = g_hash_table_lookup(conversations, conv)) != NULL) || purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM)  {
 		pos = g_strrstr(*message, "[");
 		
 		if(pos != NULL) {
@@ -123,13 +132,11 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 			if(stamp != 0) {
 				*pos = '\0';
 				
-				
-				purple_debug_info(PLUGIN_STATIC_NAME, "message: %s\n", *message);
-				
 				inuse = TRUE;
 				
 				purple_signal_connect(pidgin_conversations_get_handle(), "conversation-timestamp", plugin, PURPLE_CALLBACK(conversation_timestamp_cb), NULL);
 				if(purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT) {
+					g_hash_table_insert(zncconv->users, g_strdup(who), "");
 					purple_conv_chat_write(PURPLE_CONV_CHAT(conv), who, *message, flags, stamp);
 				} else if(purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM) {
 					purple_conv_im_write(PURPLE_CONV_IM(conv), who, *message, flags, stamp);

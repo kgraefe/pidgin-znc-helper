@@ -24,3 +24,4 @@ fi
 
 cp -rv plugins/ ${PIDGIN_CONFIG_DIR}
 cp -rv locale/ ${PIDGIN_CONFIG_DIR}
+cp -rv themes/ ${PIDGIN_CONFIG_DIR}

@@ -19,7 +19,7 @@
 
 GETTEXT_PACKAGE = znchelper
 PACKAGE = znchelper
-VERSION = 1.01
+VERSION = 1.1-pre1
 
 SHELL = /bin/sh
 
@@ -36,8 +36,8 @@ libdir = ${exec_prefix}/lib
 DATADIRNAME = share
 itlocaledir = $(prefix)/$(DATADIRNAME)/locale
 subdir = po
-install_sh = /home/kgraefe/pidgin/projects/znchelper/install-sh
-# Automake >= 1.8 provides @mkdir_p@.
+install_sh = ${SHELL} /home/kgraefe/pidgin/projects/znchelper/install-sh
+# Automake >= 1.8 provides /bin/mkdir -p.
 # Until it can be supposed, use the safe fallback:
 mkdir_p = $(install_sh) -d
 
