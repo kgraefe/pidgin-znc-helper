@@ -1,7 +1,7 @@
 #!/bin/bash
 make -f Makefile.mingw clean && \
 make -f Makefile.mingw && \
-PROJECT=znchelper && \
+PROJECT=pidgin-znchelper && \
 WIN32DIR=${PROJECT}-`cat VERSION`-win32 && \
 mkdir -p ${WIN32DIR}/pidgin/plugins && \
 mkdir -p ${WIN32DIR}/pidgin/locale/de/LC_MESSAGES && \

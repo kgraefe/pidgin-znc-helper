@@ -1,0 +1,5 @@
+pidgin-znchelper (@@VERSION@@-@@DEB_REVISION@@) karmic; urgency=low
+
+  * release version @@VERSION@@
+
+ -- Konrad Gräfe <konradgraefe@aol.com>  @@DATE@@

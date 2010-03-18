@@ -25,7 +25,7 @@
 
 #include <debug.h>
 
-static gboolean italic_and_destroy(gpointer key, gpointer value, gpointer user_data) {
+static void make_italic(gpointer key, gpointer value, gpointer user_data) {
 	PurpleConversation *conv;
 	GtkTextTag *tag;
 
@@ -36,9 +36,7 @@ static gboolean italic_and_destroy(gpointer key, gpointer value, gpointer user_d
 	if ((tag = get_buddy_tag(conv, key, PURPLE_MESSAGE_NICK, FALSE)))
 		g_object_set(G_OBJECT(tag), "style", PANGO_STYLE_ITALIC, NULL);
 		
-	g_free(key);
-	
-	return TRUE; /* remove */
+	return;
 }
 
 ZNCConversation *znc_conversation_new(PurpleConversation *conv) {
@@ -46,7 +44,7 @@ ZNCConversation *znc_conversation_new(PurpleConversation *conv) {
 
 	ret = g_malloc(sizeof(ZNCConversation));
 	ret->prplconv = conv;
-	ret->users = g_hash_table_new(g_str_hash, g_str_equal);
+	ret->users = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL);
 
 	return ret;
 }
@@ -67,11 +65,9 @@ void znc_conversation_destroy(ZNCConversation *zncconv) {
 	for(cur = purple_conv_chat_get_users(chat); cur != NULL; cur = cur->next) {
 		buddy = (PurpleConvChatBuddy *)cur->data;
 		g_hash_table_remove(zncconv->users, buddy->name);
-
-		purple_debug_info(PLUGIN_STATIC_NAME, "in the channel: %s_\n", buddy->name);
 	}
 	
-	g_hash_table_foreach_remove(zncconv->users, italic_and_destroy, conv);
+	g_hash_table_foreach(zncconv->users, make_italic, conv);
 
 	g_hash_table_destroy(zncconv->users);
 	g_free(zncconv);

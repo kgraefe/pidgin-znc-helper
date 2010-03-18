@@ -17,9 +17,9 @@
 # We have the following line for use by intltoolize:
 # INTLTOOL_MAKEFILE
 
-GETTEXT_PACKAGE = znchelper
-PACKAGE = znchelper
-VERSION = 1.1-pre1
+GETTEXT_PACKAGE = pidgin-znchelper
+PACKAGE = pidgin-znchelper
+VERSION = 1.1
 
 SHELL = /bin/sh
 

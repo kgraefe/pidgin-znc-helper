@@ -1,0 +1,13 @@
+Source: pidgin-znchelper
+Section: net
+Priority: extra
+Maintainer: Konrad Gräfe <konradgraefe@aol.com>
+Build-Depends: debhelper (>= 7), autotools-dev, pidgin-dev (>= 2.6.0), intltool
+Standards-Version: 3.8.1
+Homepage: http://freakazoid.teamblind.de/2009/11/16/pidgin-znc-helper/
+
+Package: pidgin-znchelper
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Pidgin ZNC Helper
+ This plugin removes ugly double-timestamps when replaying messages from ZNC bouncers, e.g. "(13:00:00) [12:00:00] Lunch time!". See also https://sourceforge.net/projects/znc/ .

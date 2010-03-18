@@ -18,7 +18,7 @@ PLUGIN_VERSION := $(shell cat ${PLUGIN_TOP}/VERSION)
 ## VARIABLE DEFINITIONS
 ##
 
-PLUGIN = znchelper
+PLUGIN = pidgin-znchelper
 
 # Compiler Options
 
