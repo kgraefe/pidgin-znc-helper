@@ -93,8 +93,8 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 
 	
 	if(inuse) return FALSE;
-	if(!purple_account_get_bool(account, "uses_znc_bouncer", TRUE)) return cancel;
-	if(!(flags & PURPLE_MESSAGE_RECV)) return cancel;
+	if(!purple_account_get_bool(account, "uses_znc_bouncer", FALSE)) return FALSE;
+	if(!(flags & PURPLE_MESSAGE_RECV)) return FALSE;
 	
 	gtkconv = PIDGIN_CONVERSATION(conv);
 
