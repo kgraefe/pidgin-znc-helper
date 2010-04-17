@@ -1,3 +1,6 @@
 src/messageparser.c
+src/pidgin_internals.c
+src/prefs.c
 src/timeparser.c
+src/zncconversation.c
 src/znchelper.c

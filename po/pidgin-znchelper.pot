@@ -1,27 +1,28 @@
-# German translation for ZNC Helper
-# Copyright (C) 2009 Konrad Gräfe <freakazoid@teamblind.de>
-# This file is distributed under the same license as the znchelper package.
-# Konrad Gräfe <freakazoid@teamblind.de>, 2009
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: gtk-freakazoid-znchelper 0.5\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-17 15:07+0200\n"
-"PO-Revision-Date: 2009-10-05 21:21+0200\n"
-"Last-Translator: Konrad Gräfe <freakazoid@teamblind.de>\n"
-"Language-Team: de_DE <freakazoid@teamblind.de>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/messageparser.c:109
 msgid "Buffer Playback..."
-msgstr "Wiedergabe des Zwischenspeichers..."
+msgstr ""
 
 #: ../src/messageparser.c:122
 msgid "Playback Complete."
-msgstr "Ende der Wiedergabe."
+msgstr ""
 
 #: ../src/messageparser.c:151
 #, c-format
@@ -29,17 +30,14 @@ msgid ""
 "Timestamp could not be interpreted. Please use \"[%%Y-%%m-%%d %%H:%%M:%%S]\" "
 "as timestamp format and append it to the message.\n"
 msgstr ""
-"Zeitstempel konnte nicht interpretiert werden. Bitte benutzen Sie als "
-"Zeitstempelformat  \"[%%Y-%%m-%%d %%H:%%M:%%S]\" und lassen Sie es nach der "
-"eigentlichen Nachricht ausgeben (append).\n"
 
 #: ../src/messageparser.c:174
 msgid "Uses ZNC Bouncer"
-msgstr "Benutzt ZNC Bouncer"
+msgstr ""
 
 #: ../src/prefs.c:54
 msgid "Time Offset (hours):"
-msgstr "Zeit-Ausgleich (Stunden):"
+msgstr ""
 
 #: ../src/prefs.c:70
 msgid ""
@@ -50,12 +48,10 @@ msgstr ""
 
 #: ../src/znchelper.c:110
 msgid "ZNC Helper"
-msgstr "ZNC Helper"
+msgstr ""
 
 #: ../src/znchelper.c:111 ../src/znchelper.c:112
 msgid ""
 "This plugin removes ugly double-timestamps when replaying messages from ZNC "
 "bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\"."
 msgstr ""
-"Dieses Plugin entfernt hässliche doppelte Zeitstempel wenn man Nachrichten "
-"eines ZNC Bouncers anschaut, z.B. \"(13:00:00) [12:00:00] Mittag!\"."

@@ -30,6 +30,7 @@
 #include <version.h>
 
 #include "messageparser.h"
+#include "prefs.h"
 
 PurplePlugin *plugin;
 
@@ -46,28 +47,14 @@ static gboolean plugin_unload(PurplePlugin *plugin) {
 	return FALSE;
 }
 
-static PurplePluginPrefFrame *get_plugin_pref_frame(PurplePlugin *plugin) {
-	PurplePluginPrefFrame *frame;
-	PurplePluginPref *ppref;
-	
-	frame = purple_plugin_pref_frame_new();
-
-	ppref = purple_plugin_pref_new_with_name_and_label(PLUGIN_PREFS_PREFIX "/offset", _("Time Offset (hours):"));
-	purple_plugin_pref_set_bounds(ppref, -23, 23);
-	purple_plugin_pref_frame_add(frame, ppref);
-
-	return frame;
-}
-
-static PurplePluginUiInfo prefs_info = {
-        get_plugin_pref_frame,
-        0,   					/* page_num (Reserved) */
-        NULL, 					/* frame (Reserved) */
-        /* Padding */
-        NULL,
-        NULL,
-        NULL,
-        NULL
+static PidginPluginUiInfo ui_info = {
+	get_pref_frame,
+	0,   /* page_num (Reserved) */
+	/* Padding */
+	NULL,
+	NULL,
+	NULL,
+	NULL
 };
 
 static PurplePluginInfo info = {
@@ -93,9 +80,9 @@ static PurplePluginInfo info = {
 	plugin_unload,				/**< unload         */
 	NULL,						/**< destroy        */
 
-	NULL,						/**< ui_info        */
+	&ui_info,						/**< ui_info        */
 	NULL,						/**< extra_info     */
-	&prefs_info,				/**< prefs_info     */
+	NULL,				/**< prefs_info     */
 	NULL,						/**< actions        */
 	/* padding */
 	NULL,
