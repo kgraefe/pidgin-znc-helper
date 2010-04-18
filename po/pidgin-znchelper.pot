@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-17 15:14+0200\n"
+"POT-Creation-Date: 2010-04-18 13:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,22 +16,19 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/messageparser.c:109
+#: ../src/messageparser.c:105
 msgid "Buffer Playback..."
 msgstr ""
 
-#: ../src/messageparser.c:122
+#: ../src/messageparser.c:118
 msgid "Playback Complete."
 msgstr ""
 
-#: ../src/messageparser.c:151
-#, c-format
-msgid ""
-"Timestamp could not be interpreted. Please use \"[%%Y-%%m-%%d %%H:%%M:%%S]\" "
-"as timestamp format and append it to the message.\n"
+#: ../src/messageparser.c:147
+msgid "Timestamp could not be interpreted.\n"
 msgstr ""
 
-#: ../src/messageparser.c:174
+#: ../src/messageparser.c:170
 msgid "Uses ZNC Bouncer"
 msgstr ""
 

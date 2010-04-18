@@ -57,8 +57,6 @@ static gchar *conversation_timestamp_cb(PurpleConversation *conv, time_t mtime, 
 	localtime_r(&tnow, &tm_now);
 	localtime_r(&mtime, &tm_msg);
 	
-	purple_debug_info(PLUGIN_STATIC_NAME, "gtkconv->newday:  %i\n", (int)gtkconv->newday);
-	
 	/* First message in playback */
 	if (gtkconv->newday == (-1)) {
 		if((tm_msg.tm_year != tm_now.tm_year) || (tm_msg.tm_mon != tm_now.tm_mon) || (tm_msg.tm_mday != tm_now.tm_mday)) {
@@ -97,8 +95,6 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 	if(!(flags & PURPLE_MESSAGE_RECV)) return FALSE;
 	
 	gtkconv = PIDGIN_CONVERSATION(conv);
-
-	purple_debug_info(PLUGIN_STATIC_NAME, "*message: %s\n", *message);
 
 	if(purple_utf8_strcasecmp(who, "***") == 0) {
 		if(purple_utf8_strcasecmp(*message, "Buffer Playback...") == 0) {
@@ -148,7 +144,7 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 				cancel = TRUE;
 			}
 		} else {
-			purple_debug_error(PLUGIN_STATIC_NAME, _("Timestamp could not be interpreted. Please use \"[%%Y-%%m-%%d %%H:%%M:%%S]\" as timestamp format and append it to the message.\n"));
+			purple_debug_error(PLUGIN_STATIC_NAME, _("Timestamp could not be interpreted.\n"));
 		}
 	}
 	

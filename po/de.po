@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtk-freakazoid-znchelper 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-17 15:14+0200\n"
+"POT-Creation-Date: 2010-04-18 13:48+0200\n"
 "PO-Revision-Date: 2009-10-05 21:21+0200\n"
 "Last-Translator: Konrad Gräfe <freakazoid@teamblind.de>\n"
 "Language-Team: de_DE <freakazoid@teamblind.de>\n"
@@ -15,25 +15,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/messageparser.c:109
+#: ../src/messageparser.c:105
 msgid "Buffer Playback..."
 msgstr "Wiedergabe des Zwischenspeichers..."
 
-#: ../src/messageparser.c:122
+#: ../src/messageparser.c:118
 msgid "Playback Complete."
 msgstr "Ende der Wiedergabe."
 
-#: ../src/messageparser.c:151
-#, c-format
-msgid ""
-"Timestamp could not be interpreted. Please use \"[%%Y-%%m-%%d %%H:%%M:%%S]\" "
-"as timestamp format and append it to the message.\n"
+#: ../src/messageparser.c:147
+msgid "Timestamp could not be interpreted.\n"
 msgstr ""
-"Zeitstempel konnte nicht interpretiert werden. Bitte benutzen Sie als "
-"Zeitstempelformat  \"[%%Y-%%m-%%d %%H:%%M:%%S]\" und lassen Sie es nach der "
-"eigentlichen Nachricht ausgeben (append).\n"
 
-#: ../src/messageparser.c:174
+#: ../src/messageparser.c:170
 msgid "Uses ZNC Bouncer"
 msgstr "Benutzt ZNC Bouncer"
 
@@ -62,3 +56,11 @@ msgid ""
 msgstr ""
 "Dieses Plugin entfernt hässliche doppelte Zeitstempel wenn man Nachrichten "
 "eines ZNC Bouncers anschaut, z.B. \"(13:00:00) [12:00:00] Mittag!\"."
+
+#~ msgid ""
+#~ "Timestamp could not be interpreted. Please use \"[%%Y-%%m-%%d %%H:%%M:%%S]"
+#~ "\" as timestamp format and append it to the message.\n"
+#~ msgstr ""
+#~ "Zeitstempel konnte nicht interpretiert werden. Bitte benutzen Sie als "
+#~ "Zeitstempelformat  \"[%%Y-%%m-%%d %%H:%%M:%%S]\" und lassen Sie es nach "
+#~ "der eigentlichen Nachricht ausgeben (append).\n"
