@@ -38,8 +38,36 @@ static void spin_cb(GtkWidget *widget, gpointer data) {
 	purple_prefs_set_int(pref, value);
 }
 
+static GtkWidget *make_info_widget(gchar *markup, gchar *stock_id, gboolean indent) {
+	GtkWidget *infobox, *label, *img, *align;
+
+	if(!markup) return NULL;
+
+	infobox = gtk_hbox_new(FALSE, 5);
+
+	if(indent) {
+		label = gtk_label_new("");
+		gtk_box_pack_start(GTK_BOX(infobox), label, FALSE, FALSE, 10);
+	}
+
+	if(stock_id) {
+		align = gtk_alignment_new(0.5, 0, 0, 0); /* align img to the top of the space */
+		gtk_box_pack_start(GTK_BOX(infobox), align, FALSE, FALSE, 0);
+
+		img = gtk_image_new_from_stock(stock_id, GTK_ICON_SIZE_MENU);
+		gtk_container_add(GTK_CONTAINER(align), img);
+	}
+
+	label = gtk_label_new(NULL);
+	gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
+	gtk_label_set_markup(GTK_LABEL(label), markup);
+	gtk_box_pack_start(GTK_BOX(infobox), label, FALSE, FALSE, 0);
+
+	return infobox;
+}
+
 GtkWidget *get_pref_frame(PurplePlugin *plugin) {
-	GtkWidget *frame, *vbox, *hbox, *label, *spin, *img;
+	GtkWidget *frame, *vbox, *hbox, *label, *spin, *img, *infobox;
 	GtkAdjustment *adjustment;
 
 	frame = gtk_vbox_new(FALSE, 18);
@@ -59,16 +87,8 @@ GtkWidget *get_pref_frame(PurplePlugin *plugin) {
 	gtk_box_pack_start(GTK_BOX(hbox), spin, FALSE, FALSE, 0);
 	g_signal_connect(G_OBJECT(spin), "value-changed", G_CALLBACK(spin_cb), PLUGIN_PREFS_PREFIX "/offset");
 
-	hbox = gtk_hbox_new(FALSE, 5);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
-	img = gtk_image_new_from_stock(GTK_STOCK_INFO, GTK_ICON_SIZE_MENU);
-	gtk_box_pack_start(GTK_BOX(hbox), img, FALSE, FALSE, 0);
-
-	label = gtk_label_new(NULL);
-	gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
-	gtk_label_set_markup(GTK_LABEL(label), _("Please make sure to set up your ZNC to <b>append</b> the timestamp using the following format:\n<b>[%Y-%m-%d %H:%M:%S]</b>"));
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
+	infobox = make_info_widget(_("Please make sure to set up your ZNC to <b>append</b> the timestamp using the following format:\n<b>[%Y-%m-%d %H:%M:%S]</b>"), GTK_STOCK_INFO, FALSE);
+	gtk_box_pack_start(GTK_BOX(vbox), infobox, FALSE, FALSE, 0);
 
 	return frame;
 }

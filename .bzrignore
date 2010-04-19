@@ -1,0 +1,15 @@
+src/messageparser.lo
+src/pidgin_internals.lo
+src/prefs.lo
+src/timeparser.lo
+src/zncconversation.lo
+src/znchelper.lo
+src/Makefile
+src/.libs
+src/.deps
+po/Makefile
+config.status
+config.log
+config.h
+autom4te.cache
+Makefile
