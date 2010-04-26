@@ -30,6 +30,8 @@ time_t get_time(const char *timestamp) {
 	int read = 0;
 	int year = 0;
 	int month = 0;
+
+	if(timestamp[21] != '\0') return 0;
 	
 	read = sscanf(timestamp, "[%04d-%02d-%02d %02d:%02d:%02d]", &year, &month, &t.tm_mday, &t.tm_hour, &t.tm_min, &t.tm_sec);
 	t.tm_isdst = (-1);
