@@ -24,21 +24,27 @@
 
 #include <prefs.h>
 #include <debug.h>
+#include <util.h>
 
 time_t get_time(gchar **message) {
 	struct tm t;
-	gchar *timestamp, *tmp;
+	gchar *timestamp, *tmp, *tail;
 	
 	int read = 0;
 	int year = 0;
 	int month = 0;
 
-	//if(timestamp[21] != '\0') return 0;
-	
-	timestamp = g_strrstr(*message, "[");
+	timestamp = g_strrstr(*message, " [");
 	if(!timestamp) return 0;
 
-	read = sscanf(timestamp, "[%04d-%02d-%02d %02d:%02d:%02d]", &year, &month, &t.tm_mday, &t.tm_hour, &t.tm_min, &t.tm_sec);
+	tail = purple_markup_strip_html(timestamp + 22);
+	if(strlen(tail) > 0) {
+		g_free(tail);
+		return 0;
+	}
+	g_free(tail);
+	
+	read = sscanf(timestamp, " [%04d-%02d-%02d %02d:%02d:%02d]", &year, &month, &t.tm_mday, &t.tm_hour, &t.tm_min, &t.tm_sec);
 	t.tm_isdst = (-1);
 	
 	t.tm_hour += purple_prefs_get_int(PLUGIN_PREFS_PREFIX "/offset");
@@ -49,7 +55,7 @@ time_t get_time(gchar **message) {
 	t.tm_mon = month - 1;
 
 	*timestamp = '\0';
-	tmp = g_strdup_printf("%s%s", g_strstrip(*message), g_strstrip(timestamp + 21));
+	tmp = g_strdup_printf("%s%s", *message, timestamp + 22);
 	g_free(*message);
 	*message = tmp;
 
