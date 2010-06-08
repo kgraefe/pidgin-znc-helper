@@ -22,6 +22,6 @@
 
 #include <glib.h>
 
-time_t get_time(const char *timestamp);
+time_t get_time(gchar **message);
 
 #endif /* PIDGIN_ZNC_HELPER_TIME_PARSER_H */
