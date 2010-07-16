@@ -15,3 +15,4 @@ cd ${WIN32DIR} && \
 zip -r ../${WIN32DIR}.zip * && \
 cd .. && \
 rm -rf ${WIN32DIR}
+echo "filename: ${WIN32DIR}.zip"

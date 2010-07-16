@@ -67,7 +67,7 @@ static GtkWidget *make_info_widget(gchar *markup, gchar *stock_id, gboolean inde
 }
 
 GtkWidget *get_pref_frame(PurplePlugin *plugin) {
-	GtkWidget *frame, *vbox, *hbox, *label, *spin, *img, *infobox;
+	GtkWidget *frame, *vbox, *hbox, *label, *spin, *infobox;
 	GtkAdjustment *adjustment;
 
 	frame = gtk_vbox_new(FALSE, 18);

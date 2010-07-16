@@ -13,3 +13,6 @@ config.log
 config.h
 autom4te.cache
 Makefile
+local.mak
+pidgin-znchelper-1.1.tar.gz
+src/znchelper.la

@@ -93,6 +93,8 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 	if(inuse) return FALSE;
 	if(!purple_account_get_bool(account, "uses_znc_bouncer", FALSE)) return FALSE;
 	if(!(flags & PURPLE_MESSAGE_RECV)) return FALSE;
+
+	purple_debug_info(PLUGIN_STATIC_NAME, "%s: %s\n", who, *message);
 	
 	gtkconv = PIDGIN_CONVERSATION(conv);
 
@@ -121,28 +123,22 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 			cancel = TRUE;
 		}
 	} else if((purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT && (zncconv = g_hash_table_lookup(conversations, conv)) != NULL) || purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM)  {
-		pos = g_strrstr(*message, "[");
-		
-		if(pos != NULL) {
-			stamp = get_time(pos);
-			if(stamp != 0) {
-				*pos = '\0';
-				
-				inuse = TRUE;
-				
-				purple_signal_connect(pidgin_conversations_get_handle(), "conversation-timestamp", plugin, PURPLE_CALLBACK(conversation_timestamp_cb), NULL);
-				if(purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT) {
-					g_hash_table_insert(zncconv->users, g_strdup(who), "");
-					purple_conv_chat_write(PURPLE_CONV_CHAT(conv), who, *message, flags, stamp);
-				} else if(purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM) {
-					purple_conv_im_write(PURPLE_CONV_IM(conv), who, *message, flags, stamp);
-				}
-				purple_signal_disconnect(pidgin_conversations_get_handle(), "conversation-timestamp", plugin, PURPLE_CALLBACK(conversation_timestamp_cb));
-				
-				inuse = FALSE;
-				
-				cancel = TRUE;
+		stamp = get_time(message);
+		if(stamp != 0) {
+			inuse = TRUE;
+			
+			purple_signal_connect(pidgin_conversations_get_handle(), "conversation-timestamp", plugin, PURPLE_CALLBACK(conversation_timestamp_cb), NULL);
+			if(purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT) {
+				g_hash_table_insert(zncconv->users, g_strdup(who), "");
+				purple_conv_chat_write(PURPLE_CONV_CHAT(conv), who, *message, flags, stamp);
+			} else if(purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM) {
+				purple_conv_im_write(PURPLE_CONV_IM(conv), who, *message, flags, stamp);
 			}
+			purple_signal_disconnect(pidgin_conversations_get_handle(), "conversation-timestamp", plugin, PURPLE_CALLBACK(conversation_timestamp_cb));
+			
+			inuse = FALSE;
+			
+			cancel = TRUE;
 		} else {
 			purple_debug_error(PLUGIN_STATIC_NAME, _("Timestamp could not be interpreted.\n"));
 		}

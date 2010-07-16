@@ -63,7 +63,7 @@ LIB_PATHS =             \
 ##
 
 PLUGIN_SRC =	\
-	messageparser.c  pidgin_internals.c  timeparser.c  zncconversation.c  znchelper.c
+	messageparser.c  pidgin_internals.c  prefs.c  timeparser.c  zncconversation.c  znchelper.c
 
 
 PLUGIN_OBJ = $(PLUGIN_SRC:%.c=%.o)

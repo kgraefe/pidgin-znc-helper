@@ -1,4 +1,4 @@
-pidgin-znchelper (@@VERSION@@-@@DEB_REVISION@@) karmic; urgency=low
+pidgin-znchelper (@@VERSION@@-@@DEB_REVISION@@) @@DISTRIBUTION@@; urgency=low
 
   * release version @@VERSION@@
 
