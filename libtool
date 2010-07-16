@@ -1,8 +1,8 @@
 #! /bin/bash
 
 # libtool - Provide generalized library-building support services.
-# Generated automatically by config.status (pidgin-znchelper) 1.2
-# Libtool was configured on host ponyslaystation:
+# Generated automatically by config.status (pidgin-znchelper) 1.2-Urlaubs-Edtion
+# Libtool was configured on host midas:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 #
 #   Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2003, 2004, 2005,
@@ -237,7 +237,7 @@ hardcode_into_libs=yes
 sys_lib_search_path_spec="/usr/lib/gcc/i486-linux-gnu/4.4.3 /usr/lib /lib /usr/lib/i486-linux-gnu"
 
 # Run-time system search path for libraries.
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/mesa /lib/i486-linux-gnu /usr/lib/i486-linux-gnu /usr/lib/alsa-lib /usr/local/lib /usr/lib/vmware-tools/lib32/libvmGuestLib.so /usr/lib/vmware-tools/lib64/libvmGuestLib.so /usr/lib/vmware-tools/lib32/libvmGuestLibJava.so /usr/lib/vmware-tools/lib64/libvmGuestLibJava.so /usr/lib/vmware-tools/lib32/libDeployPkg.so /usr/lib/vmware-tools/lib64/libDeployPkg.so "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/mesa /lib/i486-linux-gnu /usr/lib/i486-linux-gnu /usr/lib/alsa-lib /usr/local/lib "
 
 # Whether dlopen is supported.
 dlopen_support=unknown

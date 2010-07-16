@@ -19,7 +19,7 @@
 
 GETTEXT_PACKAGE = pidgin-znchelper
 PACKAGE = pidgin-znchelper
-VERSION = 1.2
+VERSION = 1.2-Urlaubs-Edtion
 
 SHELL = /bin/sh
 

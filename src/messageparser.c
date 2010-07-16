@@ -123,7 +123,7 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 			cancel = TRUE;
 		}
 	} else if((purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT && (zncconv = g_hash_table_lookup(conversations, conv)) != NULL) || purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM)  {
-		stamp = get_time(message);
+		stamp = get_time(message, purple_account_get_int(account, "znc_time_offset", 0));
 		if(stamp != 0) {
 			inuse = TRUE;
 			
@@ -164,6 +164,9 @@ void message_parser_init(PurplePlugin *_plugin) {
 			prpl_info = PURPLE_PLUGIN_PROTOCOL_INFO(prpl);
 			if(prpl_info && prpl->info->id && (purple_utf8_strcasecmp(prpl->info->id, "prpl-irc")==0)) {
 				option = purple_account_option_bool_new(_("Uses ZNC Bouncer"), "uses_znc_bouncer", FALSE);
+				prpl_info->protocol_options = g_list_append(prpl_info->protocol_options, option);
+
+				option = purple_account_option_int_new(_("ZNC time offset (hours)"), "znc_time_offset", 0);
 				prpl_info->protocol_options = g_list_append(prpl_info->protocol_options, option);
 			}
 		}

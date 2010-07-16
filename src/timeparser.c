@@ -22,11 +22,10 @@
 
 #include "timeparser.h"
 
-#include <prefs.h>
 #include <debug.h>
 #include <util.h>
 
-time_t get_time(gchar **message) {
+time_t get_time(gchar **message, int offset) {
 	struct tm t;
 	gchar *timestamp, *tmp, *tail;
 	
@@ -47,7 +46,7 @@ time_t get_time(gchar **message) {
 	read = sscanf(timestamp, " [%04d-%02d-%02d %02d:%02d:%02d]", &year, &month, &t.tm_mday, &t.tm_hour, &t.tm_min, &t.tm_sec);
 	t.tm_isdst = (-1);
 	
-	t.tm_hour += purple_prefs_get_int(PLUGIN_PREFS_PREFIX "/offset");
+	t.tm_hour += offset;
 	
 	if(read != 6 || year <= 1900) return 0;
 	

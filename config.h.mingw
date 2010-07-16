@@ -66,7 +66,7 @@
 #define PACKAGE_NAME "pidgin-znchelper"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "pidgin-znchelper 1.2"
+#define PACKAGE_STRING "pidgin-znchelper 1.2-Urlaubs-Edtion"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "pidgin-znchelper"
@@ -75,7 +75,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.2"
+#define PACKAGE_VERSION "1.2-Urlaubs-Edtion"
 
 /* Define the plugin author to be used */
 #define PLUGIN_AUTHOR "Konrad Gräfe <freakazoid@teamblind.de>"
@@ -90,7 +90,7 @@
 #define PLUGIN_STATIC_NAME "znchelper"
 
 /* Define the plugin version to be used */
-#define PLUGIN_VERSION "1.2"
+#define PLUGIN_VERSION "1.2-Urlaubs-Edtion"
 
 /* Define the plugin website to be used */
 #define PLUGIN_WEBSITE "http://freakazoid.teamblind.de/2009/11/16/pidgin-znc-helper/"
@@ -99,4 +99,4 @@
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "1.2"
+#define VERSION "1.2-Urlaubs-Edtion"
