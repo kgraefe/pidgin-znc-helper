@@ -86,7 +86,6 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 	gboolean cancel = FALSE;
 	
 	static gboolean inuse = FALSE;
-	char *pos = NULL;
 	time_t stamp;
 
 	
@@ -155,22 +154,6 @@ void message_parser_init(PurplePlugin *_plugin) {
 	
 	plugin = _plugin;
 	conversations = g_hash_table_new(NULL, NULL);
-	
-	/* Allen IRC-Accounts die ZNC-Option anhängen*/
-	for (iter = purple_plugins_get_protocols(); iter; iter = iter->next) {
-		prpl = iter->data;
-		
-		if(prpl && prpl->info) {
-			prpl_info = PURPLE_PLUGIN_PROTOCOL_INFO(prpl);
-			if(prpl_info && prpl->info->id && (purple_utf8_strcasecmp(prpl->info->id, "prpl-irc")==0)) {
-				option = purple_account_option_bool_new(_("Uses ZNC Bouncer"), "uses_znc_bouncer", FALSE);
-				prpl_info->protocol_options = g_list_append(prpl_info->protocol_options, option);
-
-				option = purple_account_option_int_new(_("ZNC time offset (hours)"), "znc_time_offset", 0);
-				prpl_info->protocol_options = g_list_append(prpl_info->protocol_options, option);
-			}
-		}
-	}
 	
 	purple_signal_connect(purple_conversations_get_handle(), "writing-chat-msg", plugin, PURPLE_CALLBACK(writing_msg_cb), NULL);
 	purple_signal_connect(purple_conversations_get_handle(), "writing-im-msg", plugin, PURPLE_CALLBACK(writing_msg_cb), NULL);
