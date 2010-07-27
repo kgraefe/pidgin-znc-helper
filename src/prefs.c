@@ -42,7 +42,7 @@ enum {
 	ACCOUNT_LIST_NUM_COLUMNS
 };
 
-static GtkWidget *make_info_widget(gchar *markup, gchar *stock_id, gboolean indent) {
+static GtkWidget *make_info_widget(const gchar *markup, gchar *stock_id, gboolean indent) {
 	GtkWidget *infobox, *label, *img, *align;
 
 	if(!markup) return NULL;
@@ -132,15 +132,19 @@ static GtkWidget *get_account_list_widget() {
 	GtkTreeIter iter;
 	GtkCellRenderer *renderer;
 	GtkTreeViewColumn *column;
-	GValue adjustment = {0};
-	GValue editable = {0};
-	GValue editing = {0};
+	GValue adjustment;
+	GValue editable;
+	GValue editing;
 
 	GList *l;
 	PurpleAccount *account;
 	const char *protocol_id;
 
 	GdkPixbuf *pixbuf;
+
+	adjustment.g_type = 0;
+	editable.g_type = 0;
+	editing.g_type = 0;
 
 	if(account_list.widget) account_list_widget_destroyed_cb(); /* I know this is ugly, I will search for the right destroy-event later */
 

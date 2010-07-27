@@ -147,11 +147,6 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 }
 
 void message_parser_init(PurplePlugin *_plugin) {
-	GList *iter;
-	PurplePlugin *prpl;
-	PurplePluginProtocolInfo *prpl_info;
-	PurpleAccountOption *option;
-	
 	plugin = _plugin;
 	conversations = g_hash_table_new(NULL, NULL);
 	
