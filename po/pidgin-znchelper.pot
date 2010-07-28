@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-27 18:38+0200\n"
+"POT-Creation-Date: 2010-07-28 17:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,19 +28,23 @@ msgstr ""
 msgid "Timestamp could not be interpreted.\n"
 msgstr ""
 
-#: ../src/prefs.c:194
+#: ../src/prefs.c:185
+msgid "hours"
+msgstr ""
+
+#: ../src/prefs.c:198
 msgid "ZNC"
 msgstr ""
 
-#: ../src/prefs.c:206
+#: ../src/prefs.c:210
 msgid "Account"
 msgstr ""
 
-#: ../src/prefs.c:223
+#: ../src/prefs.c:227
 msgid "Time offset"
 msgstr ""
 
-#: ../src/prefs.c:261
+#: ../src/prefs.c:265
 msgid ""
 "Please make sure to set up your ZNC to <b>append</b> the timestamp using the "
 "following format:\n"

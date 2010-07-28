@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtk-freakazoid-znchelper 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-27 18:38+0200\n"
-"PO-Revision-Date: 2010-04-19 04:28+0000\n"
-"Last-Translator: kgraefe <Unknown>\n"
+"POT-Creation-Date: 2010-07-28 17:44+0200\n"
+"PO-Revision-Date: 2010-07-27 19:01+0000\n"
+"Last-Translator: Siggi0904 <Unknown>\n"
 "Language-Team: de_DE <freakazoid@teamblind.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-06-09 03:45+0000\n"
+"X-Launchpad-Export-Date: 2010-07-28 04:01+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../src/messageparser.c:106
@@ -29,26 +29,29 @@ msgstr "Ende der Wiedergabe."
 msgid "Timestamp could not be interpreted.\n"
 msgstr "Zeitstempel konnte nicht interpretiert werden.\n"
 
-#: ../src/prefs.c:194
+#: ../src/prefs.c:185
+msgid "hours"
+msgstr ""
+
+#: ../src/prefs.c:198
 msgid "ZNC"
-msgstr ""
+msgstr "ZNC"
 
-#: ../src/prefs.c:206
+#: ../src/prefs.c:210
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
-#: ../src/prefs.c:223
-#, fuzzy
+#: ../src/prefs.c:227
 msgid "Time offset"
-msgstr "Zeit-Ausgleich (Stunden):"
+msgstr "Zeitversatz"
 
-#: ../src/prefs.c:261
+#: ../src/prefs.c:265
 msgid ""
 "Please make sure to set up your ZNC to <b>append</b> the timestamp using the "
 "following format:\n"
 "<b>[%Y-%m-%d %H:%M:%S]</b>"
 msgstr ""
-"Bitte stelle sicher, dass dein ZNC den Zeitstempel an die Nachrichten "
+"Bitte stellen Sie sicher, dass Ihr ZNC den Zeitstempel an die Nachrichten "
 "anhängt (<b>append</b>) und dabei folgendes Format benutzt:\n"
 "<b>[%Y-%m-%d %H:%M:%S]</b>"
 

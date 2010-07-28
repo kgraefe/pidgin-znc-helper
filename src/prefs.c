@@ -182,7 +182,7 @@ static GtkWidget *get_account_list_widget() {
 				ACCOUNT_LIST_COL_PROTOCOL_ICON, pixbuf,
 				ACCOUNT_LIST_COL_ACCOUNT_USERNAME, purple_account_get_username(account),
 				ACCOUNT_LIST_COL_TIME_OFFSET, purple_account_get_int(account, "znc_time_offset", 0),
-				ACCOUNT_LIST_COL_TIME_UNIT, "hours",
+				ACCOUNT_LIST_COL_TIME_UNIT, _("hours"),
 				ACCOUNT_LIST_COL_ACCOUNT, account,
 				-1);
 
