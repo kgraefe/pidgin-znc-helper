@@ -122,6 +122,7 @@ static void time_offset_edited_cb(GtkCellRendererToggle *renderer, gchar *path_s
 		purple_account_set_int(account, "znc_time_offset", offset);
 		gtk_list_store_set(account_list.model, &iter,
 			ACCOUNT_LIST_COL_TIME_OFFSET, offset,
+			ACCOUNT_LIST_COL_TIME_UNIT, ngettext("hour", "hours", (offset >= 0 ? offset : -offset)),
 			-1);
 	}
 }
@@ -139,6 +140,7 @@ static GtkWidget *get_account_list_widget() {
 	GList *l;
 	PurpleAccount *account;
 	const char *protocol_id;
+	int offset;
 
 	GdkPixbuf *pixbuf;
 
@@ -175,14 +177,15 @@ static GtkWidget *get_account_list_widget() {
 			pixbuf = pidgin_create_prpl_icon(account, PIDGIN_PRPL_ICON_MEDIUM);
 			if ((pixbuf != NULL) && purple_account_is_disconnected(account))
 				gdk_pixbuf_saturate_and_pixelate(pixbuf, pixbuf, 0.0, FALSE);
+			offset = purple_account_get_int(account, "znc_time_offset", 0);
 
 			gtk_list_store_append(model, &iter);
 			gtk_list_store_set(model, &iter,
 				ACCOUNT_LIST_COL_USES_ZNC, purple_account_get_bool(account, "uses_znc_bouncer", FALSE),
 				ACCOUNT_LIST_COL_PROTOCOL_ICON, pixbuf,
 				ACCOUNT_LIST_COL_ACCOUNT_USERNAME, purple_account_get_username(account),
-				ACCOUNT_LIST_COL_TIME_OFFSET, purple_account_get_int(account, "znc_time_offset", 0),
-				ACCOUNT_LIST_COL_TIME_UNIT, _("hours"),
+				ACCOUNT_LIST_COL_TIME_OFFSET, offset,
+				ACCOUNT_LIST_COL_TIME_UNIT, ngettext("hour", "hours", (offset >= 0 ? offset : -offset)),
 				ACCOUNT_LIST_COL_ACCOUNT, account,
 				-1);
 

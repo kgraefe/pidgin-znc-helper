@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtk-freakazoid-znchelper 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-28 17:44+0200\n"
+"POT-Creation-Date: 2010-07-28 18:10+0200\n"
 "PO-Revision-Date: 2010-07-27 19:01+0000\n"
 "Last-Translator: Siggi0904 <Unknown>\n"
 "Language-Team: de_DE <freakazoid@teamblind.de>\n"
@@ -29,23 +29,25 @@ msgstr "Ende der Wiedergabe."
 msgid "Timestamp could not be interpreted.\n"
 msgstr "Zeitstempel konnte nicht interpretiert werden.\n"
 
-#: ../src/prefs.c:185
-msgid "hours"
-msgstr ""
+#: ../src/prefs.c:125 ../src/prefs.c:188
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../src/prefs.c:198
+#: ../src/prefs.c:201
 msgid "ZNC"
 msgstr "ZNC"
 
-#: ../src/prefs.c:210
+#: ../src/prefs.c:213
 msgid "Account"
 msgstr "Konto"
 
-#: ../src/prefs.c:227
+#: ../src/prefs.c:230
 msgid "Time offset"
 msgstr "Zeitversatz"
 
-#: ../src/prefs.c:265
+#: ../src/prefs.c:268
 msgid ""
 "Please make sure to set up your ZNC to <b>append</b> the timestamp using the "
 "following format:\n"
