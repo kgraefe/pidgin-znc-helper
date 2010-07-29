@@ -8,13 +8,14 @@ msgstr ""
 "Project-Id-Version: gtk-freakazoid-znchelper 0.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-28 18:10+0200\n"
-"PO-Revision-Date: 2010-07-27 19:01+0000\n"
-"Last-Translator: Siggi0904 <Unknown>\n"
+"PO-Revision-Date: 2010-07-28 16:22+0000\n"
+"Last-Translator: kgraefe <Unknown>\n"
 "Language-Team: de_DE <freakazoid@teamblind.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-07-28 04:01+0000\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2010-07-29 03:46+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../src/messageparser.c:106
@@ -32,8 +33,8 @@ msgstr "Zeitstempel konnte nicht interpretiert werden.\n"
 #: ../src/prefs.c:125 ../src/prefs.c:188
 msgid "hour"
 msgid_plural "hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Stunde"
+msgstr[1] "Stunden"
 
 #: ../src/prefs.c:201
 msgid "ZNC"
@@ -45,7 +46,7 @@ msgstr "Konto"
 
 #: ../src/prefs.c:230
 msgid "Time offset"
-msgstr "Zeitversatz"
+msgstr "Zeit-Ausgleich"
 
 #: ../src/prefs.c:268
 msgid ""
@@ -72,10 +73,11 @@ msgstr ""
 #~ msgid "Uses ZNC Bouncer"
 #~ msgstr "Benutzt ZNC Bouncer"
 
+#, c-format
 #~ msgid ""
-#~ "Timestamp could not be interpreted. Please use \"[%%Y-%%m-%%d %%H:%%M:%%S]"
-#~ "\" as timestamp format and append it to the message.\n"
+#~ "Timestamp could not be interpreted. Please use \"[%%Y-%%m-%%d %%H:%%M:%%S]\" "
+#~ "as timestamp format and append it to the message.\n"
 #~ msgstr ""
 #~ "Zeitstempel konnte nicht interpretiert werden. Bitte benutzen Sie als "
-#~ "Zeitstempelformat  \"[%%Y-%%m-%%d %%H:%%M:%%S]\" und lassen Sie es nach "
-#~ "der eigentlichen Nachricht ausgeben (append).\n"
+#~ "Zeitstempelformat  \"[%%Y-%%m-%%d %%H:%%M:%%S]\" und lassen Sie es nach der "
+#~ "eigentlichen Nachricht ausgeben (append).\n"
