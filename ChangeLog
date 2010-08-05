@@ -1,3 +1,8 @@
+Version 1.3 (2010/08/05):
+	* don't check wether the timestamp is in the end of the string (mIRC sends special formatting characters that are interpreted into HTML from Pidgin which means that the timestamps aren't anymore at the end)
+	* check wether the part of the message after timestamp contains only HTML tags (this means usually the timestamp was at the end of the message)
+	* time offset per account including new preferences dialog
+
 Version 1.2 (2010/06/05):
 	* added advice to preferences window
 	* Fix: empty messages when timestamp is not appended (#570265)

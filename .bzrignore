@@ -16,3 +16,5 @@ Makefile
 local.mak
 pidgin-znchelper-1.1.tar.gz
 src/znchelper.la
+stamp-h1
+src/pidgin-znchelper.dll
