@@ -24,6 +24,7 @@ echo -n "Debian package revision? ($DEB_REVISION) "
 read in
 if [ "$in" != "" ]; then
 	DEB_REVISION=$in
+	echo $DEB_REVISION >${src_dir}/DEB_REVISION
 fi
 
 
@@ -36,6 +37,7 @@ do
 	cd deb-pkg
 
 	tar xzvf ../${PROJECT}-${VERSION}.tar.gz
+	cp ../${PROJECT}-${VERSION}.tar.gz ${PROJECT}_${VERSION}.orig.tar.gz
 
 	cd ${PROJECT}-${VERSION}
 
@@ -63,7 +65,10 @@ do
 
 	if [ "$in" == "y" ]; then
 		dput ${REPOSITORY} ${PROJECT}_${VERSION}-${revision}_source.changes
-		echo $DEB_REVISION >DEB_REVISION
+		echo $(($DEB_REVISION + 1)) >${src_dir}/DEB_REVISION
+	else
+		cd ${src_dir}
+		exit
 	fi
 
 	cd ${src_dir}
