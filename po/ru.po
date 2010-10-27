@@ -1,0 +1,73 @@
+# Russian translation for pidgin-znc-helper
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the pidgin-znc-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pidgin-znc-helper\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2010-09-07 05:23+0000\n"
+"PO-Revision-Date: 2010-10-26 21:09+0000\n"
+"Last-Translator: Ushakov Maxim <msincster@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Launchpad-Export-Date: 2010-10-27 05:12+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: ../src/messageparser.c:106
+msgid "Buffer Playback..."
+msgstr "Воспроизведение буфера..."
+
+#: ../src/messageparser.c:119
+msgid "Playback Complete."
+msgstr "Воспроизведение завершено."
+
+#: ../src/messageparser.c:142
+msgid "Timestamp could not be interpreted.\n"
+msgstr "Отметка времени не может быть обработана.\n"
+
+#: ../src/prefs.c:125 ../src/prefs.c:188
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "час"
+msgstr[1] "часа"
+msgstr[2] "часов"
+
+#: ../src/prefs.c:201
+msgid "ZNC"
+msgstr ""
+
+#: ../src/prefs.c:213
+msgid "Account"
+msgstr "Учетная запись"
+
+#: ../src/prefs.c:230
+msgid "Time offset"
+msgstr "Смещение"
+
+#: ../src/prefs.c:268
+msgid ""
+"Please make sure to set up your ZNC to <b>append</b> the timestamp using the "
+"following format:\n"
+"<b>[%Y-%m-%d %H:%M:%S]</b>"
+msgstr ""
+"Не забудьте настроить ZNC <b>добавив</b> отметку, используя следующий "
+"формат:\n"
+"<b>[%Y-%m-%d %H:%M:%S]</b>"
+
+#: ../src/znchelper.c:110
+msgid "ZNC Helper"
+msgstr "ZNC помощник"
+
+#: ../src/znchelper.c:111 ../src/znchelper.c:112
+msgid ""
+"This plugin removes ugly double-timestamps when replaying messages from ZNC "
+"bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\"."
+msgstr ""
+"Этот модуль удаляет некрасивую двойную метку при отображении сообщений от "
+"ZNC, например, \"(13:00:00) [12:00:00] Обед! \"."
