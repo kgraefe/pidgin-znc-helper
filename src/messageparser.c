@@ -91,7 +91,6 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 	
 	if(inuse) return FALSE;
 	if(!purple_account_get_bool(account, "uses_znc_bouncer", FALSE)) return FALSE;
-	if(!(flags & PURPLE_MESSAGE_RECV)) return FALSE;
 
 	purple_debug_info(PLUGIN_STATIC_NAME, "%s: %s\n", who, *message);
 	
