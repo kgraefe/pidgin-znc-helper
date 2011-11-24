@@ -1,5 +1,6 @@
 Version 1.3.1 (2011/11/25):
 	* Process self-posted incoming messages too. (This happens e.g. when using ZNC behind an irssi-proxy.)
+	* Added Spain and Russian translation
 
 Version 1.3 (2010/08/05):
 	* don't check wether the timestamp is in the end of the string (mIRC sends special formatting characters that are interpreted into HTML from Pidgin which means that the timestamps aren't anymore at the end)
