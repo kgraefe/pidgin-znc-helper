@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2010-12-09 05:17+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-12-02 05:28+0000\n"
+"X-Generator: Launchpad (build 14414)\n"
 
 #: ../src/messageparser.c:106
 msgid "Buffer Playback..."
@@ -69,15 +69,3 @@ msgid ""
 msgstr ""
 "Dieses Plugin entfernt hässliche doppelte Zeitstempel wenn man Nachrichten "
 "eines ZNC Bouncers anschaut, z.B. \"(13:00:00) [12:00:00] Mittag!\"."
-
-#~ msgid "Uses ZNC Bouncer"
-#~ msgstr "Benutzt ZNC Bouncer"
-
-#, c-format
-#~ msgid ""
-#~ "Timestamp could not be interpreted. Please use \"[%%Y-%%m-%%d %%H:%%M:%%S]\" "
-#~ "as timestamp format and append it to the message.\n"
-#~ msgstr ""
-#~ "Zeitstempel konnte nicht interpretiert werden. Bitte benutzen Sie als "
-#~ "Zeitstempelformat  \"[%%Y-%%m-%%d %%H:%%M:%%S]\" und lassen Sie es nach der "
-#~ "eigentlichen Nachricht ausgeben (append).\n"
