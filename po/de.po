@@ -1,16 +1,17 @@
 # German translation for ZNC Helper
-# Copyright (C) 2009 Konrad Gräfe <freakazoid@teamblind.de>
+# Copyright (C) 2012 Konrad Gräfe <freakazoid@teamblind.de>
 # This file is distributed under the same license as the znchelper package.
-# Konrad Gräfe <freakazoid@teamblind.de>, 2009
+# Konrad Gräfe <freakazoid@teamblind.de>, 2012
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtk-freakazoid-znchelper 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-19 05:09+0000\n"
+"POT-Creation-Date: 2012-01-15 00:19+0100\n"
 "PO-Revision-Date: 2010-07-29 11:47+0000\n"
 "Last-Translator: kgraefe <Unknown>\n"
 "Language-Team: de_DE <freakazoid@teamblind.de>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,15 +19,15 @@ msgstr ""
 "X-Launchpad-Export-Date: 2011-12-02 05:28+0000\n"
 "X-Generator: Launchpad (build 14414)\n"
 
-#: ../src/messageparser.c:106
+#: ../src/messageparser.c:105
 msgid "Buffer Playback..."
 msgstr "Wiedergabe des Zwischenspeichers..."
 
-#: ../src/messageparser.c:119
+#: ../src/messageparser.c:118
 msgid "Playback Complete."
 msgstr "Ende der Wiedergabe."
 
-#: ../src/messageparser.c:142
+#: ../src/messageparser.c:141
 msgid "Timestamp could not be interpreted.\n"
 msgstr "Zeitstempel konnte nicht interpretiert werden.\n"
 

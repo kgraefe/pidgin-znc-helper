@@ -3,7 +3,8 @@
 PROJECT=pidgin-znchelper
 VERSION=$(cat VERSION)
 REPOSITORY=ppa:konradgraefe/pidgin-plugins
-DISTRIBUTIONS="natty lucid maverick"
+#DISTRIBUTIONS="natty lucid maverick"
+DISTRIBUTIONS="precise oneiric"
 
 if [ -f DEB_REVISION ]; then
 	DEB_REVISION=$(cat DEB_REVISION)

@@ -14,7 +14,11 @@ config.h
 autom4te.cache
 Makefile
 local.mak
-pidgin-znchelper-1.1.tar.gz
+pidgin-znchelper-*.tar.gz
+pidgin-znchelper-*.zip
+pidgin-znchelper-*.asc
 src/znchelper.la
 stamp-h1
 src/pidgin-znchelper.dll
+deb-pkg
+DEB_REVISION
