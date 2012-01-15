@@ -69,7 +69,8 @@ am__installdirs = "$(DESTDIR)$(plugindir)"
 LTLIBRARIES = $(plugin_LTLIBRARIES)
 znchelper_la_LIBADD =
 am_znchelper_la_OBJECTS = znchelper.lo messageparser.lo \
-	zncconversation.lo pidgin_internals.lo timeparser.lo prefs.lo
+	zncconversation.lo pidgin_internals.lo timeparser.lo \
+	queryfix.lo prefs.lo
 znchelper_la_OBJECTS = $(am_znchelper_la_OBJECTS)
 znchelper_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -238,6 +239,7 @@ EXTRA_DIST = \
 	zncconversation.h \
 	pidgin_internals.h \
 	prefs.h \
+	queryfix.h \
 	Makefile.mingw
 
 plugindir = $(libdir)/pidgin
@@ -248,6 +250,7 @@ znchelper_la_SOURCES = \
 	zncconversation.c \
 	pidgin_internals.c \
 	timeparser.c \
+	queryfix.c \
 	prefs.c
 
 znchelper_la_LDFLAGS = -module -avoid-version
@@ -328,6 +331,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/messageparser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pidgin_internals.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/prefs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/queryfix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/timeparser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/zncconversation.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/znchelper.Plo@am__quote@

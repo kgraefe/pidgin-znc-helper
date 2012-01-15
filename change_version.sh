@@ -1,4 +1,5 @@
 #!/bin/bash
+export CC=colorgcc
 vim ChangeLog &&
 vim VERSION &&
 sed "s/@@VERSION@@/$(cat VERSION)/" configure.in.in >configure.in &&

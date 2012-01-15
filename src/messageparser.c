@@ -87,6 +87,7 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 	
 	static gboolean inuse = FALSE;
 	time_t stamp;
+	char *swap = NULL;
 
 	
 	if(inuse) return FALSE;
@@ -121,9 +122,16 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 			cancel = TRUE;
 		}
 	} else if((purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT && (zncconv = g_hash_table_lookup(conversations, conv)) != NULL) || purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM)  {
+		if((swap = g_strrstr(*message, "***SWAP***")) && swap[10] == '\0') {
+			*swap = '\0';
+			flags &= ~PURPLE_MESSAGE_RECV;
+			flags |= PURPLE_MESSAGE_SEND;
+		}
 		stamp = get_time(message, purple_account_get_int(account, "znc_time_offset", 0));
-		if(stamp != 0) {
+		if(swap || stamp) {
 			inuse = TRUE;
+
+			if(stamp == 0) stamp = time(NULL);
 			
 			purple_signal_connect(pidgin_conversations_get_handle(), "conversation-timestamp", plugin, PURPLE_CALLBACK(conversation_timestamp_cb), NULL);
 			if(purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT) {

@@ -31,6 +31,7 @@
 
 #include "messageparser.h"
 #include "prefs.h"
+#include "queryfix.h"
 
 PurplePlugin *plugin;
 
@@ -38,7 +39,8 @@ static gboolean plugin_load(PurplePlugin *_plugin) {
 	plugin = _plugin;
 	
 	message_parser_init(plugin);
-	
+	query_fix_init(plugin);
+
 	return TRUE;
 }
 

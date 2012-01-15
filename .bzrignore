@@ -22,3 +22,4 @@ stamp-h1
 src/pidgin-znchelper.dll
 deb-pkg
 DEB_REVISION
+src/queryfix.lo

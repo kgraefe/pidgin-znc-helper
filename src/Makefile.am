@@ -5,6 +5,7 @@ EXTRA_DIST = \
 	zncconversation.h \
 	pidgin_internals.h \
 	prefs.h \
+	queryfix.h \
 	Makefile.mingw
 
 plugindir = $(libdir)/pidgin
@@ -17,6 +18,7 @@ znchelper_la_SOURCES = \
 	zncconversation.c \
 	pidgin_internals.c \
 	timeparser.c \
+	queryfix.c \
 	prefs.c
 	
 znchelper_la_LDFLAGS = -module -avoid-version
