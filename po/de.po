@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtk-freakazoid-znchelper 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-14 23:34+0000\n"
+"POT-Creation-Date: 2012-01-16 05:34+0000\n"
 "PO-Revision-Date: 2010-07-29 11:47+0000\n"
 "Last-Translator: kgraefe <Unknown>\n"
 "Language-Team: de_DE <freakazoid@teamblind.de>\n"
@@ -15,19 +15,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-01-15 05:35+0000\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Launchpad-Export-Date: 2012-01-17 05:08+0000\n"
+"X-Generator: Launchpad (build 14676)\n"
 "Language: \n"
 
-#: ../src/messageparser.c:105
+#: ../src/messageparser.c:106
 msgid "Buffer Playback..."
 msgstr "Wiedergabe des Zwischenspeichers..."
 
-#: ../src/messageparser.c:118
+#: ../src/messageparser.c:119
 msgid "Playback Complete."
 msgstr "Ende der Wiedergabe."
 
-#: ../src/messageparser.c:141
+#: ../src/messageparser.c:149
 msgid "Timestamp could not be interpreted.\n"
 msgstr "Zeitstempel konnte nicht interpretiert werden.\n"
 
@@ -59,11 +59,11 @@ msgstr ""
 "anhängt (<b>append</b>) und dabei folgendes Format benutzt:\n"
 "<b>[%Y-%m-%d %H:%M:%S]</b>"
 
-#: ../src/znchelper.c:110
+#: ../src/znchelper.c:112
 msgid "ZNC Helper"
 msgstr "ZNC Helper"
 
-#: ../src/znchelper.c:111 ../src/znchelper.c:112
+#: ../src/znchelper.c:113 ../src/znchelper.c:114
 msgid ""
 "This plugin removes ugly double-timestamps when replaying messages from ZNC "
 "bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\"."
