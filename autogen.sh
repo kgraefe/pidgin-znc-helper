@@ -1,13 +1,29 @@
-#! /bin/sh
+#!/bin/bash
 
-aclocal \
-&& autoheader \
-&& automake --add-missing \
-&& autoconf \
-&& libtoolize --copy --force --install \
-&& ((intltoolize --version) < /dev/null > /dev/null 2>&1 || {
-    echo;
-    echo "You must have intltool installed to compile birthday reminder!";
-    echo;
-    exit;
-})
+test -f VERSION || exit
+test -f ChangeLog|| exit
+test -f configure.in.in || exit
+test -f COPYING || exit
+
+./po-update.sh || exit
+
+languages=""
+for f in po/*.po
+do test -f $f && languages="$languages $(basename $f .po)"
+done
+
+headers=""
+for f in src/*.h
+do test -f $f && headers="$headers $f"
+done
+
+sed -e "s/@@VERSION@@/$(cat VERSION)/" -e "s/@@LANGUAGES@@/$(echo $languages)/" configure.in.in >configure.in || exit
+sed -e "s#@@HEADERFILES@@#$(echo $headers)#" Makefile.am.in >Makefile.am || exit
+aclocal || exit
+autoheader || exit
+libtoolize --copy || exit
+automake --add-missing --copy || exit
+autoconf || exit
+libtoolize --copy --install || exit
+intltoolize --copy --force  || exit
+

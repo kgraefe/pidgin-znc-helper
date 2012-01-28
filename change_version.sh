@@ -1,8 +1,14 @@
 #!/bin/bash
-export CC=colorgcc
-vim ChangeLog &&
-vim VERSION &&
-sed "s/@@VERSION@@/$(cat VERSION)/" configure.in.in >configure.in &&
-./autogen.sh &&
-./configure &&
-cp config.h config.h.mingw
+set +x
+
+vim ChangeLog || exit
+vim VERSION || exit
+
+echo 1 >DEB_REVISION
+
+./autogen.sh || exit
+./configure || exit
+cp config.h config.h.mingw || exit
+
+./po-update.sh
+

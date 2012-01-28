@@ -1,5 +1,5 @@
 EXTRA_DIST = \
-	src/internal.h src/messageparser.h src/pidgin_internals.h src/prefs.h src/queryfix.h src/timeparser.h src/zncconversation.h \
+	@@HEADERFILES@@ \
 	ChangeLog \
 	VERSION \
 	config.h.mingw \

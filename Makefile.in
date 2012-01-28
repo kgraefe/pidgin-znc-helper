@@ -242,13 +242,16 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 EXTRA_DIST = \
+	src/internal.h src/messageparser.h src/pidgin_internals.h src/prefs.h src/queryfix.h src/timeparser.h src/zncconversation.h \
 	ChangeLog \
 	VERSION \
+	config.h.mingw \
+	src/Makefile.mingw \
 	Makefile.mingw \
-	po/Makefile.mingw \
-	config.h.mingw
+	po/Makefile.mingw
 
 SUBDIRS = src po
+ACLOCAL_AMFLAGS = -I m4
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 

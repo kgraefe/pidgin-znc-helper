@@ -24,3 +24,4 @@ deb-pkg
 DEB_REVISION
 src/queryfix.lo
 znc-patches
+m4
