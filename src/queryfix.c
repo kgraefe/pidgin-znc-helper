@@ -41,7 +41,7 @@ static char *irc_mask_nick(const char *mask)
 
 void (*irc_msg_privmsg_ori)(struct irc_conn *irc, const char *name, const char *from, char **args) = NULL;
 
-void irc_msg_privmsg(struct irc_conn *irc, const char *name, const char *from, char **args) {
+static void irc_msg_privmsg(struct irc_conn *irc, const char *name, const char *from, char **args) {
 	PurpleConnection *gc = purple_account_get_connection(irc->account);
 	char *to, *rawmsg, *nick, *msg;
 
@@ -49,9 +49,6 @@ void irc_msg_privmsg(struct irc_conn *irc, const char *name, const char *from, c
 		irc_msg_privmsg_ori(irc, name, from, args);
 		return;
 	}
-
-	/* TODO: Markieren um später zurück zu tauschen */
-	/* TODO: natürlich nur tauschen, wenn die MSG wirklich von einem selbst ist */
 
 	to = args[0];
 	rawmsg = args[1];
