@@ -133,7 +133,7 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 
 			if(stamp == 0) stamp = time(NULL);
 			
-			purple_signal_connect(pidgin_conversations_get_handle(), "conversation-timestamp", plugin, PURPLE_CALLBACK(conversation_timestamp_cb), NULL);
+			purple_signal_connect_priority(pidgin_conversations_get_handle(), "conversation-timestamp", plugin, PURPLE_CALLBACK(conversation_timestamp_cb), NULL, PURPLE_SIGNAL_PRIORITY_LOWEST);
 			if(purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT) {
 				g_hash_table_insert(zncconv->users, g_strdup(who), "");
 				purple_conv_chat_write(PURPLE_CONV_CHAT(conv), who, *message, flags, stamp);
