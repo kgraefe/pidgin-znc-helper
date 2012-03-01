@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pidgin-znc-helper\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-29 20:31+0100\n"
-"PO-Revision-Date: 2011-09-04 15:21+0000\n"
-"Last-Translator: Christoph Miebach <Unknown>\n"
+"POT-Creation-Date: 2013-07-09 05:35+0000\n"
+"PO-Revision-Date: 2012-06-21 15:41+0000\n"
+"Last-Translator: Eduardo Alberto Calvo <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-01-31 05:26+0000\n"
-"X-Generator: Launchpad (build 14734)\n"
+"X-Launchpad-Export-Date: 2013-07-10 05:32+0000\n"
+"X-Generator: Launchpad (build 16696)\n"
+"Language: es\n"
 
 #: ../src/messageparser.c:106
 msgid "Buffer Playback..."
@@ -25,7 +25,7 @@ msgstr ""
 
 #: ../src/messageparser.c:119
 msgid "Playback Complete."
-msgstr ""
+msgstr "Reproducción Completada."
 
 #: ../src/messageparser.c:149
 msgid "Timestamp could not be interpreted.\n"
@@ -39,11 +39,11 @@ msgstr[1] "horas"
 
 #: ../src/prefs.c:201
 msgid "ZNC"
-msgstr ""
+msgstr "ZNC"
 
 #: ../src/prefs.c:213
 msgid "Account"
-msgstr ""
+msgstr "Cuenta"
 
 #: ../src/prefs.c:230
 msgid "Time offset"
@@ -58,7 +58,7 @@ msgstr ""
 
 #: ../src/znchelper.c:112
 msgid "ZNC Helper"
-msgstr ""
+msgstr "Ayuda ZNC"
 
 #: ../src/znchelper.c:113 ../src/znchelper.c:114
 msgid ""
