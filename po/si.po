@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pidgin-znc-helper\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-08-29 04:58+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-28 21:42+0100\n"
 "PO-Revision-Date: 2013-06-01 04:11+0000\n"
 "Last-Translator: Thambaru Wijesekara <Unknown>\n"
 "Language-Team: Sinhalese <si@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,15 +19,15 @@ msgstr ""
 "X-Launchpad-Export-Date: 2013-08-30 05:12+0000\n"
 "X-Generator: Launchpad (build 16750)\n"
 
-#: ../src/messageparser.c:106
+#: ../src/messageparser.c:109
 msgid "Buffer Playback..."
 msgstr ""
 
-#: ../src/messageparser.c:119
+#: ../src/messageparser.c:125
 msgid "Playback Complete."
 msgstr "ධාවනය සම්පූර්ණයි."
 
-#: ../src/messageparser.c:149
+#: ../src/messageparser.c:155
 msgid "Timestamp could not be interpreted.\n"
 msgstr ""
 

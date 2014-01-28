@@ -1,9 +1,4 @@
-src/messageparser.lo
-src/pidgin_internals.lo
-src/prefs.lo
-src/timeparser.lo
-src/zncconversation.lo
-src/znchelper.lo
+src/*.lo
 src/Makefile
 src/.libs
 src/.deps
@@ -25,3 +20,8 @@ DEB_REVISION
 src/queryfix.lo
 znc-patches
 m4
+po/*.gmo
+po/stamp-it
+libtool
+po/Makefile.in
+po/POTFILES

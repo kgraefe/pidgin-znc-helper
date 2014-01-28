@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-29 20:35+0100\n"
+"POT-Creation-Date: 2014-01-28 21:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../src/messageparser.c:106
+#: ../src/messageparser.c:109
 msgid "Buffer Playback..."
 msgstr ""
 
-#: ../src/messageparser.c:119
+#: ../src/messageparser.c:125
 msgid "Playback Complete."
 msgstr ""
 
-#: ../src/messageparser.c:149
+#: ../src/messageparser.c:155
 msgid "Timestamp could not be interpreted.\n"
 msgstr ""
 

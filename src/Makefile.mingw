@@ -81,6 +81,7 @@ PLUGIN_OBJ = $(PLUGIN_SRC:%.c=%.o)
 ##
 
 PLUGIN_LIBS = \
+	-lssp \
         -lgtk-win32-2.0 \
         -lglib-2.0 \
         -lpango-1.0 \

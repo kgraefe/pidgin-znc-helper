@@ -1,3 +1,8 @@
+Version 1.5 (????/??/??):
+	* Added French and Sinhalese translation
+	* Updated message parser to match modified key messages (this should be an
+	option instead of being hard-coded, sorry)
+
 Version 1.4 (2012/02/29):
 	* Process self-posted incoming messages too. (This happens e.g. when using ZNC behind an irssi-proxy.) Really! ;)
 	  Please make sure to read https://bugs.launchpad.net/pidgin-znc-helper/+bug/900754 carefully!

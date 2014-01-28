@@ -98,7 +98,10 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 	gtkconv = PIDGIN_CONVERSATION(conv);
 
 	if(purple_utf8_strcasecmp(who, "***") == 0) {
-		if(purple_utf8_strcasecmp(*message, "Buffer Playback...") == 0) {
+		if(
+			purple_utf8_strcasecmp(*message, "Buffer Playback...") == 0 ||
+			purple_utf8_strcasecmp(*message, "Starting Buffer Playback...") == 0
+		) {
 			zncconv = znc_conversation_new(conv);
 			g_hash_table_insert(conversations, conv, zncconv);
 			
@@ -110,7 +113,10 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 			inuse = FALSE;
 			
 			cancel = TRUE;
-		} else if(purple_utf8_strcasecmp(*message, "Playback Complete.") == 0) {
+		} else if(
+			purple_utf8_strcasecmp(*message, "Playback Complete.") == 0 ||
+			purple_utf8_strcasecmp(*message, "Buffer Playback Complete.") == 0
+		) {
 			zncconv = g_hash_table_lookup(conversations, conv);
 			znc_conversation_destroy(zncconv);
 			g_hash_table_remove(conversations, conv);
