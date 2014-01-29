@@ -33,8 +33,9 @@ ifneq "$(wildcard /usr/share/misc/config.guess)" ""
 endif
 	./configure $(CROSS) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info CFLAGS="-Wall -g $(CFLAGS)"
 
-
-build: build-stamp
+build: build-arch build-indep
+build-arch: build-stamp
+build-indep: build-stamp
 
 build-stamp:  config.status 
 	dh_testdir
@@ -52,7 +53,6 @@ clean:
 
 	# Add here commands to clean up after the build process.
 	[ ! -f Makefile ] || $(MAKE) distclean
-	rm -f config.sub config.guess
 
 	dh_clean 
 

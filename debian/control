@@ -3,7 +3,7 @@ Section: net
 Priority: extra
 Maintainer: Konrad Gräfe <konradgraefe@aol.com>
 Build-Depends: debhelper (>= 7), autotools-dev, pidgin-dev (>= 2.6.0), intltool
-Standards-Version: 3.9.1
+Standards-Version: 3.9.4
 Homepage: http://freakazoid.teamblind.de/2009/11/16/pidgin-znc-helper/
 
 Package: pidgin-znchelper
