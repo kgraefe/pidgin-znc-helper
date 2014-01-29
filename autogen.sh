@@ -2,7 +2,7 @@
 
 test -f VERSION || exit
 test -f ChangeLog|| exit
-test -f configure.in.in || exit
+test -f configure.ac.in || exit
 test -f COPYING || exit
 
 ./po-update.sh || exit
@@ -17,7 +17,7 @@ for f in src/*.h
 do test -f $f && headers="$headers $f"
 done
 
-sed -e "s/@@VERSION@@/$(cat VERSION)/" -e "s/@@LANGUAGES@@/$(echo $languages)/" configure.in.in >configure.in || exit
+sed -e "s/@@VERSION@@/$(cat VERSION)/" -e "s/@@LANGUAGES@@/$(echo $languages)/" configure.ac.in >configure.ac || exit
 sed -e "s#@@HEADERFILES@@#$(echo $headers)#" Makefile.am.in >Makefile.am || exit
 aclocal || exit
 autoheader || exit

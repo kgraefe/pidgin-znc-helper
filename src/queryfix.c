@@ -22,8 +22,13 @@
 #include "queryfix.h"
 #include "pidgin_internals.h"
 
+#include <core.h>
 #include <account.h>
 #include <debug.h>
+
+static int purple_major_version;
+static int purple_minor_version;
+static int purple_patch_version;
 
 static char *irc_mask_nick(const char *mask)
 {
@@ -86,7 +91,8 @@ static void connection_signed_on_cb(PurpleConnection *gc) {
 	PurpleAccount *account;
 	struct irc_conn *irc;
 	GHashTable *msgs;
-	struct irc_msg *privmsg;
+	struct irc_msg_old *privmsg_old;
+	struct irc_msg_2_10_8 *privmsg_2_10_8;
 
 	if(!gc) return;
 
@@ -100,13 +106,34 @@ static void connection_signed_on_cb(PurpleConnection *gc) {
 	msgs = irc->msgs;
 	if(!msgs) return;
 
-	privmsg = (struct irc_msg *)g_hash_table_lookup(msgs, "privmsg");
-	if(!privmsg) return;
+    if(purple_major_version > 2 || purple_minor_version > 10 || purple_patch_version > 7) {
+        privmsg_2_10_8 = (struct irc_msg_2_10_8 *)g_hash_table_lookup(msgs, "privmsg");
+        if(!privmsg_2_10_8) return;
 
-	if(!irc_msg_privmsg_ori) irc_msg_privmsg_ori = privmsg->cb;
-	privmsg->cb = irc_msg_privmsg;
+        if(!irc_msg_privmsg_ori) irc_msg_privmsg_ori = privmsg_2_10_8->cb;
+        privmsg_2_10_8->cb = irc_msg_privmsg;
+    } else {
+        privmsg_old = (struct irc_msg_old *)g_hash_table_lookup(msgs, "privmsg");
+        if(!privmsg_old) return;
+
+        if(!irc_msg_privmsg_ori) irc_msg_privmsg_ori = privmsg_old->cb;
+        privmsg_old->cb = irc_msg_privmsg;
+    }
 }
 
 void query_fix_init(PurplePlugin *plugin) {
+    if(sscanf(
+        purple_core_get_version(),
+        "%d.%d.%d",
+        &purple_major_version,
+        &purple_minor_version,
+        &purple_patch_version
+    ) < 3) {
+        purple_debug_warning(PLUGIN_STATIC_NAME, "Could not parse libpurple version. Defaulting to latest kown.\n");
+        purple_major_version = 2;
+        purple_minor_version = 10;
+        purple_patch_version = 8;
+    }
+
 	purple_signal_connect(purple_connections_get_handle(), "signed-on", plugin, PURPLE_CALLBACK(connection_signed_on_cb), NULL);
 }
