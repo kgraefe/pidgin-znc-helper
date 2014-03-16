@@ -75,7 +75,7 @@ struct irc_conn {
 	gboolean nickused;
 };
 
-struct irc_msg_old {
+struct irc_msg {
 	char *name;
 	char *format;
 	void (*cb)(struct irc_conn *irc, const char *name, const char *from, char **args);

@@ -54,11 +54,9 @@ void znc_conversation_destroy(ZNCConversation *zncconv) {
 
 	PurpleConvChatBuddy *buddy;
 	PurpleConversation *conv;
-	PidginConversation *gtkconv;
 	PurpleConvChat *chat;
 
 	conv = zncconv->prplconv;
-	gtkconv = PIDGIN_CONVERSATION(conv);
 	chat = PURPLE_CONV_CHAT(conv);
 
 
