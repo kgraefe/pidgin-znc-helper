@@ -1,3 +1,8 @@
+Version 1.5.1 (2014/03/17):
+	* Changed the compatibility fix from last version to not be based on the
+	  libpurple version string as this breaks when the changes are being
+	  backported (and they are as they are security fixes).
+
 Version 1.5.0 (2014/01/29):
 	* Fixed compatibility issue with Pidgin 2.10.8
 	* Updated message parser to match modified key messages (this should be an

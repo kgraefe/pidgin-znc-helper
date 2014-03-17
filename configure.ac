@@ -2,13 +2,13 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.61)
-AC_INIT(pidgin-znchelper, 1.5.0, freakazoid@teamblind.de)
+AC_INIT(pidgin-znchelper, 1.5.1, freakazoid@teamblind.de)
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/znchelper.c])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
-AC_DEFINE_UNQUOTED(PLUGIN_VERSION, ["1.5.0"], [Define the plugin version to be used])
+AC_DEFINE_UNQUOTED(PLUGIN_VERSION, ["1.5.1"], [Define the plugin version to be used])
 
 AC_DEFINE_UNQUOTED(PLUGIN_WEBSITE, ["http://freakazoid.teamblind.de/2009/11/16/pidgin-znc-helper/"], [Define the plugin website to be used])
 
