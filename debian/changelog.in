@@ -1,5 +1,0 @@
-pidgin-znchelper (@@VERSION@@-@@DEB_REVISION@@) @@DISTRIBUTION@@; urgency=low
-
-  * release version @@VERSION@@
-
- -- Konrad Gräfe <konradgraefe@aol.com>  @@DATE@@
