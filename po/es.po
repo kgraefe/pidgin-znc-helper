@@ -1,8 +1,10 @@
 # Spanish translation for pidgin-znc-helper
 # Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
 # This file is distributed under the same license as the pidgin-znc-helper package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
-#
+# 
+# Translators:
+# Christoph Miebach, https://launchpad.net/~christoph-miebach, 2011
+# Eduardo Alberto Calvo, https://launchpad.net/~edu5800, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: pidgin-znc-helper\n"

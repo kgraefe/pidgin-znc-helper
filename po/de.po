@@ -1,7 +1,9 @@
 # German translation for ZNC Helper
 # Copyright (C) 2012 Konrad Gräfe <freakazoid@teamblind.de>
 # This file is distributed under the same license as the znchelper package.
-# Konrad Gräfe <freakazoid@teamblind.de>, 2012
+#
+# Translators:
+# Konrad Gräfe <konradgraefe@aol.com>, 2012
 #
 msgid ""
 msgstr ""
