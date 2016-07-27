@@ -10,13 +10,13 @@ AC_CONFIG_MACRO_DIR([m4])
 
 AC_DEFINE_UNQUOTED(PLUGIN_VERSION, ["@@VERSION@@"], [Define the plugin version to be used])
 
-AC_DEFINE_UNQUOTED(PLUGIN_WEBSITE, ["http://freakazoid.teamblind.de/2009/11/16/pidgin-znc-helper/"], [Define the plugin website to be used])
+AC_DEFINE_UNQUOTED(PLUGIN_WEBSITE, ["https://github.com/kgraefe/pidgin-save-conv-order"], [Define the plugin website to be used])
 
 AC_DEFINE_UNQUOTED(PLUGIN_ID, ["gtk-freakazoid-znchelper"], [Define the plugin website to be used])
 
 AC_DEFINE_UNQUOTED(PLUGIN_STATIC_NAME, ["znchelper"], [Define the plugin website to be used])
 
-AC_DEFINE_UNQUOTED(PLUGIN_AUTHOR, ["Konrad Gräfe <freakazoid@teamblind.de>"], [Define the plugin author to be used])
+AC_DEFINE_UNQUOTED(PLUGIN_AUTHOR, ["Konrad Gräfe <konradgraefe@aol.com>"], [Define the plugin author to be used])
 
 AC_DEFINE_UNQUOTED(PLUGIN_PREFS_PREFIX, ["/plugins/gtk/znchelper"], [Define the plugin author to be used])
 
