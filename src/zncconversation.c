@@ -1,6 +1,6 @@
 /*
- * ZNC Helper
- * Copyright (C) 2012 Konrad Gräfe
+ * Pidgin ZNC Helper
+ * Copyright (C) 2009-2016 Konrad Gräfe
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
