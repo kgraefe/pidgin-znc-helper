@@ -24,7 +24,7 @@ PLUGIN = pidgin-znchelper
 
 #CFLAGS = 
 
-DEFINES = -DPLUGIN_VERSION=\"$(PLUGIN_VERSION)\" -DGETTEXT_PACKAGE=\"$(PLUGIN)\" -DHAVE_CONFIG_H
+DEFINES = -DHAVE_CONFIG_H
 
 #LDFLAGS = 
 
@@ -109,9 +109,6 @@ install: all $(PIDGIN_INSTALL_PLUGINS_DIR)
 	cp $(PLUGIN).dll $(PIDGIN_INSTALL_PLUGINS_DIR)
 
 $(PLUGIN_OBJ): $(PLUGIN_TOP)/config.h $(PURPLE_VERSION_H)
-
-$(PLUGIN_TOP)/config.h: $(PLUGIN_TOP)/config.h.mingw
-	$(MAKE) -C $(PLUGIN_TOP) -f Makefile.mingw config.h
 
 ##
 ## BUILD DLL

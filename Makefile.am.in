@@ -2,7 +2,7 @@ EXTRA_DIST = \
 	@@HEADERFILES@@ \
 	ChangeLog \
 	VERSION \
-	config.h.mingw \
+	scripts/gen-mingw-config_h.sh \
 	src/Makefile.mingw \
 	Makefile.mingw \
 	po/Makefile.mingw

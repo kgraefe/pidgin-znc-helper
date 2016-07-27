@@ -26,8 +26,8 @@ build: config.h
 	$(MAKE) -C $(PLUGIN_SRC) -f Makefile.mingw
 	$(MAKE) -C $(PLUGIN_PO) -f Makefile.mingw
 
-config.h: config.h.mingw
-	cp config.h.mingw config.h
+config.h: VERSION scripts/gen-mingw-config_h.sh
+	./scripts/gen-mingw-config_h.sh > config.h
 
 dist: $(PLUGIN_WIN32_ZIP)
 
