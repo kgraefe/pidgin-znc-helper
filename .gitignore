@@ -12,6 +12,7 @@
 /INSTALL
 /libtool
 /pidgin-znchelper-*
+/pidgin-znc-helper-*
 /po/Makefile.in.in
 /po/POTFILES
 /po/stamp-it
