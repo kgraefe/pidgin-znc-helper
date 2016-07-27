@@ -1,10 +1,10 @@
 #!/bin/bash
-set -x
+set +x
 
 cd "$(dirname "$0")/../po"
 
 echo "Updating POT template..."
-intltool-update -po || exit 1
+intltool-update -pot -gettext-package=pidgin-znchelper || exit 1
 
 
 for f in *.po; do
