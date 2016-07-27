@@ -42,7 +42,9 @@ enum {
 	ACCOUNT_LIST_NUM_COLUMNS
 };
 
-static GtkWidget *make_info_widget(const gchar *markup, gchar *stock_id, gboolean indent) {
+static GtkWidget *make_info_widget(
+	const gchar *markup, gchar *stock_id, gboolean indent
+) {
 	GtkWidget *infobox, *label, *img, *align;
 
 	if(!markup) return NULL;
@@ -55,7 +57,8 @@ static GtkWidget *make_info_widget(const gchar *markup, gchar *stock_id, gboolea
 	}
 
 	if(stock_id) {
-		align = gtk_alignment_new(0.5, 0, 0, 0); /* align img to the top of the space */
+		/* align img to the top of the space */
+		align = gtk_alignment_new(0.5, 0, 0, 0);
 		gtk_box_pack_start(GTK_BOX(infobox), align, FALSE, FALSE, 0);
 
 		img = gtk_image_new_from_stock(stock_id, GTK_ICON_SIZE_MENU);
@@ -89,7 +92,9 @@ static void account_list_widget_destroyed_cb() {
 	g_object_unref(G_OBJECT(account_list.model));
 }
 
-static void znc_toggled_cb(GtkCellRendererToggle *renderer, gchar *path_str, gpointer data) {
+static void znc_toggled_cb(
+	GtkCellRendererToggle *renderer, gchar *path_str, gpointer data
+) {
 	PurpleAccount *account;
 	GtkTreeModel *model = GTK_TREE_MODEL(account_list.model);
 	GtkTreeIter iter;
@@ -107,7 +112,9 @@ static void znc_toggled_cb(GtkCellRendererToggle *renderer, gchar *path_str, gpo
 		-1);
 }
 
-static void time_offset_edited_cb(GtkCellRendererToggle *renderer, gchar *path_str, gchar *new_text, gpointer data) {
+static void time_offset_edited_cb(GtkCellRendererToggle *renderer,
+	gchar *path_str, gchar *new_text, gpointer data
+) {
 	PurpleAccount *account;
 	GtkTreeModel *model = GTK_TREE_MODEL(account_list.model);
 	GtkTreeIter iter;
@@ -122,8 +129,10 @@ static void time_offset_edited_cb(GtkCellRendererToggle *renderer, gchar *path_s
 		purple_account_set_int(account, "znc_time_offset", offset);
 		gtk_list_store_set(account_list.model, &iter,
 			ACCOUNT_LIST_COL_TIME_OFFSET, offset,
-			ACCOUNT_LIST_COL_TIME_UNIT, ngettext("hour", "hours", (offset >= 0 ? offset : -offset)),
-			-1);
+			ACCOUNT_LIST_COL_TIME_UNIT,
+			ngettext("hour", "hours", (offset >= 0 ? offset : -offset)),
+			-1
+		);
 	}
 }
 
@@ -148,14 +157,26 @@ static GtkWidget *get_account_list_widget() {
 	editable.g_type = 0;
 	editing.g_type = 0;
 
-	if(account_list.widget) account_list_widget_destroyed_cb(); /* I know this is ugly, I will search for the right destroy-event later */
+	if(account_list.widget) {
+		/* I know this is ugly, I will search for the right destroy-event
+		 * later.
+		 */
+		account_list_widget_destroyed_cb();
+	}
 
 	scrolled_window = gtk_scrolled_window_new(NULL, NULL);
 	gtk_widget_set_size_request(scrolled_window, -1, 200);
-        gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled_window), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled_window), GTK_SHADOW_ETCHED_IN);
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled_window),
+		GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC
+	);
+	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled_window),
+		GTK_SHADOW_ETCHED_IN
+	);
 
-	g_signal_connect(G_OBJECT(scrolled_window), "destroy_event", G_CALLBACK(account_list_widget_destroyed_cb), NULL);
+	g_signal_connect(
+		G_OBJECT(scrolled_window), "destroy_event",
+		G_CALLBACK(account_list_widget_destroyed_cb), NULL
+	);
 
 
 	model = gtk_list_store_new(ACCOUNT_LIST_NUM_COLUMNS,
@@ -187,9 +208,12 @@ static GtkWidget *get_account_list_widget() {
 				ACCOUNT_LIST_COL_TIME_OFFSET, offset,
 				ACCOUNT_LIST_COL_TIME_UNIT, ngettext("hour", "hours", (offset >= 0 ? offset : -offset)),
 				ACCOUNT_LIST_COL_ACCOUNT, account,
-				-1);
+				-1
+			);
 
-			if(pixbuf != NULL) g_object_unref(G_OBJECT(pixbuf));
+			if(pixbuf != NULL) {
+				g_object_unref(G_OBJECT(pixbuf));
+			}
 		}
 	}
 
@@ -204,9 +228,14 @@ static GtkWidget *get_account_list_widget() {
 
 	renderer = gtk_cell_renderer_toggle_new();
 	gtk_tree_view_column_pack_start(column, renderer, TRUE);
-	gtk_tree_view_column_add_attribute(column, renderer, "active", ACCOUNT_LIST_COL_USES_ZNC);
+	gtk_tree_view_column_add_attribute(
+		column, renderer, "active", ACCOUNT_LIST_COL_USES_ZNC
+	);
 
-	g_signal_connect(G_OBJECT(renderer), "toggled", G_CALLBACK(znc_toggled_cb), NULL);
+	g_signal_connect(
+		G_OBJECT(renderer), "toggled",
+		G_CALLBACK(znc_toggled_cb), NULL
+	);
 
 	/* Account-Spalte */
 	column = gtk_tree_view_column_new();
@@ -216,11 +245,15 @@ static GtkWidget *get_account_list_widget() {
 
 	renderer = gtk_cell_renderer_pixbuf_new();
 	gtk_tree_view_column_pack_start(column, renderer, FALSE);
-	gtk_tree_view_column_add_attribute(column, renderer, "pixbuf", ACCOUNT_LIST_COL_PROTOCOL_ICON);
+	gtk_tree_view_column_add_attribute(
+		column, renderer, "pixbuf", ACCOUNT_LIST_COL_PROTOCOL_ICON
+	);
 
 	renderer = gtk_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(column, renderer, FALSE);
-	gtk_tree_view_column_add_attribute(column, renderer, "text", ACCOUNT_LIST_COL_ACCOUNT_USERNAME);
+	gtk_tree_view_column_add_attribute(
+		column, renderer, "text", ACCOUNT_LIST_COL_ACCOUNT_USERNAME
+	);
 
 	gtk_tree_view_columns_autosize(GTK_TREE_VIEW(treeview));
 	gtk_container_add(GTK_CONTAINER(scrolled_window), treeview);
@@ -232,7 +265,9 @@ static GtkWidget *get_account_list_widget() {
 	gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), column);
 
 	g_value_init(&adjustment, G_TYPE_OBJECT);
-	g_value_set_object(&adjustment, gtk_adjustment_new(1.0, -23.0, 23.0, 1.0, 1.0, 0.0));
+	g_value_set_object(
+		&adjustment, gtk_adjustment_new(1.0, -23.0, 23.0, 1.0, 1.0, 0.0)
+	);
 	g_value_init(&editable, G_TYPE_BOOLEAN);
 	g_value_set_boolean(&editable, TRUE);
 	g_value_init(&editing, G_TYPE_BOOLEAN);
@@ -243,13 +278,19 @@ static GtkWidget *get_account_list_widget() {
 	g_object_set_property(G_OBJECT(renderer), "editable", &editable);
 	g_object_set_property(G_OBJECT(renderer), "sensitive", &editing);
 	gtk_tree_view_column_pack_start(column, renderer, FALSE);
-	gtk_tree_view_column_add_attribute(column, renderer, "text", ACCOUNT_LIST_COL_TIME_OFFSET);
-
-	g_signal_connect(G_OBJECT(renderer), "edited", G_CALLBACK(time_offset_edited_cb), NULL);
+	gtk_tree_view_column_add_attribute(
+		column, renderer, "text", ACCOUNT_LIST_COL_TIME_OFFSET
+	);
+	g_signal_connect(
+		G_OBJECT(renderer), "edited",
+		G_CALLBACK(time_offset_edited_cb), NULL
+	);
 
 	renderer = gtk_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(column, renderer, FALSE);
-	gtk_tree_view_column_add_attribute(column, renderer, "text", ACCOUNT_LIST_COL_TIME_UNIT);
+	gtk_tree_view_column_add_attribute(
+		column, renderer, "text", ACCOUNT_LIST_COL_TIME_UNIT
+	);
 
 
 	account_list.widget = scrolled_window;
@@ -260,12 +301,15 @@ GtkWidget *get_pref_frame(PurplePlugin *plugin) {
 	GtkWidget *frame, *vbox, *infobox;
 
 	frame = gtk_vbox_new(FALSE, 18);
-        gtk_container_set_border_width(GTK_CONTAINER(frame), 12);
+	gtk_container_set_border_width(GTK_CONTAINER(frame), 12);
 	
 	vbox = gtk_vbox_new(FALSE, 5);
 	gtk_container_add(GTK_CONTAINER(frame), vbox);
 	
-	infobox = make_info_widget(_("Please make sure to set up your ZNC to <b>append</b> the timestamp using the following format:\n<b>[%Y-%m-%d %H:%M:%S]</b>"), GTK_STOCK_INFO, FALSE);
+	infobox = make_info_widget(
+		_("Please make sure to set up your ZNC to <b>append</b> the timestamp using the following format:\n<b>[%Y-%m-%d %H:%M:%S]</b>"),
+		GTK_STOCK_INFO, FALSE
+	);
 	gtk_box_pack_start(GTK_BOX(vbox), infobox, FALSE, FALSE, 0);
 
 	gtk_box_pack_start(GTK_BOX(vbox), get_account_list_widget(), TRUE, TRUE, 0);

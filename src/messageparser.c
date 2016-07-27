@@ -34,7 +34,9 @@ PurplePlugin *plugin;
 GHashTable *conversations;
 
 /* copied from Pidgin */
-static void pidgin_conv_calculate_newday(PidginConversation *gtkconv, time_t mtime) {
+static void pidgin_conv_calculate_newday(
+	PidginConversation *gtkconv, time_t mtime
+) {
 	struct tm *tm = localtime(&mtime);
 
 	tm->tm_hour = tm->tm_min = tm->tm_sec = 0;
@@ -43,7 +45,9 @@ static void pidgin_conv_calculate_newday(PidginConversation *gtkconv, time_t mti
 	gtkconv->newday = mktime(tm);
 }
 
-static gchar *conversation_timestamp_cb(PurpleConversation *conv, time_t mtime, gboolean _show_date) {
+static gchar *conversation_timestamp_cb(
+	PurpleConversation *conv, time_t mtime, gboolean _show_date
+) {
 	PidginConversation *gtkconv;
 	gchar *mdate;
 	struct tm tm_msg, tm_now;
@@ -59,7 +63,11 @@ static gchar *conversation_timestamp_cb(PurpleConversation *conv, time_t mtime, 
 	
 	/* First message in playback */
 	if (gtkconv->newday == (-1)) {
-		if((tm_msg.tm_year != tm_now.tm_year) || (tm_msg.tm_mon != tm_now.tm_mon) || (tm_msg.tm_mday != tm_now.tm_mday)) {
+		if(
+			(tm_msg.tm_year != tm_now.tm_year) ||
+			(tm_msg.tm_mon != tm_now.tm_mon) ||
+			(tm_msg.tm_mday != tm_now.tm_mday)
+		) {
 			show_date = TRUE;
 		} else {
 			show_date = FALSE;
@@ -80,7 +88,10 @@ static gchar *conversation_timestamp_cb(PurpleConversation *conv, time_t mtime, 
 	return mdate;
 }
 
-static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **message, PurpleConversation *conv, PurpleMessageFlags flags) {
+static gboolean writing_msg_cb(
+	PurpleAccount *account, const char *who,
+	char **message, PurpleConversation *conv, PurpleMessageFlags flags
+) {
 	ZNCConversation *zncconv = NULL;
 	PidginConversation *gtkconv;
 	gboolean cancel = FALSE;
@@ -91,7 +102,9 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 
 	
 	if(inuse) return FALSE;
-	if(!purple_account_get_bool(account, "uses_znc_bouncer", FALSE)) return FALSE;
+	if(!purple_account_get_bool(account, "uses_znc_bouncer", FALSE)) {
+		return FALSE;
+	}
 
 	purple_debug_info(PLUGIN_STATIC_NAME, "%s: %s\n", who, *message);
 	
@@ -106,7 +119,10 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 			g_hash_table_insert(conversations, conv, zncconv);
 			
 			inuse = TRUE;
-			purple_conv_chat_write(PURPLE_CONV_CHAT(conv), who, _("Buffer Playback..."), flags|PURPLE_MESSAGE_SYSTEM, time(NULL));
+			purple_conv_chat_write(
+				PURPLE_CONV_CHAT(conv), who, _("Buffer Playback..."),
+				flags|PURPLE_MESSAGE_SYSTEM, time(NULL)
+			);
 			
 			gtkconv->newday = (-1);
 			
@@ -122,37 +138,63 @@ static gboolean writing_msg_cb(PurpleAccount *account, const char *who, char **m
 			g_hash_table_remove(conversations, conv);
 			
 			inuse = TRUE;
-			purple_conv_chat_write(PURPLE_CONV_CHAT(conv), who, _("Playback Complete."), flags|PURPLE_MESSAGE_SYSTEM, time(NULL));
+			purple_conv_chat_write(
+				PURPLE_CONV_CHAT(conv), who, _("Playback Complete."),
+				flags|PURPLE_MESSAGE_SYSTEM, time(NULL)
+			);
 			inuse = FALSE;
 			
 			cancel = TRUE;
 		}
-	} else if((purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT && (zncconv = g_hash_table_lookup(conversations, conv)) != NULL) || purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM)  {
+	} else if(
+		(
+			purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT &&
+			(zncconv = g_hash_table_lookup(conversations, conv)) != NULL
+		) || purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM
+	)  {
 		if((swap = g_strrstr(*message, "***SWAP***")) && swap[10] == '\0') {
 			*swap = '\0';
 			flags &= ~PURPLE_MESSAGE_RECV;
 			flags |= PURPLE_MESSAGE_SEND;
 		}
-		stamp = get_time(message, purple_account_get_int(account, "znc_time_offset", 0));
+		stamp = get_time(message,
+			purple_account_get_int(account, "znc_time_offset", 0)
+		);
 		if(swap || stamp) {
 			inuse = TRUE;
 
 			if(stamp == 0) stamp = time(NULL);
 			
-			purple_signal_connect_priority(pidgin_conversations_get_handle(), "conversation-timestamp", plugin, PURPLE_CALLBACK(conversation_timestamp_cb), NULL, PURPLE_SIGNAL_PRIORITY_LOWEST);
+			purple_signal_connect_priority(
+				pidgin_conversations_get_handle(),
+				"conversation-timestamp", plugin,
+				PURPLE_CALLBACK(conversation_timestamp_cb), NULL,
+				PURPLE_SIGNAL_PRIORITY_LOWEST
+			);
 			if(purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT) {
 				g_hash_table_insert(zncconv->users, g_strdup(who), "");
-				purple_conv_chat_write(PURPLE_CONV_CHAT(conv), who, *message, flags, stamp);
-			} else if(purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM) {
-				purple_conv_im_write(PURPLE_CONV_IM(conv), who, *message, flags, stamp);
+				purple_conv_chat_write(PURPLE_CONV_CHAT(conv),
+					who, *message, flags, stamp
+				);
+			} else if(
+				purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM
+			) {
+				purple_conv_im_write(PURPLE_CONV_IM(conv),
+					who, *message, flags, stamp
+				);
 			}
-			purple_signal_disconnect(pidgin_conversations_get_handle(), "conversation-timestamp", plugin, PURPLE_CALLBACK(conversation_timestamp_cb));
+			purple_signal_disconnect(
+				pidgin_conversations_get_handle(), "conversation-timestamp",
+				plugin, PURPLE_CALLBACK(conversation_timestamp_cb)
+			);
 			
 			inuse = FALSE;
 			
 			cancel = TRUE;
 		} else {
-			purple_debug_error(PLUGIN_STATIC_NAME, _("Timestamp could not be interpreted.\n"));
+			purple_debug_error(PLUGIN_STATIC_NAME,
+				_("Timestamp could not be interpreted.\n")
+			);
 		}
 	}
 	
@@ -163,6 +205,12 @@ void message_parser_init(PurplePlugin *_plugin) {
 	plugin = _plugin;
 	conversations = g_hash_table_new(NULL, NULL);
 	
-	purple_signal_connect(purple_conversations_get_handle(), "writing-chat-msg", plugin, PURPLE_CALLBACK(writing_msg_cb), NULL);
-	purple_signal_connect(purple_conversations_get_handle(), "writing-im-msg", plugin, PURPLE_CALLBACK(writing_msg_cb), NULL);
+	purple_signal_connect(
+		purple_conversations_get_handle(), "writing-chat-msg",
+		plugin, PURPLE_CALLBACK(writing_msg_cb), NULL
+	);
+	purple_signal_connect(
+		purple_conversations_get_handle(), "writing-im-msg",
+		plugin, PURPLE_CALLBACK(writing_msg_cb), NULL
+	);
 }

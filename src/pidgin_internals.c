@@ -22,11 +22,14 @@
 
 #include "pidgin_internals.h"
 
-GtkTextTag *get_buddy_tag(PurpleConversation *conv, const char *who, PurpleMessageFlags flag, gboolean create)
-{
+GtkTextTag *get_buddy_tag(
+	PurpleConversation *conv, const char *who,
+	PurpleMessageFlags flag, gboolean create
+) {
 	PidginConversation *gtkconv = PIDGIN_CONVERSATION(conv);
 	GtkTextTag *buddytag;
 	gchar *str;
+	PangoWeight weight;
 	gboolean highlight = (flag & PURPLE_MESSAGE_NICK);
 	GtkTextBuffer *buffer = GTK_IMHTML(gtkconv->imhtml)->text_buffer;
 
@@ -36,19 +39,23 @@ GtkTextTag *get_buddy_tag(PurpleConversation *conv, const char *who, PurpleMessa
 			gtk_text_buffer_get_tag_table(buffer), str);
 
 	if (buddytag == NULL && create) {
-		if (highlight)
+		if(highlight) {
 			buddytag = gtk_text_buffer_create_tag(buffer, str,
 					"weight", PANGO_WEIGHT_BOLD,
 					NULL);
-		else
+		} else {
+			if(purple_find_buddy(purple_conversation_get_account(conv), who)) {
+				weight = PANGO_WEIGHT_BOLD;
+			} else {
+				weight = PANGO_WEIGHT_NORMAL;
+			}
+
 			buddytag = gtk_text_buffer_create_tag(
-					buffer, str,
-					"weight", purple_find_buddy(purple_conversation_get_account(conv), who) ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
-					NULL);
+				buffer, str, "weight", weight, NULL
+			);
+		}
 
 		g_object_set_data(G_OBJECT(buddytag), "cursor", "");
-		//g_signal_connect(G_OBJECT(buddytag), "event",
-		//		G_CALLBACK(buddytag_event), conv);
 	}
 
 	g_free(str);

@@ -43,7 +43,10 @@ time_t get_time(gchar **message, int offset) {
 	}
 	g_free(tail);
 	
-	read = sscanf(timestamp, " [%04d-%02d-%02d %02d:%02d:%02d]", &year, &month, &t.tm_mday, &t.tm_hour, &t.tm_min, &t.tm_sec);
+	read = sscanf(timestamp,
+		" [%04d-%02d-%02d %02d:%02d:%02d]",
+		&year, &month, &t.tm_mday, &t.tm_hour, &t.tm_min, &t.tm_sec
+	);
 	t.tm_isdst = (-1);
 	
 	t.tm_hour += offset;
