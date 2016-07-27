@@ -1,25 +1,22 @@
-# German translation for ZNC Helper
-# Copyright (C) 2012 Konrad Gräfe <freakazoid@teamblind.de>
-# This file is distributed under the same license as the znchelper package.
-#
-# Translators:
-# Konrad Gräfe <konradgraefe@aol.com>, 2012
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: gtk-freakazoid-znchelper 0.5\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-27 16:51+0200\n"
-"PO-Revision-Date: 2010-07-29 11:47+0000\n"
-"Last-Translator: kgraefe <Unknown>\n"
-"Language-Team: de_DE <freakazoid@teamblind.de>\n"
-"Language: \n"
+"POT-Creation-Date: 2016-07-27 17:07+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Konrad Gräfe <konradgraefe@aol.com>, 2016\n"
+"Language-Team: German (https://www.transifex.com/kgraefe/teams/65462/de/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-04-29 06:24+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/messageparser.c:123
 msgid "Buffer Playback..."
@@ -53,12 +50,10 @@ msgstr "Zeit-Ausgleich"
 
 #: ../src/prefs.c:310
 msgid ""
-"Please make sure to set up your ZNC to <b>append</b> the timestamp using the "
-"following format:\n"
+"Please make sure to set up your ZNC to <b>append</b> the timestamp using the following format:\n"
 "<b>[%Y-%m-%d %H:%M:%S]</b>"
 msgstr ""
-"Bitte stellen Sie sicher, dass Ihr ZNC den Zeitstempel an die Nachrichten "
-"anhängt (<b>append</b>) und dabei folgendes Format benutzt:\n"
+"Bitte stellen Sie sicher, dass Ihr ZNC den Zeitstempel an die Nachrichten anhängt (<b>append</b>) und dabei folgendes Format benutzt:\n"
 "<b>[%Y-%m-%d %H:%M:%S]</b>"
 
 #: ../src/znchelper.c:112

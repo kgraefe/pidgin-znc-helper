@@ -1,25 +1,22 @@
-# Spanish translation for pidgin-znc-helper
-# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
-# This file is distributed under the same license as the pidgin-znc-helper package.
-#
-# Translators:
-# Christoph Miebach, https://launchpad.net/~christoph-miebach, 2011
-# Eduardo Alberto Calvo, https://launchpad.net/~edu5800, 2012
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: pidgin-znc-helper\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-27 16:51+0200\n"
-"PO-Revision-Date: 2012-06-21 15:41+0000\n"
-"Last-Translator: Eduardo Alberto Calvo <Unknown>\n"
-"Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
+"POT-Creation-Date: 2016-07-27 17:07+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Konrad Gräfe <konradgraefe@aol.com>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/kgraefe/teams/65462/es/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-04-29 06:24+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/messageparser.c:123
 msgid "Buffer Playback..."
@@ -53,8 +50,7 @@ msgstr ""
 
 #: ../src/prefs.c:310
 msgid ""
-"Please make sure to set up your ZNC to <b>append</b> the timestamp using the "
-"following format:\n"
+"Please make sure to set up your ZNC to <b>append</b> the timestamp using the following format:\n"
 "<b>[%Y-%m-%d %H:%M:%S]</b>"
 msgstr ""
 
