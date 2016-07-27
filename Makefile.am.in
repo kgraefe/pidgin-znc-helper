@@ -1,6 +1,6 @@
 EXTRA_DIST = \
 	@@HEADERFILES@@ \
-	ChangeLog \
+	CHANGES.md \
 	VERSION \
 	scripts/gen-mingw-config_h.sh \
 	src/Makefile.mingw \
