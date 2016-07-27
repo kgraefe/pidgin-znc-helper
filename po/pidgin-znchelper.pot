@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-17 20:17+0100\n"
+"POT-Creation-Date: 2016-07-27 16:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,37 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../src/messageparser.c:109
+#: ../src/messageparser.c:123
 msgid "Buffer Playback..."
 msgstr ""
 
-#: ../src/messageparser.c:125
+#: ../src/messageparser.c:142
 msgid "Playback Complete."
 msgstr ""
 
-#: ../src/messageparser.c:155
+#: ../src/messageparser.c:196
 msgid "Timestamp could not be interpreted.\n"
 msgstr ""
 
-#: ../src/prefs.c:125 ../src/prefs.c:188
+#: ../src/prefs.c:133 ../src/prefs.c:209
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/prefs.c:201
+#: ../src/prefs.c:225
 msgid "ZNC"
 msgstr ""
 
-#: ../src/prefs.c:213
+#: ../src/prefs.c:242
 msgid "Account"
 msgstr ""
 
-#: ../src/prefs.c:230
+#: ../src/prefs.c:263
 msgid "Time offset"
 msgstr ""
 
-#: ../src/prefs.c:268
+#: ../src/prefs.c:310
 msgid ""
 "Please make sure to set up your ZNC to <b>append</b> the timestamp using the "
 "following format:\n"

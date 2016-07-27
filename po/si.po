@@ -8,49 +8,49 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pidgin-znc-helper\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-28 05:51+0000\n"
+"POT-Creation-Date: 2016-07-27 16:51+0200\n"
 "PO-Revision-Date: 2013-06-01 04:11+0000\n"
 "Last-Translator: Thambaru Wijesekara <Unknown>\n"
 "Language-Team: Sinhalese <si@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2014-04-29 06:24+0000\n"
 "X-Generator: Launchpad (build 16985)\n"
-"Language: \n"
 
-#: ../src/messageparser.c:109
+#: ../src/messageparser.c:123
 msgid "Buffer Playback..."
 msgstr ""
 
-#: ../src/messageparser.c:125
+#: ../src/messageparser.c:142
 msgid "Playback Complete."
 msgstr "ධාවනය සම්පූර්ණයි."
 
-#: ../src/messageparser.c:155
+#: ../src/messageparser.c:196
 msgid "Timestamp could not be interpreted.\n"
 msgstr ""
 
-#: ../src/prefs.c:125 ../src/prefs.c:188
+#: ../src/prefs.c:133 ../src/prefs.c:209
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "පැයක්"
 msgstr[1] "පැය"
 
-#: ../src/prefs.c:201
+#: ../src/prefs.c:225
 msgid "ZNC"
 msgstr "ZNC"
 
-#: ../src/prefs.c:213
+#: ../src/prefs.c:242
 msgid "Account"
 msgstr "ගිණුම"
 
-#: ../src/prefs.c:230
+#: ../src/prefs.c:263
 msgid "Time offset"
 msgstr ""
 
-#: ../src/prefs.c:268
+#: ../src/prefs.c:310
 msgid ""
 "Please make sure to set up your ZNC to <b>append</b> the timestamp using the "
 "following format:\n"
