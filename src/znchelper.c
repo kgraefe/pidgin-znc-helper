@@ -109,8 +109,12 @@ static void init_plugin(PurplePlugin *plugin) {
 #endif /* ENABLE_NLS */
 
 	info.name        = _("ZNC Helper");
-	info.summary     = _("This plugin removes ugly double-timestamps when replaying messages from ZNC bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\".");
-	info.description = _("This plugin removes ugly double-timestamps when replaying messages from ZNC bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\".");
+	info.summary     = _("Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal timestamps.");
+	info.description = _(
+        "Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal timestamps.\n\n"
+        "Therefore, the ZNC needs timestamp needs append the timestamp in the the following format:\n"
+		"[%Y-%m-%d %H:%M:%S]\n"
+    );
 		
 	purple_prefs_add_none(PLUGIN_PREFS_PREFIX);
 	purple_prefs_add_int(PLUGIN_PREFS_PREFIX "/offset", 0);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-01 12:01+0200\n"
+"POT-Creation-Date: 2016-08-01 13:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,22 +55,27 @@ msgid ""
 "<b>[%Y-%m-%d %H:%M:%S]</b>"
 msgstr ""
 
-#: ../src/znchelper.c:112
+#: ../src/znchelper.c:111
 msgid "ZNC Helper"
 msgstr ""
 
-#: ../src/znchelper.c:113 ../src/znchelper.c:114
-msgid ""
-"This plugin removes ugly double-timestamps when replaying messages from ZNC "
-"bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\"."
-msgstr ""
-
-#: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:1
-msgid "Pidgin ZNC Helper"
-msgstr ""
-
+#: ../src/znchelper.c:112
 #: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:2
 msgid ""
 "Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal "
 "timestamps."
+msgstr ""
+
+#: ../src/znchelper.c:114
+msgid ""
+"Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal "
+"timestamps.\n"
+"\n"
+"Therefore, the ZNC needs timestamp needs append the timestamp in the the "
+"following format:\n"
+"[%Y-%m-%d %H:%M:%S]\n"
+msgstr ""
+
+#: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:1
+msgid "Pidgin ZNC Helper"
 msgstr ""
