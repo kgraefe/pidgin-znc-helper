@@ -1,7 +1,7 @@
 # Pidgin ZNC Helper Changes
 
 ## Version 1.6 (in development)
-- Update plugin authos and website
+- Update plugin authors and website
 - Ship AppStream metainfo file
 
 ## Version 1.5.1 (2014/03/17)
