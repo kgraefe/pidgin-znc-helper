@@ -5,3 +5,4 @@ src/queryfix.c
 src/timeparser.c
 src/zncconversation.c
 src/znchelper.c
+share/appdata/pidgin-znc-helper.metainfo.xml.in

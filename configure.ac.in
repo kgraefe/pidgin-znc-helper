@@ -43,7 +43,11 @@ CFLAGS="$CFLAGS $pidgin_CFLAGS -Wall"
 
 # Checks for library functions.
 
-AC_CONFIG_FILES([Makefile
-                 src/Makefile
-		 po/Makefile.in])
+AC_CONFIG_FILES([
+	Makefile
+	src/Makefile
+	po/Makefile.in
+	share/Makefile
+	share/appdata/Makefile
+])
 AC_OUTPUT

@@ -7,6 +7,6 @@ EXTRA_DIST = \
 	Makefile.mingw \
 	po/Makefile.mingw
 
-SUBDIRS = src po
+SUBDIRS = src po share
 
 ACLOCAL_AMFLAGS = -I m4
