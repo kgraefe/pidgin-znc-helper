@@ -13,7 +13,7 @@ PLUGIN_TOP := .
 PIDGIN_TREE_TOP ?=		../../..
 include $(PIDGIN_TREE_TOP)/libpurple/win32/global.mak
 
-PLUGIN_VERSION := $(shell cat ./VERSION)
+PLUGIN_VERSION := $(shell ./scripts/gen-version.sh)
 PIDGIN_VERSION := $(shell cat $(PIDGIN_TREE_TOP)/VERSION)
 
 PLUGIN_WIN32_ZIP := pidgin-znc-helper-$(PLUGIN_VERSION)-win32.zip

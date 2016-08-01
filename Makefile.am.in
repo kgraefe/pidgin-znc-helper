@@ -3,6 +3,7 @@ EXTRA_DIST = \
 	CHANGES.md \
 	VERSION \
 	scripts/gen-mingw-config_h.sh \
+	scripts/gen-version.sh \
 	src/Makefile.mingw \
 	Makefile.mingw \
 	po/Makefile.mingw

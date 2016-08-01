@@ -1,7 +1,6 @@
 #!/bin/bash
 
 test -f configure.ac || exit 1
-test -f VERSION || exit 1
 
 GETTEXT_PACKAGE=$(grep 'GETTEXT_PACKAGE=' configure.ac | cut -d= -f2)
 PLUGIN_AUTHOR=$(grep 'PLUGIN_AUTHOR' configure.ac | cut -d\" -f2)
@@ -9,7 +8,7 @@ PLUGIN_ID=$(grep 'PLUGIN_ID' configure.ac | cut -d\" -f2)
 PLUGIN_STATIC_NAME=$(grep 'PLUGIN_STATIC_NAME' configure.ac | cut -d\" -f2)
 PLUGIN_WEBSITE=$(grep 'PLUGIN_WEBSITE' configure.ac | cut -d\" -f2)
 PLUGIN_PREFS_PREFIX=$(grep 'PLUGIN_PREFS_PREFIX' configure.ac | cut -d\" -f2)
-PLUGIN_VERSION=$(cat VERSION)
+PLUGIN_VERSION=$(./scripts/gen-version.sh) || exit 1
 
 
 cat << EOF
