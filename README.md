@@ -1,5 +1,11 @@
 # Pidgin ZNC Helper
 
+## Usage
+
+For this plugin to work, it is crucial to setup your ZNC like this:
+- Tick the checkbox **Append Timestamps**
+- Set **Timestamp Format**  to `[%Y-%m-%d %H:%M:%S]`
+
 ## Installation on Windows
 
 For the binary version, extract all the contents of `pidgin-znc-helper` in
