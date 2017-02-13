@@ -6,6 +6,7 @@
 ## Translators
 
 ### German (de)
+- Mario Siegmann <mario_siegmann@web.de>
 - Konrad Gräfe <konradgraefe@aol.com>
 
 ### Spanish (es)
