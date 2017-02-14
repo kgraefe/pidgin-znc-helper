@@ -1,11 +1,21 @@
 #!/bin/bash
 
-test -f VERSION || exit 1
+set -e
 
+test -f VERSION
 VERSION=$(cat VERSION)
-if [[ $VERSION == *"-dev" ]]; then
-	if [[ -d .git ]]; then
-		VERSION="$VERSION-git$(git describe --always --dirty)"
+
+if [[ -d .git ]]; then
+	VERSION_GIT=$(git describe --tags --always --dirty)
+
+	# Remove leading 'v'
+	VERSION_GIT=${VERSION_GIT#v}
+
+	if [[ $VERSION_GIT == ${VERSION}* ]]; then
+		VERSION=$VERSION_GIT
+	else
+		echo "$(tput setaf 1)ERROR:$(tput sgr0) Git version does not match VERSION file!" >&2
+		exit 1
 	fi
 fi
 
