@@ -1,13 +1,15 @@
 # Pidgin ZNC Helper
 
-## Usage
+[![Download](https://img.shields.io/badge/Download-Latest_Release-brightgreen.svg?style=flat)](https://github.com/kgraefe/pidgin-znc-helper/releases/latest)
 
+
+## Usage
 For this plugin to work, it is crucial to setup your ZNC like this:
 - Tick the checkbox **Append Timestamps**
 - Set **Timestamp Format**  to `[%Y-%m-%d %H:%M:%S]`
 
-## Installation on Windows
 
+## Installation on Windows
 For the binary version, extract all the contents of `pidgin-znc-helper` in
 the ZIP file either to the installation directory of Pidgin (typically
 `C:\Program Files\Pidgin`) or to your .purple user directory (typically
@@ -15,8 +17,8 @@ the ZIP file either to the installation directory of Pidgin (typically
 
 See below for how to compile the source code version into a binary ZIP file.
 
-## Installation on Linux
 
+## Installation on Linux
 To install the plugin on Linux you need to extract a release tarball and compile
 it from source:
 
@@ -36,7 +38,6 @@ installed Pidgin through your package manager, it is most likely installed into
 
 
 ## Building on Windows
-
 In order to build the plugin for Windows an already-compiled source tree of
 Pidgin is required. Please see the [Pidgin for Windows Build Instructions](https://developer.pidgin.im/wiki/BuildingWinPidgin)
 for details.
