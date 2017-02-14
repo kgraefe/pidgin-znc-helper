@@ -26,13 +26,17 @@ build: config.h
 	$(MAKE) -C $(PLUGIN_SRC) -f Makefile.mingw
 	$(MAKE) -C $(PLUGIN_PO) -f Makefile.mingw
 
-config.h: VERSION configure.ac scripts/gen-mingw-config_h.sh
+config.h: .stamp-version-$(PLUGIN_VERSION) configure.ac scripts/gen-mingw-config_h.sh
 	./scripts/gen-mingw-config_h.sh > config.h
+
+.stamp-version-$(PLUGIN_VERSION):
+	rm -f .stamp-version*
+	touch $@
 
 # If configure.ac.in exists, we generate configure.ac. Otherwise we assume that
 # configure.ac exists (as in the release tarball).
 ifneq ("$(wildcard configure.ac.in)", "")
-configure.ac: configure.ac.in ./scripts/gen-configure_ac.sh
+configure.ac: configure.ac.in .stamp-version-$(PLUGIN_VERSION) ./scripts/gen-configure_ac.sh
 	./scripts/gen-configure_ac.sh
 endif
 
@@ -56,5 +60,6 @@ $(PLUGIN_WIN32_ZIP): build
 clean:
 	$(MAKE) -C $(PLUGIN_SRC) -f Makefile.mingw clean
 	$(MAKE) -C $(PLUGIN_PO) -f Makefile.mingw clean
+	rm -f .stamp*
 	rm -rf config.h win32-install-dir $(PLUGIN_WIN32_ZIP)
 	test -f configure.ac.in && rm -f configure.ac || true
