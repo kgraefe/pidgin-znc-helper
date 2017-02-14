@@ -3,6 +3,7 @@
 ## Version 1.6 (in development)
 - Update plugin authors and website
 - Ship AppStream metainfo file
+- Add Lithuanian language
 
 ## Version 1.5.1 (2014/03/17)
 - Changed the compatibility fix from last version to not be based on the
