@@ -1,7 +1,7 @@
 # Pidgin ZNC Helper
 
+[![License](https://img.shields.io/badge/License-GPLv2-blue.svg?style=flat)](COPYING)
 [![Download](https://img.shields.io/badge/Download-Latest_Release-brightgreen.svg?style=flat)](https://github.com/kgraefe/pidgin-znc-helper/releases/latest)
-
 
 ## Usage
 For this plugin to work, it is crucial to setup your ZNC like this:
