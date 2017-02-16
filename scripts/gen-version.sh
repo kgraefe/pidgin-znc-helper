@@ -14,7 +14,7 @@ if [[ -d .git ]]; then
 	if [[ $VERSION_GIT == ${VERSION}* ]]; then
 		VERSION=$VERSION_GIT
 	else
-		echo "$(tput setaf 1)ERROR:$(tput sgr0) Git version does not match VERSION file!" >&2
+		echo "$(tput setaf 1)ERROR:$(tput sgr0) Git version '$VERSION_GIT' does not match '$VERSION' in VERSION file!" >&2
 		exit 1
 	fi
 fi
