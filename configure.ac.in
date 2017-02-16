@@ -2,24 +2,20 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.61)
-AC_INIT(pidgin-znchelper, @@VERSION@@, freakazoid@teamblind.de)
+AC_INIT(pidgin-znchelper, @@VERSION@@, konradgraefe@aol.com)
 AM_INIT_AUTOMAKE([foreign])
 AC_CONFIG_SRCDIR([src/znchelper.c])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
-AC_DEFINE_UNQUOTED(PLUGIN_VERSION, ["@@VERSION@@"], [Define the plugin version to be used])
-
-AC_DEFINE_UNQUOTED(PLUGIN_WEBSITE, ["https://github.com/kgraefe/pidgin-save-conv-order"], [Define the plugin website to be used])
-
-AC_DEFINE_UNQUOTED(PLUGIN_ID, ["gtk-freakazoid-znchelper"], [Define the plugin website to be used])
-
-AC_DEFINE_UNQUOTED(PLUGIN_STATIC_NAME, ["znchelper"], [Define the plugin website to be used])
-
-AC_DEFINE_UNQUOTED(PLUGIN_AUTHOR, ["Konrad Gräfe <konradgraefe@aol.com>"], [Define the plugin author to be used])
-
-AC_DEFINE_UNQUOTED(PLUGIN_PREFS_PREFIX, ["/plugins/gtk/znchelper"], [Define the plugin author to be used])
-
+# Note: AC_DEFINE_UNQUOTED() needs to be in a single line in order to not
+#       break scripts/gen-mingw-config_h.sh on Windows.
+AC_DEFINE_UNQUOTED(PLUGIN_VERSION, ["@@VERSION@@"], [Define the plugin version])
+AC_DEFINE_UNQUOTED(PLUGIN_WEBSITE, ["https://github.com/kgraefe/pidgin-znc-helper"], [Define the plugin website])
+AC_DEFINE_UNQUOTED(PLUGIN_ID, ["gtk-freakazoid-znchelper"], [Define the plugin ID])
+AC_DEFINE_UNQUOTED(PLUGIN_STATIC_NAME, ["znchelper"], [Define the plugin name])
+AC_DEFINE_UNQUOTED(PLUGIN_AUTHOR, ["Konrad Gräfe <konradgraefe@aol.com>"], [Define the plugin author])
+AC_DEFINE_UNQUOTED(PLUGIN_PREFS_PREFIX, ["/plugins/gtk/znchelper"], [Define the plugin preference path])
 
 # Checks for programs.
 AC_PROG_CC
@@ -27,15 +23,14 @@ AC_PROG_LIBTOOL
 AC_PROG_INTLTOOL
 GETTEXT_PACKAGE=pidgin-znchelper
 AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, ["$GETTEXT_PACKAGE"], [Define the gettext package to be used])
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, ["$GETTEXT_PACKAGE"], [Define the gettext package])
 ALL_LINGUAS="@@LANGUAGES@@"
 AM_GLIB_GNU_GETTEXT
 
 # Checks for libraries.
 PKG_CHECK_MODULES(pidgin, [pidgin >= 2.6.0], , [AC_MSG_ERROR(pidgin >= 2.6.0 required!)])
 LIBS="$LIBS $pidgin_LIBS"
-CFLAGS="$CFLAGS $pidgin_CFLAGS -Wall"
-
+CFLAGS="$CFLAGS $pidgin_CFLAGS -Wall -Werror-implicit-function-declaration"
 
 # Checks for header files.
 
