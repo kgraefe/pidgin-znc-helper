@@ -1,6 +1,6 @@
 # Pidgin ZNC Helper Changes
 
-## Version 1.6 (in development)
+## Version 1.6 (2017-02-17)
 - Update plugin authors and website
 - Ship AppStream metainfo file
 - Add Lithuanian language
