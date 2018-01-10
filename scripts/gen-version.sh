@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -o pipefail
 
 test -f VERSION
 VERSION=$(cat VERSION)
