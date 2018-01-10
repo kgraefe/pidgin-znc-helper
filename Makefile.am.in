@@ -4,6 +4,7 @@ EXTRA_DIST = \
 	README.md \
 	AUTHORS.md \
 	VERSION \
+	scripts/gen-mingw-dist.sh \
 	scripts/gen-mingw-config_h.sh \
 	scripts/gen-version.sh \
 	src/Makefile.mingw \

@@ -43,19 +43,7 @@ endif
 dist: $(PLUGIN_WIN32_ZIP)
 
 $(PLUGIN_WIN32_ZIP): build
-	rm -rf win32-install-dir
-	mkdir -p win32-install-dir/plugins
-	cp src/pidgin-znchelper.dll win32-install-dir/plugins
-	$(STRIP) win32-install-dir/plugins/pidgin-znchelper.dll
-	for f in po/*.po; do \
-		lang=$$(basename $$f .po) || exit 1; \
-		mkdir -p win32-install-dir/locale/$${lang}/LC_MESSAGES || exit 1; \
-		cp po/$${lang}.gmo \
-			win32-install-dir/locale/$${lang}/LC_MESSAGES/pidgin-znchelper.mo || exit 1;  \
-	done
-	rm -f $(PLUGIN_WIN32_ZIP)
-	cd win32-install-dir && \
-		zip -r ../$(PLUGIN_WIN32_ZIP) *
+	./scripts/gen-mingw-dist.sh $@ pidgin-znc-helper pidgin-znchelper.dll
 
 clean:
 	$(MAKE) -C $(PLUGIN_SRC) -f Makefile.mingw clean
