@@ -23,8 +23,8 @@ PLUGIN_WIN32_ZIP := pidgin-znc-helper-$(PLUGIN_VERSION)-win32.zip
 all: build
 
 build: config.h
-	$(MAKE) -C $(PLUGIN_SRC) -f Makefile.mingw
-	$(MAKE) -C $(PLUGIN_PO) -f Makefile.mingw
+	$(MAKE) -C $(PLUGIN_SRC) -f Makefile.mingw all
+	$(MAKE) -C $(PLUGIN_PO) -f Makefile.mingw all
 
 config.h: .stamp-version-$(PLUGIN_VERSION) configure.ac scripts/gen-mingw-config_h.sh
 	./scripts/gen-mingw-config_h.sh > config.h
