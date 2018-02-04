@@ -68,7 +68,6 @@ PLUGIN_SRC =	\
 	pidgin_internals.c \
 	prefs.c \
 	queryfix.c \
-	zncconversation.c \
 	znchelper.c
 
 

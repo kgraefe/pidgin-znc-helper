@@ -33,18 +33,16 @@
 #include "prefs.h"
 #include "queryfix.h"
 
-PurplePlugin *plugin;
-
-static gboolean plugin_load(PurplePlugin *_plugin) {
-	plugin = _plugin;
-	
-	message_parser_init(plugin);
+static gboolean plugin_load(PurplePlugin *plugin) {
+	message_parser_init();
 	query_fix_init(plugin);
 
 	return TRUE;
 }
 
 static gboolean plugin_unload(PurplePlugin *plugin) {
+	message_parser_uninit();
+
 	/* unable to remove Account Options :'( */
 	return FALSE;
 }

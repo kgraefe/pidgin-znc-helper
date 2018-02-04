@@ -22,6 +22,7 @@
 
 #include <conversation.h>
 
-void message_parser_init(PurplePlugin *plugin);
+void message_parser_init(void);
+void message_parser_uninit(void);
 
 #endif /* PIDGIN_ZNC_HELPER_MESSAGE_PARSER_H */
