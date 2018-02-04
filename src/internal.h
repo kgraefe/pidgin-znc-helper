@@ -20,7 +20,15 @@
 #ifndef INTERNAL_H
 #define INTERNAL_H
 
+#include "config.h"
+
 #include <glib.h>
+#include <libpurple/debug.h>
+
+#define debug(fmt, ...) \
+	purple_debug_info(PLUGIN_STATIC_NAME, fmt, ##__VA_ARGS__)
+#define error(fmt, ...) \
+	purple_debug_error(PLUGIN_STATIC_NAME, fmt, ##__VA_ARGS__)
 
 #if GLIB_CHECK_VERSION(2,4,0)
 #include <glib/gi18n-lib.h>
