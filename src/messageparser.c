@@ -20,7 +20,6 @@
 #include "config.h"
 #include "internal.h"
 
-#include "timeparser.h"
 #include "messageparser.h"
 #include "zncconversation.h"
 
@@ -88,6 +87,46 @@ static gchar *conversation_timestamp_cb(
 	return mdate;
 }
 
+static time_t get_time(gchar **message, int offset) {
+	struct tm t;
+	gchar *timestamp, *tmp, *tail;
+	
+	int read = 0;
+	int year = 0;
+	int month = 0;
+
+	timestamp = g_strrstr(*message, " [");
+	if(!timestamp) return 0;
+
+	tail = purple_markup_strip_html(timestamp + 22);
+	if(strlen(tail) > 0) {
+		g_free(tail);
+		return 0;
+	}
+	g_free(tail);
+	
+	read = sscanf(timestamp,
+		" [%04d-%02d-%02d %02d:%02d:%02d]",
+		&year, &month, &t.tm_mday, &t.tm_hour, &t.tm_min, &t.tm_sec
+	);
+	t.tm_isdst = (-1);
+	
+	t.tm_hour += offset;
+	
+	if(read != 6 || year <= 1900) return 0;
+	
+	t.tm_year = year - 1900;
+	t.tm_mon = month - 1;
+
+	*timestamp = '\0';
+	tmp = g_strdup_printf("%s%s", *message, timestamp + 22);
+	g_free(*message);
+	*message = tmp;
+
+	purple_debug_info(PLUGIN_STATIC_NAME, "%s\n", *message);
+	
+	return mktime(&t);
+}
 static gboolean writing_msg_cb(
 	PurpleAccount *account, const char *who,
 	char **message, PurpleConversation *conv, PurpleMessageFlags flags

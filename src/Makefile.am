@@ -1,7 +1,6 @@
 EXTRA_DIST = \
 	internal.h \
 	messageparser.h \
-	timeparser.h \
 	zncconversation.h \
 	pidgin_internals.h \
 	prefs.h \
@@ -17,7 +16,6 @@ znchelper_la_SOURCES = \
 	messageparser.c \
 	zncconversation.c \
 	pidgin_internals.c \
-	timeparser.c \
 	queryfix.c \
 	prefs.c
 	
