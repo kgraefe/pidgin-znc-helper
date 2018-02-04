@@ -59,12 +59,6 @@ static void irc_msg_privmsg(
 	rawmsg = args[1];
 	nick = irc_mask_nick(from);
 
-	purple_debug_info(PLUGIN_STATIC_NAME,
-		"irc_msg_privmsg: received message %s from %s to %s\n",
-		rawmsg, nick, to
-	);
-
-
 	if(purple_utf8_strcasecmp(nick, purple_connection_get_display_name(gc))) {
 		irc_msg_privmsg_ori(irc, name, from, args);
 		g_free(nick);
