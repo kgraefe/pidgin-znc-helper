@@ -139,3 +139,9 @@ void query_fix_init(PurplePlugin *plugin) {
 		plugin, PURPLE_CALLBACK(connection_signed_on_cb), NULL
 	);
 }
+void query_fix_uninit(PurplePlugin *plugin) {
+	purple_signal_disconnect(
+		purple_connections_get_handle(), "signed-on",
+		plugin, PURPLE_CALLBACK(connection_signed_on_cb)
+	);
+}

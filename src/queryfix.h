@@ -23,5 +23,6 @@
 #include <conversation.h>
 
 void query_fix_init(PurplePlugin *plugin);
+void query_fix_uninit(PurplePlugin *plugin);
 
 #endif /* PIDGIN_ZNC_HELPER_QUERY_FIX_H */

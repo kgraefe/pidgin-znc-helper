@@ -42,9 +42,9 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 
 static gboolean plugin_unload(PurplePlugin *plugin) {
 	message_parser_uninit();
+	query_fix_uninit(plugin);
 
-	/* unable to remove Account Options :'( */
-	return FALSE;
+	return TRUE;
 }
 
 static PidginPluginUiInfo ui_info = {
