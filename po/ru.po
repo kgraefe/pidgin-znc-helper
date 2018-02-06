@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-01 12:01+0200\n"
+"POT-Creation-Date: 2018-02-06 08:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Konrad Gräfe <konradgraefe@aol.com>, 2016\n"
 "Language-Team: Russian (https://www.transifex.com/kgraefe/teams/65462/ru/)\n"
@@ -18,19 +18,15 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: ../src/messageparser.c:123
+#: ../src/messageparser.c:133
 msgid "Buffer Playback..."
 msgstr "Воспроизведение буфера..."
 
-#: ../src/messageparser.c:142
+#: ../src/messageparser.c:147
 msgid "Playback Complete."
 msgstr "Воспроизведение завершено."
 
-#: ../src/messageparser.c:196
-msgid "Timestamp could not be interpreted.\n"
-msgstr "Отметка времени не может быть обработана.\n"
-
-#: ../src/prefs.c:133 ../src/prefs.c:209
+#: ../src/prefs.c:120 ../src/prefs.c:196
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "час"
@@ -38,19 +34,19 @@ msgstr[1] "часа"
 msgstr[2] "часов"
 msgstr[3] "часов"
 
-#: ../src/prefs.c:225
+#: ../src/prefs.c:212
 msgid "ZNC"
 msgstr "ZNC"
 
-#: ../src/prefs.c:242
+#: ../src/prefs.c:229
 msgid "Account"
 msgstr "Учётная запись"
 
-#: ../src/prefs.c:263
+#: ../src/prefs.c:250
 msgid "Time offset"
 msgstr "Смещение"
 
-#: ../src/prefs.c:310
+#: ../src/prefs.c:297
 msgid ""
 "Please make sure to set up your ZNC to <b>append</b> the timestamp using the following format:\n"
 "<b>[%Y-%m-%d %H:%M:%S]</b>"
@@ -58,24 +54,25 @@ msgstr ""
 "Не забудьте настроить ZNC <b>добавив</b> отметку, используя следующий формат:\n"
 "<b>[%Y-%m-%d %H:%M:%S]</b>"
 
-#: ../src/znchelper.c:112
+#: ../src/znchelper.c:96
 msgid "ZNC Helper"
 msgstr "ZNC помощник"
 
-#: ../src/znchelper.c:113 ../src/znchelper.c:114
-msgid ""
-"This plugin removes ugly double-timestamps when replaying messages from ZNC "
-"bouncers, e.g. \"(13:00:00) [12:00:00] Lunch time!\"."
-msgstr ""
-"Этот модуль удаляет некрасивую двойную метку при отображении сообщений от "
-"ZNC, например, \"(13:00:00) [12:00:00] Обед! \"."
-
-#: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:1
-msgid "Pidgin ZNC Helper"
-msgstr ""
-
+#: ../src/znchelper.c:97
 #: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:2
 msgid ""
 "Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal "
 "timestamps."
+msgstr ""
+
+#: ../src/znchelper.c:99
+msgid ""
+"Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal timestamps.\n"
+"\n"
+"Therefore, the ZNC needs timestamp needs append the timestamp in the the following format:\n"
+"[%Y-%m-%d %H:%M:%S]\n"
+msgstr ""
+
+#: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:1
+msgid "Pidgin ZNC Helper"
 msgstr ""
