@@ -65,7 +65,6 @@ LIB_PATHS =             \
 
 PLUGIN_SRC =	\
 	messageparser.c \
-	pidgin_internals.c \
 	prefs.c \
 	queryfix.c \
 	znchelper.c

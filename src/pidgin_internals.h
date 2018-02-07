@@ -7,16 +7,7 @@
 #ifndef PIDGIN_INTERNALS_H
 #define PIDGIN_INTERNALS_H
 
-#include <gtkconv.h>
-#include <gtkimhtml.h>
 #include <circbuffer.h>
-
-GtkTextTag *get_buddy_tag(
-	PurpleConversation *conv, const char *who,
-	PurpleMessageFlags flag, gboolean create
-);
-const char *get_text_tag_color(GtkTextTag *tag);
-const GdkColor *get_nick_color(PidginConversation *gtkconv, const char *name);
 
 struct irc_conn {
 	PurpleAccount *account;

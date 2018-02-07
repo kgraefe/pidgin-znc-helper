@@ -13,7 +13,6 @@ plugin_LTLIBRARIES = znchelper.la
 znchelper_la_SOURCES = \
 	znchelper.c \
 	messageparser.c \
-	pidgin_internals.c \
 	queryfix.c \
 	prefs.c
 	

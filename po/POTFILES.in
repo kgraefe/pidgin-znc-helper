@@ -1,5 +1,4 @@
 src/messageparser.c
-src/pidgin_internals.c
 src/prefs.c
 src/queryfix.c
 src/znchelper.c
