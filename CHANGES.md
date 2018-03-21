@@ -1,6 +1,6 @@
 # Pidgin ZNC Helper Changes
 
-## Version 1.7 (in development)
+## Version 1.7 (2018-03-21)
 - Re-implement by hooking into UI operations to improve speed especially when
   handling a lot of messages. This also fixes Github #1.
 - Support unloading the plugin without Pidgin restart.
