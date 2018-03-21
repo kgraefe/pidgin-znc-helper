@@ -1,5 +1,10 @@
 # Pidgin ZNC Helper Changes
 
+## Version 1.7 (in development)
+- Re-implement by hooking into UI operations to improve speed especially when
+  handling a lot of messages. This also fixes Github #1.
+- Support unloading the plugin without Pidgin restart.
+
 ## Version 1.6 (2017-02-17)
 - Update plugin authors and website
 - Ship AppStream metainfo file
@@ -23,13 +28,14 @@
   https://bugs.launchpad.net/pidgin-znc-helper/+bug/900754 carefully!
 	
 ## Version 1.3.1 (2011-11-25)
-- Process self-posted incoming messages too. (This happens e.g. when using ZNC behind an irssi-proxy.)
+- Process self-posted incoming messages too. (This happens e.g. when using ZNC
+  behind an irssi-proxy.)
 - Added Spain and Russian translation
 
 ## Version 1.3 (2010-08-05)
 - Don't check whether the timestamp is in the end of the string (mIRC sends
-  special formatting characters that are interpreted into HTML from Pidgin which
-  means that the timestamps aren't anymore at the end)
+  special formatting characters that are interpreted into HTML from Pidgin
+  which means that the timestamps aren't anymore at the end)
 - Check whether the part of the message after timestamp contains only HTML tags
   (this means usually the timestamp was at the end of the message)
 - Time offset per account including new preferences dialog
