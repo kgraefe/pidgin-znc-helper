@@ -3,7 +3,7 @@
 ## Version 1.7 (2018-03-21)
 - Re-implement by hooking into UI operations to improve speed especially when
   handling a lot of messages.
-- Remove timestamp formatting capabilities which inteferred with existing
+- Remove timestamp formatting capabilities which interferred with existing
   plugins (Message Timestamp Formats) (Github #1). As a side effect, all
   timestamps older than 20 minutes will include the date (Github #2).
 - Support unloading the plugin without Pidgin restart.
