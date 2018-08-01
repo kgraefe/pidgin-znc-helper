@@ -30,6 +30,10 @@
 PurplePlugin *prpl_irc;
 PurplePluginProtocolInfo *irc_extra_info;
 
+#define ZNC_CONV_STATE_START 0
+#define ZNC_CONV_STATE_REPLAY 1
+#define ZNC_CONV_STATE_DONE 2
+
 struct znc_conn {
 	gboolean server_time_enabled;
 	time_t server_time;
@@ -90,7 +94,10 @@ static void znc_write_chat(
 	PurpleConversation *conv, const char *who, const char *message,
 	PurpleMessageFlags flags, time_t mtime
 ) {
+	PurpleConvChat *chat;
 	struct znc_conn *znc;
+	GList *parted, *l;
+	gint state;
 
 	znc = conversation_get_znc(conv);
 	if(!znc) {
@@ -102,11 +109,47 @@ static void znc_write_chat(
 		znc->server_time = 0;
 	}
 
+	chat = PURPLE_CONV_CHAT(conv);
+	if(!chat) {
+		goto exit;
+	}
+
+	if((flags & PURPLE_MESSAGE_SYSTEM) == 0) {
+		state = GPOINTER_TO_INT(purple_conversation_get_data(conv, "znc-state"));
+		switch(state) {
+		case ZNC_CONV_STATE_START:
+			pidgin_write_chat(
+				conv, "***", _("Buffer Playback..."),
+				PURPLE_MESSAGE_NO_LOG | PURPLE_MESSAGE_SYSTEM, time(NULL)
+			);
+			purple_conversation_set_data(conv,
+				"znc-state", GINT_TO_POINTER(ZNC_CONV_STATE_REPLAY)
+			);
+			/* fall through */
+
+		case ZNC_CONV_STATE_REPLAY:
+			/* Add the nick to the list of parted users, if it is not
+			 * present in the chat anymore.
+			 */
+			if(purple_conv_chat_cb_find(chat, who) == NULL) {
+				parted = purple_conversation_get_data(conv, "znc-parted");
+				for(l = parted; l != NULL; l = l->next) {
+					if(purple_utf8_strcasecmp(l->data, who) == 0) {
+						break;
+					}
+				}
+				if(l == NULL) {
+					parted = g_list_append(parted, g_strdup(who));
+					purple_conversation_set_data(conv, "znc-parted", parted);
+				}
+			}
+			break;
+		}
+	}
+
 exit:
 	pidgin_write_chat(conv, who, message, flags, mtime);
 }
-
-
 static void (*pidgin_write_im)(
 	PurpleConversation *conv, const char *who,
    const char *message, PurpleMessageFlags flags, time_t mtime
@@ -230,6 +273,91 @@ static void parse_self_message(
 	g_free(new);
 	znc->self_message = TRUE;
 }
+static void parse_endofwho(PurpleConnection *gc, char **text) {
+	/* Example:
+	 *     :weber.freenode.net 315 ploppy #pidgin-znc-test :End of /WHO list.
+	 */
+
+	PurpleAccount *account;
+	PurpleConversation *conv;
+	PurpleConvChat *chat;
+	GList *parted, *ignored, *l;
+	char *p = *text;
+	char *channel = NULL, *start, *end;
+	gint state;
+
+	irc_next_field_or_return(p);
+	if(strncmp("315 ", p, 4) != 0) {
+		goto exit;
+	}
+
+	irc_next_field_or_return(p);
+	irc_next_field_or_return(p);
+
+	start = p;
+	irc_next_field_or_return(p);
+	end = p;
+
+	channel = g_strndup(start, (end - start - 1));
+
+	if(*channel != '#') {
+		goto exit;
+	}
+
+	account = purple_connection_get_account(gc);
+	if(!account) {
+		goto exit;
+	}
+
+	conv = purple_find_conversation_with_account(
+		PURPLE_CONV_TYPE_CHAT, channel, account
+	);
+	if(!conv) {
+		goto exit;
+	}
+
+	chat = PURPLE_CONV_CHAT(conv);
+	if(!chat) {
+		goto exit;
+	}
+
+	state = GPOINTER_TO_INT(purple_conversation_get_data(conv, "znc-state"));
+	purple_conversation_set_data(conv,
+		"znc-state", GINT_TO_POINTER(ZNC_CONV_STATE_DONE)
+	);
+
+	if(state == ZNC_CONV_STATE_START) {
+		/* We had no replay, so nothing to do. */
+		goto exit;
+	}
+
+	pidgin_write_chat(
+		conv, "***", _("Playback Complete."),
+		PURPLE_MESSAGE_NO_LOG | PURPLE_MESSAGE_SYSTEM, time(NULL)
+	);
+
+	/* Remove all users from the chat that are in the playback but
+	 * not present anymore. This gives the UI the chance to mark
+	 * them as parted (i.e. Pidgin displays them in italic).
+	 *
+	 * In order to avoid a lot "user left the room" messages, we
+	 * set those users on the ignore list during that operation.
+	 */
+	parted = purple_conversation_get_data(conv, "znc-parted");
+	ignored = purple_conv_chat_get_ignored(chat);
+	purple_conv_chat_set_ignored(chat, parted);
+	purple_conv_chat_remove_users(chat, parted, NULL);
+	purple_conv_chat_set_ignored(chat, ignored);
+
+	purple_conversation_set_data(conv, "znc-parted", NULL);
+	for(l = parted; l != NULL; l = l->next) {
+		g_free(l->data);
+	}
+	g_list_free(parted);
+
+exit:
+	g_free(channel);
+}
 static gboolean matches_cap_ack(const char *cap, const char *text) {
 	const char *p = text;
 
@@ -287,6 +415,7 @@ static void irc_receiving_text_cb(PurpleConnection *gc, char **text, void *p) {
 	if(znc->self_message_enabled) {
 		parse_self_message(gc, znc, text);
 	}
+	parse_endofwho(gc, text);
 }
 
 
