@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-06 08:22+0100\n"
+"POT-Creation-Date: 2018-08-18 09:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Moo, 2017\n"
 "Language-Team: Lithuanian (https://www.transifex.com/kgraefe/teams/65462/lt/)\n"
@@ -16,15 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: lt\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-
-#: ../src/messageparser.c:133
-msgid "Buffer Playback..."
-msgstr "Buferio atkūrimas..."
-
-#: ../src/messageparser.c:147
-msgid "Playback Complete."
-msgstr "Atkūrimas užbaigtas."
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: ../src/prefs.c:120 ../src/prefs.c:196
 msgid "hour"
@@ -32,6 +24,7 @@ msgid_plural "hours"
 msgstr[0] "valanda"
 msgstr[1] "valandos"
 msgstr[2] "valandų"
+msgstr[3] "valandų"
 
 #: ../src/prefs.c:212
 msgid "ZNC"
@@ -53,11 +46,19 @@ msgstr ""
 "Prašome įsitikinti, kad nustatysite savo ZNC <b>pridėti</b> laiko žymą, naudojant šį formatą:\n"
 "<b>[%Y-%m-%d %H:%M:%S]</b>"
 
-#: ../src/znchelper.c:96
+#: ../src/znchelper.c:122
+msgid "Buffer Playback..."
+msgstr "Buferio atkūrimas..."
+
+#: ../src/znchelper.c:335
+msgid "Playback Complete."
+msgstr "Atkūrimas užbaigtas."
+
+#: ../src/znchelper.c:548
 msgid "ZNC Helper"
 msgstr "ZNC pagelbiklis"
 
-#: ../src/znchelper.c:97
+#: ../src/znchelper.c:549 ../src/znchelper.c:550
 #: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:2
 msgid ""
 "Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal "
@@ -65,18 +66,6 @@ msgid ""
 msgstr ""
 "Pidgin ZNC pagelbiklis išanalizuoja \"IRC bouncer\" laiko žymas ir rodo jas "
 "kaip normalias laiko žymas."
-
-#: ../src/znchelper.c:99
-msgid ""
-"Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal timestamps.\n"
-"\n"
-"Therefore, the ZNC needs timestamp needs append the timestamp in the the following format:\n"
-"[%Y-%m-%d %H:%M:%S]\n"
-msgstr ""
-"Pidgin ZNC pagelbiklis išanalizuoja \"IRC bouncer\" laiko žymas ir rodo jas kaip normalias laiko žymas.\n"
-"\n"
-"Todėl, ZNC reikia laiko žymos, reikia pridėti laiko žymą šiuo formatu:\n"
-"[%Y-%m-%d %H:%M:%S]\n"
 
 #: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:1
 msgid "Pidgin ZNC Helper"

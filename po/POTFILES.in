@@ -1,5 +1,3 @@
-src/messageparser.c
 src/prefs.c
-src/queryfix.c
 src/znchelper.c
 share/appdata/pidgin-znc-helper.metainfo.xml.in

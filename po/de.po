@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-06 08:22+0100\n"
+"POT-Creation-Date: 2018-08-18 09:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2016\n"
 "Language-Team: German (https://www.transifex.com/kgraefe/teams/65462/de/)\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: ../src/messageparser.c:133
-msgid "Buffer Playback..."
-msgstr "Wiedergabe des Zwischenspeichers..."
-
-#: ../src/messageparser.c:147
-msgid "Playback Complete."
-msgstr "Ende der Wiedergabe."
 
 #: ../src/prefs.c:120 ../src/prefs.c:196
 msgid "hour"
@@ -52,11 +44,19 @@ msgstr ""
 "Bitte stellen Sie sicher, dass Ihr ZNC den Zeitstempel an die Nachrichten anhängt (<b>append</b>) und dabei folgendes Format benutzt:\n"
 "<b>[%Y-%m-%d %H:%M:%S]</b>"
 
-#: ../src/znchelper.c:96
+#: ../src/znchelper.c:122
+msgid "Buffer Playback..."
+msgstr "Wiedergabe des Zwischenspeichers..."
+
+#: ../src/znchelper.c:335
+msgid "Playback Complete."
+msgstr "Ende der Wiedergabe."
+
+#: ../src/znchelper.c:548
 msgid "ZNC Helper"
 msgstr "ZNC-Helper"
 
-#: ../src/znchelper.c:97
+#: ../src/znchelper.c:549 ../src/znchelper.c:550
 #: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:2
 msgid ""
 "Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal "
@@ -64,18 +64,6 @@ msgid ""
 msgstr ""
 "Das Pidgin ZNC-Helper Plugin analysiert IRC-Bouncer Zeitstempel und stellt "
 "dieses als normale Zeitstempel dar."
-
-#: ../src/znchelper.c:99
-msgid ""
-"Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal timestamps.\n"
-"\n"
-"Therefore, the ZNC needs timestamp needs append the timestamp in the the following format:\n"
-"[%Y-%m-%d %H:%M:%S]\n"
-msgstr ""
-"Das Pidgin ZNC-Helper Plugin analysiert IRC-Bouncer Zeitstempel und stellt diese als normale Zeitstempel dar.\n"
-"\n"
-"Hierfür muss ZNC so eingestellt werden, dass die Zeitstempel in folgendem Format an das Ende der Nachrichten angefügt werden:\n"
-"[%Y-%m-%d %H:%M:%S]\n"
 
 #: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:1
 msgid "Pidgin ZNC Helper"

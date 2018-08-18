@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-06 08:22+0100\n"
+"POT-Creation-Date: 2018-08-18 09:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Konrad Gräfe <konradgraefe@aol.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/kgraefe/teams/65462/es/)\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: ../src/messageparser.c:133
-msgid "Buffer Playback..."
-msgstr ""
-
-#: ../src/messageparser.c:147
-msgid "Playback Complete."
-msgstr "Reproducción Completada."
 
 #: ../src/prefs.c:120 ../src/prefs.c:196
 msgid "hour"
@@ -50,23 +42,23 @@ msgid ""
 "<b>[%Y-%m-%d %H:%M:%S]</b>"
 msgstr ""
 
-#: ../src/znchelper.c:96
+#: ../src/znchelper.c:122
+msgid "Buffer Playback..."
+msgstr ""
+
+#: ../src/znchelper.c:335
+msgid "Playback Complete."
+msgstr "Reproducción Completada."
+
+#: ../src/znchelper.c:548
 msgid "ZNC Helper"
 msgstr "Ayuda ZNC"
 
-#: ../src/znchelper.c:97
+#: ../src/znchelper.c:549 ../src/znchelper.c:550
 #: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:2
 msgid ""
 "Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal "
 "timestamps."
-msgstr ""
-
-#: ../src/znchelper.c:99
-msgid ""
-"Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal timestamps.\n"
-"\n"
-"Therefore, the ZNC needs timestamp needs append the timestamp in the the following format:\n"
-"[%Y-%m-%d %H:%M:%S]\n"
 msgstr ""
 
 #: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:1
