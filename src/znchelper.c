@@ -68,6 +68,76 @@ static void irc_sending_text_cb(PurpleConnection *gc, char **text, void *p) {
 }
 
 
+static struct znc_conn *conversation_get_znc(PurpleConversation *conv) {
+	PurpleConnection *gc;
+	PurpleAccount *account;
+
+	account = purple_conversation_get_account(conv);
+	if(!account) {
+		return NULL;
+	}
+	gc = purple_account_get_connection(account);
+	if(!gc) {
+		return NULL;
+	}
+	return g_hash_table_lookup(znc_conns, gc);
+}
+static void (*pidgin_write_chat)(
+	PurpleConversation *conv, const char *who, const char *message,
+	PurpleMessageFlags flags, time_t mtime
+);
+static void znc_write_chat(
+	PurpleConversation *conv, const char *who, const char *message,
+	PurpleMessageFlags flags, time_t mtime
+) {
+	struct znc_conn *znc;
+
+	znc = conversation_get_znc(conv);
+	if(!znc) {
+		goto exit;
+	}
+
+	if(znc->server_time) {
+		mtime = znc->server_time;
+		znc->server_time = 0;
+	}
+
+exit:
+	pidgin_write_chat(conv, who, message, flags, mtime);
+}
+
+
+static void (*pidgin_write_im)(
+	PurpleConversation *conv, const char *who,
+   const char *message, PurpleMessageFlags flags, time_t mtime
+);
+static void znc_write_im(
+	PurpleConversation *conv, const char *who,
+   const char *message, PurpleMessageFlags flags, time_t mtime
+) {
+	struct znc_conn *znc;
+
+	znc = conversation_get_znc(conv);
+	if(!znc) {
+		goto exit;
+	}
+
+	if(znc->server_time) {
+		mtime = znc->server_time;
+		znc->server_time = 0;
+	}
+	if(znc->self_message) {
+		flags &= ~PURPLE_MESSAGE_RECV;
+		flags |= PURPLE_MESSAGE_SEND;
+
+		znc->self_message = FALSE;
+	}
+
+exit:
+	pidgin_write_im(conv, who, message, flags, mtime);
+}
+
+
 static void parse_server_time(
 	PurpleConnection *gc, struct znc_conn *znc, char **text
 ) {
@@ -217,78 +287,6 @@ static void irc_receiving_text_cb(PurpleConnection *gc, char **text, void *p) {
 	if(znc->self_message_enabled) {
 		parse_self_message(gc, znc, text);
 	}
-}
-
-
-static struct znc_conn *conversation_get_znc(PurpleConversation *conv) {
-	PurpleConnection *gc;
-	PurpleAccount *account;
-
-	account = purple_conversation_get_account(conv);
-	if(!account) {
-		return NULL;
-	}
-	gc = purple_account_get_connection(account);
-	if(!gc) {
-		return NULL;
-	}
-	return g_hash_table_lookup(znc_conns, gc);
-}
-
-
-static void (*pidgin_write_chat)(
-	PurpleConversation *conv, const char *who, const char *message,
-	PurpleMessageFlags flags, time_t mtime
-);
-static void znc_write_chat(
-	PurpleConversation *conv, const char *who, const char *message,
-	PurpleMessageFlags flags, time_t mtime
-) {
-	struct znc_conn *znc;
-
-	znc = conversation_get_znc(conv);
-	if(!znc) {
-		goto exit;
-	}
-
-	if(znc->server_time) {
-		mtime = znc->server_time;
-		znc->server_time = 0;
-	}
-
-exit:
-	pidgin_write_chat(conv, who, message, flags, mtime);
-}
-
-
-static void (*pidgin_write_im)(
-	PurpleConversation *conv, const char *who,
-   const char *message, PurpleMessageFlags flags, time_t mtime
-);
-static void znc_write_im(
-	PurpleConversation *conv, const char *who,
-   const char *message, PurpleMessageFlags flags, time_t mtime
-) {
-	struct znc_conn *znc;
-
-	znc = conversation_get_znc(conv);
-	if(!znc) {
-		goto exit;
-	}
-
-	if(znc->server_time) {
-		mtime = znc->server_time;
-		znc->server_time = 0;
-	}
-	if(znc->self_message) {
-		flags &= ~PURPLE_MESSAGE_RECV;
-		flags |= PURPLE_MESSAGE_SEND;
-
-		znc->self_message = FALSE;
-	}
-
-exit:
-	pidgin_write_im(conv, who, message, flags, mtime);
 }
 
 
