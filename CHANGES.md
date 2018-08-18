@@ -1,5 +1,10 @@
 # Pidgin ZNC Helper Changes
 
+# Version 1.8-beta1 (in development)
+- Re-implement to use ZNC capabilities `znc.in/server-time-iso` and
+  `znc.in/self-message`. This should be a more stable and reliable
+  implementation.
+
 ## Version 1.7 (2018-03-21)
 - Re-implement by hooking into UI operations to improve speed especially when
   handling a lot of messages.
