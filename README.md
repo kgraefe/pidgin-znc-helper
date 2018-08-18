@@ -3,12 +3,6 @@
 [![License](https://img.shields.io/badge/License-GPLv2-blue.svg?style=flat)](COPYING)
 [![Download](https://img.shields.io/badge/Download-Latest_Release-brightgreen.svg?style=flat)](https://github.com/kgraefe/pidgin-znc-helper/releases/latest)
 
-## Usage
-For this plugin to work, it is crucial to setup your ZNC like this:
-- Tick the checkbox **Append Timestamps**
-- Set **Timestamp Format**  to `[%Y-%m-%d %H:%M:%S]`
-
-
 ## Installation on Windows
 For the binary version, extract all the contents of `pidgin-znc-helper` in
 the ZIP file either to the installation directory of Pidgin (typically
