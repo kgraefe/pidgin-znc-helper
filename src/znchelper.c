@@ -27,6 +27,7 @@
 		s = strchr(s, ' '); \
 		if(s) {s++;} else {return;}
 
+PurpleConversationUiOps *conv_ui_ops;
 PurplePlugin *prpl_irc;
 PurplePluginProtocolInfo *irc_extra_info;
 
@@ -417,10 +418,29 @@ static void irc_receiving_text_cb(PurpleConnection *gc, char **text, void *p) {
 	}
 	parse_endofwho(gc, text);
 }
+static void conversation_created_cb(PurpleConversation *conv) {
+	if(!conv_ui_ops) {
+		conv_ui_ops = purple_conversation_get_ui_ops(conv);
+		if(!conv_ui_ops) {
+			return;
+		}
 
+		ui_write_chat = conv_ui_ops->write_chat;
+		if(!ui_write_chat) {
+			ui_write_chat = purple_conversation_write;
+		}
+		conv_ui_ops->write_chat = znc_write_chat;
+
+		ui_write_im = conv_ui_ops->write_im;
+		if(!ui_write_im) {
+			ui_write_im = purple_conversation_write;
+		}
+		conv_ui_ops->write_im = znc_write_im;
+	}
+}
 
 static gboolean plugin_load(PurplePlugin *plugin) {
-	PurpleConversationUiOps *ops;
+	GList *convs;
 
 	prpl_irc = purple_find_prpl("prpl-irc");
 	if(!prpl_irc || !prpl_irc->info || !prpl_irc->info->extra_info) {
@@ -440,49 +460,46 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 		PURPLE_CALLBACK(irc_sending_text_cb), NULL
 	);
 
-	/* Hook into conversation between Pidgin and libpurple */
-	ops = pidgin_conversations_get_conv_ui_ops();
-
-	ui_write_chat = ops->write_chat;
-	if(!ui_write_chat) {
-		ui_write_chat = purple_conversation_write;
+	/* To hook into the conversation between the UI and libpurple, we must
+	 * replace the function pointers in the conversation UI ops. libpurple does
+	 * not provide a global interface for that, but appends them to each
+	 * conversation individually. Therefore we use the first conversation we
+	 * get or, if none is currently present, wait for the first conversation to
+	 * be created.
+	 *
+	 * This assumes that the UI uses the same UI ops for every conversation.
+	 * This is not required by libpurple, but at least Pidgin does it that way.
+	 * If required, we could invest more work to cover that case too.
+	 */
+	conv_ui_ops = NULL;
+	convs = purple_get_conversations();
+	if(convs) {
+		conversation_created_cb((PurpleConversation *)convs->data);
+	} else {
+		purple_signal_connect(
+			purple_conversations_get_handle(), "conversation-created", plugin,
+			PURPLE_CALLBACK(conversation_created_cb), NULL
+		);
 	}
-	ops->write_chat = znc_write_chat;
-
-	ui_write_im = ops->write_im;
-	if(!ui_write_im) {
-		ui_write_im = purple_conversation_write;
-	}
-	ops->write_im = znc_write_im;
 
 	return TRUE;
 }
 static gboolean plugin_unload(PurplePlugin *plugin) {
-	PurpleConversationUiOps *ops;
-
-	ops = pidgin_conversations_get_conv_ui_ops();
-	if(ops) {
+	if(conv_ui_ops) {
 		if(ui_write_chat == purple_conversation_write) {
-			ops->write_chat = NULL;
+			conv_ui_ops->write_chat = NULL;
 		} else {
-			ops->write_chat = ui_write_chat;
+			conv_ui_ops->write_chat = ui_write_chat;
 		}
 		if(ui_write_im == purple_conversation_write) {
-			ops->write_im = NULL;
+			conv_ui_ops->write_im = NULL;
 		} else {
-			ops->write_im = ui_write_im;
+			conv_ui_ops->write_im = ui_write_im;
 		}
+		conv_ui_ops = NULL;
 	}
 
-	purple_signal_disconnect(
-		prpl_irc, "irc-sending-text", plugin,
-		PURPLE_CALLBACK(irc_sending_text_cb)
-	);
-	purple_signal_disconnect(
-		prpl_irc, "irc-receiving-text", plugin,
-		PURPLE_CALLBACK(irc_receiving_text_cb)
-	);
-
+	purple_signals_disconnect_by_handle(plugin);
 	g_hash_table_destroy(znc_conns);
 
 	return TRUE;
