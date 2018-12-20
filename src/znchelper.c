@@ -86,7 +86,7 @@ static struct znc_conn *conversation_get_znc(PurpleConversation *conv) {
 	}
 	return g_hash_table_lookup(znc_conns, gc);
 }
-static void (*pidgin_write_chat)(
+static void (*ui_write_chat)(
 	PurpleConversation *conv, const char *who, const char *message,
 	PurpleMessageFlags flags, time_t mtime
 );
@@ -118,7 +118,7 @@ static void znc_write_chat(
 		state = GPOINTER_TO_INT(purple_conversation_get_data(conv, "znc-state"));
 		switch(state) {
 		case ZNC_CONV_STATE_START:
-			pidgin_write_chat(
+			ui_write_chat(
 				conv, "***", _("Buffer Playback..."),
 				PURPLE_MESSAGE_NO_LOG | PURPLE_MESSAGE_SYSTEM, time(NULL)
 			);
@@ -148,9 +148,9 @@ static void znc_write_chat(
 	}
 
 exit:
-	pidgin_write_chat(conv, who, message, flags, mtime);
+	ui_write_chat(conv, who, message, flags, mtime);
 }
-static void (*pidgin_write_im)(
+static void (*ui_write_im)(
 	PurpleConversation *conv, const char *who,
    const char *message, PurpleMessageFlags flags, time_t mtime
 );
@@ -177,7 +177,7 @@ static void znc_write_im(
 	}
 
 exit:
-	pidgin_write_im(conv, who, message, flags, mtime);
+	ui_write_im(conv, who, message, flags, mtime);
 }
 
 
@@ -331,7 +331,7 @@ static void parse_endofwho(PurpleConnection *gc, char **text) {
 		goto exit;
 	}
 
-	pidgin_write_chat(
+	ui_write_chat(
 		conv, "***", _("Playback Complete."),
 		PURPLE_MESSAGE_NO_LOG | PURPLE_MESSAGE_SYSTEM, time(NULL)
 	);
@@ -443,15 +443,15 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 	/* Hook into conversation between Pidgin and libpurple */
 	ops = pidgin_conversations_get_conv_ui_ops();
 
-	pidgin_write_chat = ops->write_chat;
-	if(!pidgin_write_chat) {
-		pidgin_write_chat = purple_conversation_write;
+	ui_write_chat = ops->write_chat;
+	if(!ui_write_chat) {
+		ui_write_chat = purple_conversation_write;
 	}
 	ops->write_chat = znc_write_chat;
 
-	pidgin_write_im = ops->write_im;
-	if(!pidgin_write_im) {
-		pidgin_write_im = purple_conversation_write;
+	ui_write_im = ops->write_im;
+	if(!ui_write_im) {
+		ui_write_im = purple_conversation_write;
 	}
 	ops->write_im = znc_write_im;
 
@@ -462,15 +462,15 @@ static gboolean plugin_unload(PurplePlugin *plugin) {
 
 	ops = pidgin_conversations_get_conv_ui_ops();
 	if(ops) {
-		if(pidgin_write_chat == purple_conversation_write) {
+		if(ui_write_chat == purple_conversation_write) {
 			ops->write_chat = NULL;
 		} else {
-			ops->write_chat = pidgin_write_chat;
+			ops->write_chat = ui_write_chat;
 		}
-		if(pidgin_write_im == purple_conversation_write) {
+		if(ui_write_im == purple_conversation_write) {
 			ops->write_im = NULL;
 		} else {
-			ops->write_im = pidgin_write_im;
+			ops->write_im = ui_write_im;
 		}
 	}
 
