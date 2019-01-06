@@ -192,7 +192,6 @@ static void parse_server_time(
 
 	GTimeVal t;
 	char *timestamp, *delimiter;
-	int offset;
 
 	if(strncmp(*text, "@time=", 5) != 0) {
 		return;
@@ -210,11 +209,6 @@ static void parse_server_time(
 		return;
 	}
 
-	offset = purple_account_get_int(gc->account, "znc_time_offset", 0);
-	if(offset) {
-		/* offset is in hours and g_time_val_add() wants microseconds... */
-		g_time_val_add(&t, offset * 60*60*1000*1000);
-	}
 	znc->server_time = (time_t)t.tv_sec;
 }
 static void parse_self_message(
