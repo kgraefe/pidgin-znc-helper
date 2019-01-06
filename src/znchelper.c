@@ -29,7 +29,7 @@
 
 PurpleConversationUiOps *conv_ui_ops;
 PurplePlugin *prpl_irc;
-PurplePluginProtocolInfo *irc_extra_info;
+PurplePluginProtocolInfo *irc_info;
 
 #define ZNC_CONV_STATE_START 0
 #define ZNC_CONV_STATE_REPLAY 1
@@ -46,11 +46,11 @@ GHashTable *znc_conns;
 
 
 static void irc_send_raw(PurpleConnection *gc, const char *str) {
-	if(!irc_extra_info->send_raw) {
+	if(!irc_info->send_raw) {
 		error("Could not send raw to IRC!\n");
 		return;
 	}
-	irc_extra_info->send_raw(gc, str, -1);
+	irc_info->send_raw(gc, str, -1);
 }
 static void irc_sending_text_cb(PurpleConnection *gc, char **text, void *p) {
 	struct znc_conn *znc;
@@ -443,11 +443,11 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 	GList *convs;
 
 	prpl_irc = purple_find_prpl("prpl-irc");
-	if(!prpl_irc || !prpl_irc->info || !prpl_irc->info->extra_info) {
+	if(!prpl_irc) {
 		error("Could not find IRC protocol!\n");
 		return FALSE;
 	}
-	irc_extra_info = (PurplePluginProtocolInfo *)prpl_irc->info->extra_info;
+	irc_info = PURPLE_PLUGIN_PROTOCOL_INFO(prpl_irc);
 
 	znc_conns = g_hash_table_new_full(NULL, NULL, NULL, g_free);
 
