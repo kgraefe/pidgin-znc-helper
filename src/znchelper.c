@@ -573,9 +573,6 @@ static void init_plugin(PurplePlugin *plugin) {
 	info.name        = _("ZNC Helper");
 	info.summary     = _("Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal timestamps.");
 	info.description = _("Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal timestamps.");
-		
-	purple_prefs_add_none(PLUGIN_PREFS_PREFIX);
-	purple_prefs_add_int(PLUGIN_PREFS_PREFIX "/offset", 0);
 }
 
 PURPLE_INIT_PLUGIN(PLUGIN_STATIC_NAME, init_plugin, info)

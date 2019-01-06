@@ -10,7 +10,6 @@ PLUGIN_AUTHOR=$(grep 'PLUGIN_AUTHOR' configure.ac | cut -d\" -f2)
 PLUGIN_ID=$(grep 'PLUGIN_ID' configure.ac | cut -d\" -f2)
 PLUGIN_STATIC_NAME=$(grep 'PLUGIN_STATIC_NAME' configure.ac | cut -d\" -f2)
 PLUGIN_WEBSITE=$(grep 'PLUGIN_WEBSITE' configure.ac | cut -d\" -f2)
-PLUGIN_PREFS_PREFIX=$(grep 'PLUGIN_PREFS_PREFIX' configure.ac | cut -d\" -f2)
 PLUGIN_VERSION=$(./scripts/gen-version.sh)
 
 
@@ -25,5 +24,4 @@ cat << EOF
 #define PLUGIN_STATIC_NAME "$PLUGIN_STATIC_NAME"
 #define PLUGIN_VERSION "$PLUGIN_VERSION"
 #define PLUGIN_WEBSITE "$PLUGIN_WEBSITE"
-#define PLUGIN_PREFS_PREFIX "$PLUGIN_PREFS_PREFIX"
 EOF

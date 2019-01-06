@@ -15,7 +15,6 @@ AC_DEFINE_UNQUOTED(PLUGIN_WEBSITE, ["https://github.com/kgraefe/pidgin-znc-helpe
 AC_DEFINE_UNQUOTED(PLUGIN_ID, ["gtk-freakazoid-znchelper"], [Define the plugin ID])
 AC_DEFINE_UNQUOTED(PLUGIN_STATIC_NAME, ["znc-helper"], [Define the plugin name])
 AC_DEFINE_UNQUOTED(PLUGIN_AUTHOR, ["Konrad Gräfe <konradgraefe@aol.com>"], [Define the plugin author])
-AC_DEFINE_UNQUOTED(PLUGIN_PREFS_PREFIX, ["/plugins/gtk/znchelper"], [Define the plugin preference path])
 
 # Checks for programs.
 AC_PROG_CC
