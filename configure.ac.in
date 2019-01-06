@@ -27,9 +27,9 @@ ALL_LINGUAS="@@LANGUAGES@@"
 AM_GLIB_GNU_GETTEXT
 
 # Checks for libraries.
-PKG_CHECK_MODULES(pidgin, [pidgin >= 2.6.0], , [AC_MSG_ERROR(pidgin >= 2.6.0 required!)])
-LIBS="$LIBS $pidgin_LIBS"
-CFLAGS="$CFLAGS $pidgin_CFLAGS -Wall -Werror-implicit-function-declaration"
+PKG_CHECK_MODULES(purple, [purple >= 2.6.0], , [AC_MSG_ERROR(libpurple >= 2.6.0 required!)])
+LIBS="$LIBS $purple_LIBS"
+CFLAGS="$CFLAGS $purple_CFLAGS -Wall -Werror-implicit-function-declaration"
 
 # Checks for header files.
 
