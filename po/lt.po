@@ -3,13 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Moo, 2017
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-18 09:37+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2019-01-06 17:25+0100\n"
+"PO-Revision-Date: 2016-07-27 15:04+0000\n"
 "Last-Translator: Moo, 2017\n"
 "Language-Team: Lithuanian (https://www.transifex.com/kgraefe/teams/65462/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -18,47 +21,23 @@ msgstr ""
 "Language: lt\n"
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: ../src/prefs.c:120 ../src/prefs.c:196
-msgid "hour"
-msgid_plural "hours"
-msgstr[0] "valanda"
-msgstr[1] "valandos"
-msgstr[2] "valandų"
-msgstr[3] "valandų"
-
-#: ../src/prefs.c:212
-msgid "ZNC"
-msgstr "ZNC"
-
-#: ../src/prefs.c:229
-msgid "Account"
-msgstr "Paskyra"
-
-#: ../src/prefs.c:250
-msgid "Time offset"
-msgstr "Laiko poslinkis"
-
-#: ../src/prefs.c:297
-msgid ""
-"Please make sure to set up your ZNC to <b>append</b> the timestamp using the following format:\n"
-"<b>[%Y-%m-%d %H:%M:%S]</b>"
-msgstr ""
-"Prašome įsitikinti, kad nustatysite savo ZNC <b>pridėti</b> laiko žymą, naudojant šį formatą:\n"
-"<b>[%Y-%m-%d %H:%M:%S]</b>"
-
-#: ../src/znchelper.c:122
+#: ../src/znchelper.c:124
 msgid "Buffer Playback..."
 msgstr "Buferio atkūrimas..."
 
-#: ../src/znchelper.c:335
+#: ../src/znchelper.c:331
 msgid "Playback Complete."
 msgstr "Atkūrimas užbaigtas."
 
-#: ../src/znchelper.c:548
+#: ../src/znchelper.c:449
+msgid "Uses ZNC bouncer"
+msgstr ""
+
+#: ../src/znchelper.c:573
 msgid "ZNC Helper"
 msgstr "ZNC pagelbiklis"
 
-#: ../src/znchelper.c:549 ../src/znchelper.c:550
+#: ../src/znchelper.c:574 ../src/znchelper.c:575
 #: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:2
 msgid ""
 "Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal "
