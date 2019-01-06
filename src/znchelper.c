@@ -14,6 +14,7 @@
 
 #include <gtkplugin.h>
 #include <gtkconv.h>
+#include <accountopt.h>
 #include <debug.h>
 #include <version.h>
 
@@ -440,6 +441,7 @@ static void conversation_created_cb(PurpleConversation *conv) {
 }
 
 static gboolean plugin_load(PurplePlugin *plugin) {
+	PurpleAccountOption *option;
 	GList *convs;
 
 	prpl_irc = purple_find_prpl("prpl-irc");
@@ -448,6 +450,11 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 		return FALSE;
 	}
 	irc_info = PURPLE_PLUGIN_PROTOCOL_INFO(prpl_irc);
+
+	option = purple_account_option_bool_new(
+		_("Uses ZNC bouncer"), "uses_znc_bouncer", FALSE
+	);
+	irc_info->protocol_options = g_list_append(irc_info->protocol_options, option);
 
 	znc_conns = g_hash_table_new_full(NULL, NULL, NULL, g_free);
 
@@ -485,6 +492,10 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 	return TRUE;
 }
 static gboolean plugin_unload(PurplePlugin *plugin) {
+	GList *l;
+	PurpleAccountOption *option;
+	const gchar *setting;
+
 	if(conv_ui_ops) {
 		if(ui_write_chat == purple_conversation_write) {
 			conv_ui_ops->write_chat = NULL;
@@ -497,6 +508,18 @@ static gboolean plugin_unload(PurplePlugin *plugin) {
 			conv_ui_ops->write_im = ui_write_im;
 		}
 		conv_ui_ops = NULL;
+	}
+
+	for(l = irc_info->protocol_options; l != NULL; l = l->next) {
+		option = (PurpleAccountOption *)l->data;
+		setting = purple_account_option_get_setting(option);
+		if(setting && g_str_equal(setting, "uses_znc_bouncer")) {
+			irc_info->protocol_options = g_list_delete_link(
+				irc_info->protocol_options, l
+			);
+			purple_account_option_destroy(option);
+			break;
+		}
 	}
 
 	purple_signals_disconnect_by_handle(plugin);
