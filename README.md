@@ -3,6 +3,13 @@
 [![License](https://img.shields.io/badge/License-GPLv2-blue.svg?style=flat)](COPYING)
 [![Download](https://img.shields.io/badge/Download-Latest_Release-brightgreen.svg?style=flat)](https://github.com/kgraefe/pidgin-znc-helper/releases/latest)
 
+ZNC Helper uses message timestamp from a ZNC Bouncer (`znc.in/server-time-iso`)
+and sets them within Pidgin so that replayed messages will be displayed with
+the correct timestamp.
+
+Despite its name, ZNC Helper is independent from Pidgin UI since version 1.8
+and therefore should be usable with other libpurple clients, e.g. finch, too.
+
 ## Installation on Windows
 For the binary version, extract all the contents of `pidgin-znc-helper` in
 the ZIP file either to the installation directory of Pidgin (typically

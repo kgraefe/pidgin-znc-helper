@@ -12,8 +12,9 @@
 
 #include "internal.h"
 
-#include <gtkplugin.h>
-#include <gtkconv.h>
+#include <plugin.h>
+#include <conversation.h>
+#include <accountopt.h>
 #include <debug.h>
 #include <version.h>
 
@@ -27,8 +28,9 @@
 		s = strchr(s, ' '); \
 		if(s) {s++;} else {return;}
 
+PurpleConversationUiOps *conv_ui_ops;
 PurplePlugin *prpl_irc;
-PurplePluginProtocolInfo *irc_extra_info;
+PurplePluginProtocolInfo *irc_info;
 
 #define ZNC_CONV_STATE_START 0
 #define ZNC_CONV_STATE_REPLAY 1
@@ -45,11 +47,11 @@ GHashTable *znc_conns;
 
 
 static void irc_send_raw(PurpleConnection *gc, const char *str) {
-	if(!irc_extra_info->send_raw) {
+	if(!irc_info->send_raw) {
 		error("Could not send raw to IRC!\n");
 		return;
 	}
-	irc_extra_info->send_raw(gc, str, -1);
+	irc_info->send_raw(gc, str, -1);
 }
 static void irc_sending_text_cb(PurpleConnection *gc, char **text, void *p) {
 	struct znc_conn *znc;
@@ -86,7 +88,7 @@ static struct znc_conn *conversation_get_znc(PurpleConversation *conv) {
 	}
 	return g_hash_table_lookup(znc_conns, gc);
 }
-static void (*pidgin_write_chat)(
+static void (*ui_write_chat)(
 	PurpleConversation *conv, const char *who, const char *message,
 	PurpleMessageFlags flags, time_t mtime
 );
@@ -118,7 +120,7 @@ static void znc_write_chat(
 		state = GPOINTER_TO_INT(purple_conversation_get_data(conv, "znc-state"));
 		switch(state) {
 		case ZNC_CONV_STATE_START:
-			pidgin_write_chat(
+			ui_write_chat(
 				conv, "***", _("Buffer Playback..."),
 				PURPLE_MESSAGE_NO_LOG | PURPLE_MESSAGE_SYSTEM, time(NULL)
 			);
@@ -148,9 +150,9 @@ static void znc_write_chat(
 	}
 
 exit:
-	pidgin_write_chat(conv, who, message, flags, mtime);
+	ui_write_chat(conv, who, message, flags, mtime);
 }
-static void (*pidgin_write_im)(
+static void (*ui_write_im)(
 	PurpleConversation *conv, const char *who,
    const char *message, PurpleMessageFlags flags, time_t mtime
 );
@@ -177,7 +179,7 @@ static void znc_write_im(
 	}
 
 exit:
-	pidgin_write_im(conv, who, message, flags, mtime);
+	ui_write_im(conv, who, message, flags, mtime);
 }
 
 
@@ -190,7 +192,6 @@ static void parse_server_time(
 
 	GTimeVal t;
 	char *timestamp, *delimiter;
-	int offset;
 
 	if(strncmp(*text, "@time=", 5) != 0) {
 		return;
@@ -208,11 +209,6 @@ static void parse_server_time(
 		return;
 	}
 
-	offset = purple_account_get_int(gc->account, "znc_time_offset", 0);
-	if(offset) {
-		/* offset is in hours and g_time_val_add() wants microseconds... */
-		g_time_val_add(&t, offset * 60*60*1000*1000);
-	}
 	znc->server_time = (time_t)t.tv_sec;
 }
 static void parse_self_message(
@@ -331,7 +327,7 @@ static void parse_endofwho(PurpleConnection *gc, char **text) {
 		goto exit;
 	}
 
-	pidgin_write_chat(
+	ui_write_chat(
 		conv, "***", _("Playback Complete."),
 		PURPLE_MESSAGE_NO_LOG | PURPLE_MESSAGE_SYSTEM, time(NULL)
 	);
@@ -417,17 +413,42 @@ static void irc_receiving_text_cb(PurpleConnection *gc, char **text, void *p) {
 	}
 	parse_endofwho(gc, text);
 }
+static void conversation_created_cb(PurpleConversation *conv) {
+	if(!conv_ui_ops) {
+		conv_ui_ops = purple_conversation_get_ui_ops(conv);
+		if(!conv_ui_ops) {
+			return;
+		}
 
+		ui_write_chat = conv_ui_ops->write_chat;
+		if(!ui_write_chat) {
+			ui_write_chat = purple_conversation_write;
+		}
+		conv_ui_ops->write_chat = znc_write_chat;
+
+		ui_write_im = conv_ui_ops->write_im;
+		if(!ui_write_im) {
+			ui_write_im = purple_conversation_write;
+		}
+		conv_ui_ops->write_im = znc_write_im;
+	}
+}
 
 static gboolean plugin_load(PurplePlugin *plugin) {
-	PurpleConversationUiOps *ops;
+	PurpleAccountOption *option;
+	GList *convs;
 
 	prpl_irc = purple_find_prpl("prpl-irc");
-	if(!prpl_irc || !prpl_irc->info || !prpl_irc->info->extra_info) {
+	if(!prpl_irc) {
 		error("Could not find IRC protocol!\n");
 		return FALSE;
 	}
-	irc_extra_info = (PurplePluginProtocolInfo *)prpl_irc->info->extra_info;
+	irc_info = PURPLE_PLUGIN_PROTOCOL_INFO(prpl_irc);
+
+	option = purple_account_option_bool_new(
+		_("Uses ZNC bouncer"), "uses_znc_bouncer", FALSE
+	);
+	irc_info->protocol_options = g_list_append(irc_info->protocol_options, option);
 
 	znc_conns = g_hash_table_new_full(NULL, NULL, NULL, g_free);
 
@@ -440,69 +461,73 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 		PURPLE_CALLBACK(irc_sending_text_cb), NULL
 	);
 
-	/* Hook into conversation between Pidgin and libpurple */
-	ops = pidgin_conversations_get_conv_ui_ops();
-
-	pidgin_write_chat = ops->write_chat;
-	if(!pidgin_write_chat) {
-		pidgin_write_chat = purple_conversation_write;
+	/* To hook into the conversation between the UI and libpurple, we must
+	 * replace the function pointers in the conversation UI ops. libpurple does
+	 * not provide a global interface for that, but appends them to each
+	 * conversation individually. Therefore we use the first conversation we
+	 * get or, if none is currently present, wait for the first conversation to
+	 * be created.
+	 *
+	 * This assumes that the UI uses the same UI ops for every conversation.
+	 * This is not required by libpurple, but at least Pidgin does it that way.
+	 * If required, we could invest more work to cover that case too.
+	 */
+	conv_ui_ops = NULL;
+	convs = purple_get_conversations();
+	if(convs) {
+		conversation_created_cb((PurpleConversation *)convs->data);
+	} else {
+		purple_signal_connect(
+			purple_conversations_get_handle(), "conversation-created", plugin,
+			PURPLE_CALLBACK(conversation_created_cb), NULL
+		);
 	}
-	ops->write_chat = znc_write_chat;
-
-	pidgin_write_im = ops->write_im;
-	if(!pidgin_write_im) {
-		pidgin_write_im = purple_conversation_write;
-	}
-	ops->write_im = znc_write_im;
 
 	return TRUE;
 }
 static gboolean plugin_unload(PurplePlugin *plugin) {
-	PurpleConversationUiOps *ops;
+	GList *l;
+	PurpleAccountOption *option;
+	const gchar *setting;
 
-	ops = pidgin_conversations_get_conv_ui_ops();
-	if(ops) {
-		if(pidgin_write_chat == purple_conversation_write) {
-			ops->write_chat = NULL;
+	if(conv_ui_ops) {
+		if(ui_write_chat == purple_conversation_write) {
+			conv_ui_ops->write_chat = NULL;
 		} else {
-			ops->write_chat = pidgin_write_chat;
+			conv_ui_ops->write_chat = ui_write_chat;
 		}
-		if(pidgin_write_im == purple_conversation_write) {
-			ops->write_im = NULL;
+		if(ui_write_im == purple_conversation_write) {
+			conv_ui_ops->write_im = NULL;
 		} else {
-			ops->write_im = pidgin_write_im;
+			conv_ui_ops->write_im = ui_write_im;
+		}
+		conv_ui_ops = NULL;
+	}
+
+	for(l = irc_info->protocol_options; l != NULL; l = l->next) {
+		option = (PurpleAccountOption *)l->data;
+		setting = purple_account_option_get_setting(option);
+		if(setting && g_str_equal(setting, "uses_znc_bouncer")) {
+			irc_info->protocol_options = g_list_delete_link(
+				irc_info->protocol_options, l
+			);
+			purple_account_option_destroy(option);
+			break;
 		}
 	}
 
-	purple_signal_disconnect(
-		prpl_irc, "irc-sending-text", plugin,
-		PURPLE_CALLBACK(irc_sending_text_cb)
-	);
-	purple_signal_disconnect(
-		prpl_irc, "irc-receiving-text", plugin,
-		PURPLE_CALLBACK(irc_receiving_text_cb)
-	);
-
+	purple_signals_disconnect_by_handle(plugin);
 	g_hash_table_destroy(znc_conns);
 
 	return TRUE;
 }
 
-static PidginPluginUiInfo ui_info = {
-	get_pref_frame,
-	0,   /* page_num (Reserved) */
-	/* Padding */
-	NULL,
-	NULL,
-	NULL,
-	NULL
-};
 static PurplePluginInfo info = {
 	PURPLE_PLUGIN_MAGIC,
 	PURPLE_MAJOR_VERSION,
 	PURPLE_MINOR_VERSION,
 	PURPLE_PLUGIN_STANDARD,     /**< type           */
-	PIDGIN_PLUGIN_TYPE,         /**< ui_requirement */
+	NULL,                       /**< ui_requirement */
 	0,                          /**< flags          */
 	NULL,                       /**< dependencies   */
 	PURPLE_PRIORITY_DEFAULT,    /**< priority       */
@@ -519,7 +544,7 @@ static PurplePluginInfo info = {
 	plugin_unload,              /**< unload         */
 	NULL,                       /**< destroy        */
 
-	&ui_info,                   /**< ui_info        */
+	NULL,                       /**< ui_info        */
 	NULL,                       /**< extra_info     */
 	NULL,                       /**< prefs_info     */
 	NULL,                       /**< actions        */
@@ -548,9 +573,6 @@ static void init_plugin(PurplePlugin *plugin) {
 	info.name        = _("ZNC Helper");
 	info.summary     = _("Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal timestamps.");
 	info.description = _("Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal timestamps.");
-		
-	purple_prefs_add_none(PLUGIN_PREFS_PREFIX);
-	purple_prefs_add_int(PLUGIN_PREFS_PREFIX "/offset", 0);
 }
 
 PURPLE_INIT_PLUGIN(PLUGIN_STATIC_NAME, init_plugin, info)

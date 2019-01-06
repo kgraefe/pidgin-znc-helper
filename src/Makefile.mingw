@@ -34,28 +34,17 @@ DEFINES = -DHAVE_CONFIG_H
 ## INCLUDE PATHS
 ##
 
-INCLUDE_PATHS +=        -I. \
-			-I.. \
-                        -I$(PIDGIN_TREE_TOP) \
-                        -I$(PURPLE_TOP) \
-                        -I$(PURPLE_TOP)/win32 \
-                        -I$(PIDGIN_TOP) \
-                        -I$(PIDGIN_TOP)/win32 \
-                        -I$(GTK_TOP)/include \
-                        -I$(GTK_TOP)/include/gtk-2.0 \
-                        -I$(GTK_TOP)/include/glib-2.0 \
-                        -I$(GTK_TOP)/include/pango-1.0 \
-                        -I$(GTK_TOP)/include/atk-1.0 \
-			-I$(GTK_TOP)/include/cairo \
-                        -I$(GTK_TOP)/include/freetype2 \
-                        -I$(GTK_TOP)/lib/glib-2.0/include \
-                        -I$(GTK_TOP)/lib/gtk-2.0/include \
-                        -I$(PIDGIN_TREE_TOP)
+INCLUDE_PATHS += \
+	-I. -I.. \
+	-I$(PIDGIN_TREE_TOP) \
+	-I$(PURPLE_TOP) \
+	-I$(PURPLE_TOP)/win32 \
+	-I$(GTK_TOP)/include \
+	-I$(GTK_TOP)/include/glib-2.0 \
+	-I$(GTK_TOP)/lib/glib-2.0/include \
+	-I$(PIDGIN_TREE_TOP)
 
-LIB_PATHS =             \
-                        -L$(PURPLE_TOP) \
-                        -L$(PIDGIN_TOP) \
-                        -L$(GTK_TOP)/lib
+LIB_PATHS = -L$(PURPLE_TOP) -L$(GTK_TOP)/lib
 
 
 
@@ -63,9 +52,7 @@ LIB_PATHS =             \
 ##  SOURCES, OBJECTS
 ##
 
-PLUGIN_SRC =	\
-	prefs.c \
-	znchelper.c
+PLUGIN_SRC = znchelper.c
 
 
 
@@ -77,17 +64,11 @@ PLUGIN_OBJ = $(PLUGIN_SRC:%.c=%.o)
 
 PLUGIN_LIBS = \
 	-lssp \
-        -lgtk-win32-2.0 \
-        -lglib-2.0 \
-        -lpango-1.0 \
-        -lpangoft2-1.0 \
-        -lgdk-win32-2.0 \
-        -lgdk_pixbuf-2.0 \
-        -lgobject-2.0 \
-        -lws2_32 \
-        -lintl \
-        -lpurple \
-        -lpidgin
+	-lglib-2.0 \
+	-lgobject-2.0 \
+	-lws2_32 \
+	-lintl \
+	-lpurple
 
 
 include $(PIDGIN_COMMON_RULES)

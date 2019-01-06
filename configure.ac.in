@@ -15,7 +15,6 @@ AC_DEFINE_UNQUOTED(PLUGIN_WEBSITE, ["https://github.com/kgraefe/pidgin-znc-helpe
 AC_DEFINE_UNQUOTED(PLUGIN_ID, ["gtk-freakazoid-znchelper"], [Define the plugin ID])
 AC_DEFINE_UNQUOTED(PLUGIN_STATIC_NAME, ["znc-helper"], [Define the plugin name])
 AC_DEFINE_UNQUOTED(PLUGIN_AUTHOR, ["Konrad Gräfe <konradgraefe@aol.com>"], [Define the plugin author])
-AC_DEFINE_UNQUOTED(PLUGIN_PREFS_PREFIX, ["/plugins/gtk/znchelper"], [Define the plugin preference path])
 
 # Checks for programs.
 AC_PROG_CC
@@ -28,9 +27,9 @@ ALL_LINGUAS="@@LANGUAGES@@"
 AM_GLIB_GNU_GETTEXT
 
 # Checks for libraries.
-PKG_CHECK_MODULES(pidgin, [pidgin >= 2.6.0], , [AC_MSG_ERROR(pidgin >= 2.6.0 required!)])
-LIBS="$LIBS $pidgin_LIBS"
-CFLAGS="$CFLAGS $pidgin_CFLAGS -Wall -Werror-implicit-function-declaration"
+PKG_CHECK_MODULES(purple, [purple >= 2.6.0], , [AC_MSG_ERROR(libpurple >= 2.6.0 required!)])
+LIBS="$LIBS $purple_LIBS"
+CFLAGS="$CFLAGS $purple_CFLAGS -Wall -Werror-implicit-function-declaration"
 
 # Checks for header files.
 
