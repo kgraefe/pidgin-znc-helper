@@ -1,6 +1,6 @@
 # Pidgin ZNC Helper Changes
 
-## Version 1.8-beta2 (in development)
+## Version 1.8-beta2 (2019-01-06)
 - Remove Pidgin UI dependency
 - Remove time offset feature as a consequence
 - Add "Uses ZNC bouncer" as an account option
