@@ -12,8 +12,8 @@
 
 #include "internal.h"
 
-#include <gtkplugin.h>
-#include <gtkconv.h>
+#include <plugin.h>
+#include <conversation.h>
 #include <accountopt.h>
 #include <debug.h>
 #include <version.h>
@@ -528,21 +528,12 @@ static gboolean plugin_unload(PurplePlugin *plugin) {
 	return TRUE;
 }
 
-static PidginPluginUiInfo ui_info = {
-	get_pref_frame,
-	0,   /* page_num (Reserved) */
-	/* Padding */
-	NULL,
-	NULL,
-	NULL,
-	NULL
-};
 static PurplePluginInfo info = {
 	PURPLE_PLUGIN_MAGIC,
 	PURPLE_MAJOR_VERSION,
 	PURPLE_MINOR_VERSION,
 	PURPLE_PLUGIN_STANDARD,     /**< type           */
-	PIDGIN_PLUGIN_TYPE,         /**< ui_requirement */
+	NULL,                       /**< ui_requirement */
 	0,                          /**< flags          */
 	NULL,                       /**< dependencies   */
 	PURPLE_PRIORITY_DEFAULT,    /**< priority       */
@@ -559,7 +550,7 @@ static PurplePluginInfo info = {
 	plugin_unload,              /**< unload         */
 	NULL,                       /**< destroy        */
 
-	&ui_info,                   /**< ui_info        */
+	NULL,                       /**< ui_info        */
 	NULL,                       /**< extra_info     */
 	NULL,                       /**< prefs_info     */
 	NULL,                       /**< actions        */

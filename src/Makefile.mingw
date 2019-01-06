@@ -63,9 +63,7 @@ LIB_PATHS =             \
 ##  SOURCES, OBJECTS
 ##
 
-PLUGIN_SRC =	\
-	prefs.c \
-	znchelper.c
+PLUGIN_SRC = znchelper.c
 
 
 
