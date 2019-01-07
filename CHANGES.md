@@ -2,7 +2,8 @@
 
 ## Version 1.8-beta2 (2019-01-06)
 - Remove Pidgin UI dependency
-- Remove time offset feature as a consequence
+- Remove preference dialog as a consequence
+- Remove time offset feature as another consequence
 - Add "Uses ZNC bouncer" as an account option
 
 ## Version 1.8-beta1 (2018-08-18)
