@@ -8,7 +8,8 @@ and sets them within Pidgin so that replayed messages will be displayed with
 the correct timestamp.
 
 Despite its name, ZNC Helper is independent from Pidgin UI since version 1.8
-and therefore should be usable with other libpurple clients such as finch too.
+and therefore should be usable with other libpurple clients, such as finch,
+too.
 
 ## Installation on Windows
 For the binary version, extract all the contents of `pidgin-znc-helper` in
