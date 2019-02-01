@@ -13,6 +13,7 @@
 #include "internal.h"
 
 #include <plugin.h>
+#include <core.h>
 #include <conversation.h>
 #include <accountopt.h>
 #include <debug.h>
@@ -31,6 +32,7 @@
 static PurpleConversationUiOps *conv_ui_ops;
 static PurplePlugin *prpl_irc;
 static PurplePluginProtocolInfo *irc_info;
+static gboolean core_quitting = FALSE;
 
 #define ZNC_CONV_STATE_START 0
 #define ZNC_CONV_STATE_REPLAY 1
@@ -434,6 +436,10 @@ static void conversation_created_cb(PurpleConversation *conv) {
 	}
 }
 
+static void core_quitting_cb() {
+	core_quitting = TRUE;
+}
+
 static gboolean plugin_load(PurplePlugin *plugin) {
 	PurpleAccountOption *option;
 	GList *convs;
@@ -444,6 +450,12 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 		return FALSE;
 	}
 	irc_info = PURPLE_PLUGIN_PROTOCOL_INFO(prpl_irc);
+
+	purple_signal_connect(
+		purple_get_core(), "quitting",
+		plugin, core_quitting_cb,
+		NULL
+	);
 
 	option = purple_account_option_bool_new(
 		_("Uses ZNC bouncer"), "uses_znc_bouncer", FALSE
@@ -489,6 +501,10 @@ static gboolean plugin_unload(PurplePlugin *plugin) {
 	GList *l;
 	PurpleAccountOption *option;
 	const gchar *setting;
+
+	if(!core_quitting) {
+		return FALSE;
+	}
 
 	if(conv_ui_ops) {
 		if(ui_write_chat == purple_conversation_write) {
