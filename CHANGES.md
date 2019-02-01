@@ -5,6 +5,7 @@
 - Remove preference dialog as a consequence
 - Remove time offset feature as another consequence
 - Add "Uses ZNC bouncer" as an account option
+- Remove French translation since it has no strings anymore and no maintainer
 
 ## Version 1.8-beta1 (2018-08-18)
 - Re-implement to use ZNC capabilities `znc.in/server-time-iso` and
