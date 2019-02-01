@@ -28,9 +28,9 @@
 		s = strchr(s, ' '); \
 		if(s) {s++;} else {return;}
 
-PurpleConversationUiOps *conv_ui_ops;
-PurplePlugin *prpl_irc;
-PurplePluginProtocolInfo *irc_info;
+static PurpleConversationUiOps *conv_ui_ops;
+static PurplePlugin *prpl_irc;
+static PurplePluginProtocolInfo *irc_info;
 
 #define ZNC_CONV_STATE_START 0
 #define ZNC_CONV_STATE_REPLAY 1
@@ -43,7 +43,7 @@ struct znc_conn {
 	gboolean self_message_enabled;
 	gboolean self_message;
 };
-GHashTable *znc_conns;
+static GHashTable *znc_conns;
 
 
 static void irc_send_raw(PurpleConnection *gc, const char *str) {
