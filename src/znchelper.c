@@ -342,16 +342,18 @@ static void parse_endofwho(PurpleConnection *gc, char **text) {
 	 * set those users on the ignore list during that operation.
 	 */
 	parted = purple_conversation_get_data(conv, "znc-parted");
-	ignored = purple_conv_chat_get_ignored(chat);
-	purple_conv_chat_set_ignored(chat, parted);
-	purple_conv_chat_remove_users(chat, parted, NULL);
-	purple_conv_chat_set_ignored(chat, ignored);
+	if(parted) {
+		ignored = purple_conv_chat_get_ignored(chat);
+		purple_conv_chat_set_ignored(chat, parted);
+		purple_conv_chat_remove_users(chat, parted, NULL);
+		purple_conv_chat_set_ignored(chat, ignored);
 
-	purple_conversation_set_data(conv, "znc-parted", NULL);
-	for(l = parted; l != NULL; l = l->next) {
-		g_free(l->data);
+		purple_conversation_set_data(conv, "znc-parted", NULL);
+		for(l = parted; l != NULL; l = l->next) {
+			g_free(l->data);
+		}
+		g_list_free(parted);
 	}
-	g_list_free(parted);
 
 exit:
 	g_free(channel);
