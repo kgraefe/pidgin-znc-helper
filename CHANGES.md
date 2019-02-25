@@ -1,16 +1,13 @@
 # Pidgin ZNC Helper Changes
 
-## Version 1.8-beta2 (2019-01-06)
-- Remove Pidgin UI dependency
-- Remove preference dialog as a consequence
-- Remove time offset feature as another consequence
-- Add "Uses ZNC bouncer" as an account option
-- Remove French translation since it has no strings anymore and no maintainer
-
-## Version 1.8-beta1 (2018-08-18)
+## Version 1.8 (in development)
 - Re-implement to use ZNC capabilities `znc.in/server-time-iso` and
   `znc.in/self-message`. This should be a more stable and reliable
   implementation.
+- Remove Pidgin UI dependency
+- Remove preference dialog and time offset feature as consequences
+- Add "Uses ZNC bouncer" as an account option
+- Remove French translation since it has no strings anymore and no maintainer
 
 ## Version 1.7 (2018-03-21)
 - Re-implement by hooking into UI operations to improve speed especially when
