@@ -98,6 +98,7 @@ static void znc_write_chat(
 	PurpleConversation *conv, const char *who, const char *message,
 	PurpleMessageFlags flags, time_t mtime
 ) {
+	PurpleConnection *gc = purple_conversation_get_gc(conv);
 	PurpleConvChat *chat;
 	struct znc_conn *znc;
 	GList *parted, *l;
