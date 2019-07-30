@@ -100,13 +100,11 @@ static void znc_write_chat(
 	PurpleConversation *conv, const char *who, const char *message,
 	PurpleMessageFlags flags, time_t mtime
 ) {
-	PurpleConnection *gc;
 	PurpleConvChat *chat;
 	struct znc_conn *znc;
 	GList *parted, *l;
 	gint state;
 	
-	gc = purple_conversation_get_gc(conv);
 	znc = conversation_get_znc(conv);
 	if(!znc) {
 		goto exit;
@@ -126,7 +124,7 @@ static void znc_write_chat(
 		state = GPOINTER_TO_INT(purple_conversation_get_data(conv, "znc-state"));
 		switch(state) {
 		case ZNC_CONV_STATE_START:
-			if(!gc || !purple_prefs_get_bool(PREF_HIDEMSG)) {
+			if(!purple_prefs_get_bool(PREF_HIDEMSG)) {
 				ui_write_chat(
 					conv, "***", _("Buffer Playback..."),
 					PURPLE_MESSAGE_NO_LOG | PURPLE_MESSAGE_SYSTEM, time(NULL)
