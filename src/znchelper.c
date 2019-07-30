@@ -122,10 +122,12 @@ static void znc_write_chat(
 		state = GPOINTER_TO_INT(purple_conversation_get_data(conv, "znc-state"));
 		switch(state) {
 		case ZNC_CONV_STATE_START:
-			ui_write_chat(
-				conv, "***", _("Buffer Playback..."),
-				PURPLE_MESSAGE_NO_LOG | PURPLE_MESSAGE_SYSTEM, time(NULL)
-			);
+			if(!purple_account_get_bool(gc->account, "hide_znc_playback_message", FALSE)) {
+				ui_write_chat(
+					conv, "***", _("Buffer Playback..."),
+					PURPLE_MESSAGE_NO_LOG | PURPLE_MESSAGE_SYSTEM, time(NULL)
+				);
+			}
 			purple_conversation_set_data(conv,
 				"znc-state", GINT_TO_POINTER(ZNC_CONV_STATE_REPLAY)
 			);
@@ -329,10 +331,12 @@ static void parse_endofwho(PurpleConnection *gc, char **text) {
 		goto exit;
 	}
 
-	ui_write_chat(
-		conv, "***", _("Playback Complete."),
-		PURPLE_MESSAGE_NO_LOG | PURPLE_MESSAGE_SYSTEM, time(NULL)
-	);
+	if(!purple_account_get_bool(gc->account, "hide_znc_playback_message", FALSE)) {
+		ui_write_chat(
+			conv, "***", _("Playback Complete."),
+			PURPLE_MESSAGE_NO_LOG | PURPLE_MESSAGE_SYSTEM, time(NULL)
+		);
+	}
 
 	/* Remove all users from the chat that are in the playback but
 	 * not present anymore. This gives the UI the chance to mark
@@ -444,6 +448,7 @@ static void core_quitting_cb() {
 
 static gboolean plugin_load(PurplePlugin *plugin) {
 	PurpleAccountOption *option;
+	PurpleAccountOption *option2;
 	GList *convs;
 
 	prpl_irc = purple_find_prpl("prpl-irc");
@@ -462,7 +467,12 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 	option = purple_account_option_bool_new(
 		_("Uses ZNC bouncer"), "uses_znc_bouncer", FALSE
 	);
+	option2 = purple_account_option_bool_new(
+		_("Hide ZNC Playback Message"), "hide_znc_playback_message", FALSE
+	);
 	irc_info->protocol_options = g_list_append(irc_info->protocol_options, option);
+	irc_info->protocol_options = g_list_append(irc_info->protocol_options, option2);
+	
 
 	znc_conns = g_hash_table_new_full(NULL, NULL, NULL, g_free);
 
@@ -525,7 +535,7 @@ static gboolean plugin_unload(PurplePlugin *plugin) {
 	for(l = irc_info->protocol_options; l != NULL; l = l->next) {
 		option = (PurpleAccountOption *)l->data;
 		setting = purple_account_option_get_setting(option);
-		if(setting && g_str_equal(setting, "uses_znc_bouncer")) {
+		if(setting && (g_str_equal(setting, "uses_znc_bouncer") || g_str_equal(setting, "hide_znc_playback_message"))) {
 			irc_info->protocol_options = g_list_delete_link(
 				irc_info->protocol_options, l
 			);
