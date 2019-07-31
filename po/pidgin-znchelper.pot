@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-06 17:25+0100\n"
+"POT-Creation-Date: 2019-07-31 16:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,23 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/znchelper.c:124
+#: ../src/znchelper.c:129
 msgid "Buffer Playback..."
 msgstr ""
 
-#: ../src/znchelper.c:331
+#: ../src/znchelper.c:338
 msgid "Playback Complete."
 msgstr ""
 
-#: ../src/znchelper.c:449
+#: ../src/znchelper.c:469
 msgid "Uses ZNC bouncer"
 msgstr ""
 
-#: ../src/znchelper.c:573
+#: ../src/znchelper.c:558
+msgid "Hide the playback start/end messages"
+msgstr ""
+
+#: ../src/znchelper.c:624
 msgid "ZNC Helper"
 msgstr ""
 
-#: ../src/znchelper.c:574 ../src/znchelper.c:575
+#: ../src/znchelper.c:625 ../src/znchelper.c:626
 #: ../share/appdata/pidgin-znc-helper.metainfo.xml.in.h:2
 msgid ""
 "Pidgin ZNC Helper parses IRC bouncer timestamps and displays them as normal "
