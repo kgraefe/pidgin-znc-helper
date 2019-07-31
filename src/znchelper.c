@@ -38,7 +38,7 @@ static gboolean core_quitting = FALSE;
 #define ZNC_CONV_STATE_REPLAY 1
 #define ZNC_CONV_STATE_DONE 2
 #define PREF_PREFIX "/plugins/core/znc-helper"
-#define	PREF_HIDEMSG PREF_PREFIX "/hidemsg"
+#define PREF_HIDEMSG PREF_PREFIX "/hidemsg"
 
 struct znc_conn {
 	gboolean server_time_enabled;
@@ -104,7 +104,7 @@ static void znc_write_chat(
 	struct znc_conn *znc;
 	GList *parted, *l;
 	gint state;
-	
+
 	znc = conversation_get_znc(conv);
 	if(!znc) {
 		goto exit;
@@ -469,7 +469,6 @@ static gboolean plugin_load(PurplePlugin *plugin) {
 		_("Uses ZNC bouncer"), "uses_znc_bouncer", FALSE
 	);
 	irc_info->protocol_options = g_list_append(irc_info->protocol_options, option);
-	
 
 	znc_conns = g_hash_table_new_full(NULL, NULL, NULL, g_free);
 
@@ -554,7 +553,7 @@ get_plugin_pref_frame(PurplePlugin *plugin)
 	PurplePluginPref *pref;
 
 	frame = purple_plugin_pref_frame_new();
-	
+
 	pref = purple_plugin_pref_new_with_name_and_label(PREF_HIDEMSG,
 					_("Hide the playback start/end messages"));
 	purple_plugin_pref_frame_add(frame, pref);
