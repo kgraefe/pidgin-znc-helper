@@ -532,7 +532,7 @@ static gboolean plugin_unload(PurplePlugin *plugin) {
 	for(l = irc_info->protocol_options; l != NULL; l = l->next) {
 		option = (PurpleAccountOption *)l->data;
 		setting = purple_account_option_get_setting(option);
-		if(setting && (g_str_equal(setting, "uses_znc_bouncer") || purple_prefs_get_bool(PREF_HIDEMSG))) {
+		if(setting && g_str_equal(setting, "uses_znc_bouncer")) {
 			irc_info->protocol_options = g_list_delete_link(
 				irc_info->protocol_options, l
 			);
