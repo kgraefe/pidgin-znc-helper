@@ -1,9 +1,0 @@
-[main]
-host = https://www.transifex.com
-
-[pidgin-znc-helper.base]
-file_filter = po/<lang>.po
-source_file = po/pidgin-znchelper.pot
-source_lang = en
-type = PO
-
