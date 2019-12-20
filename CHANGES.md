@@ -3,6 +3,8 @@
 ## Version 1.9 (in development)
 -  Add option to hide the "playback" messages (Github #12, thanks to Patrick
    Thomas)
+- Install into `$libdir/purple-2` where other libpurple2 clients can pick up
+  the plugin as well.
 
 ## Version 1.8 (2019-02-25)
 - Re-implement to use ZNC capabilities `znc.in/server-time-iso` and
