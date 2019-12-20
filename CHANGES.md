@@ -1,8 +1,8 @@
 # Pidgin ZNC Helper Changes
 
 ## Version 1.9 (2019-12-20)
--  Add option to hide the "playback" messages (Github #12, thanks to Patrick
-   Thomas)
+- Add option to hide the "playback" messages (Github #12, thanks to Patrick
+  Thomas)
 - Install into `$libdir/purple-2` where other libpurple2 clients can pick up
   the plugin as well.
 
