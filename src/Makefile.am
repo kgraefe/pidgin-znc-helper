@@ -2,7 +2,7 @@ EXTRA_DIST = \
 	internal.h \
 	Makefile.mingw
 
-plugindir = $(libdir)/pidgin
+plugindir = $(libdir)/purple-2
 DEFS = -DLOCALEDIR=\"$(localedir)\"
 
 plugin_LTLIBRARIES = znchelper.la
