@@ -29,7 +29,7 @@ AM_GLIB_GNU_GETTEXT
 # Checks for libraries.
 PKG_CHECK_MODULES(purple, [purple >= 2.6.0], , [AC_MSG_ERROR(libpurple >= 2.6.0 required!)])
 LIBS="$LIBS $purple_LIBS"
-CFLAGS="$CFLAGS $purple_CFLAGS -Wall -Werror-implicit-function-declaration"
+CFLAGS="$CFLAGS $purple_CFLAGS -Wall -Werror-implicit-function-declaration -DGLIB_DISABLE_DEPRECATION_WARNINGS"
 
 # Checks for header files.
 
