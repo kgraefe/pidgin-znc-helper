@@ -30,6 +30,7 @@ Makefile
 *.o
 *.l[oa]
 *.dll
+*.lock
 
 # http://www.gnu.org/software/automake
 
