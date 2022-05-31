@@ -266,8 +266,8 @@ static void parse_self_message(
 
 	new = g_strdup_printf(
 		":%.*s PRIVMSG %.*s %s"
-		, (msg - 1 - to), to
-		, (end - from), from
+		, (int)(msg - 1 - to), to
+		, (int)(end - from), from
 		, msg
 	);
 	g_strlcpy(*text, new, strlen(*text));
