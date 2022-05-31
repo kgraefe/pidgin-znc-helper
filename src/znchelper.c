@@ -49,14 +49,6 @@ struct znc_conn {
 };
 static GHashTable *znc_conns;
 
-
-static void irc_send_raw(PurpleConnection *gc, const char *str) {
-	if(!irc_info->send_raw) {
-		error("Could not send raw to IRC!\n");
-		return;
-	}
-	irc_info->send_raw(gc, str, -1);
-}
 static void irc_sending_text_cb(PurpleConnection *gc, char **text, void *p) {
 	struct znc_conn *znc;
 
@@ -72,8 +64,14 @@ static void irc_sending_text_cb(PurpleConnection *gc, char **text, void *p) {
 		znc = g_new0(struct znc_conn, 1);
 		g_hash_table_insert(znc_conns, gc, znc);
 
-		irc_send_raw(gc, "CAP REQ :znc.in/server-time-iso\r\n");
-		irc_send_raw(gc, "CAP REQ :znc.in/self-message\r\n");
+		char *new = g_strdup_printf(
+			"CAP REQ :znc.in/server-time-iso\r\n" \
+			"CAP REQ :znc.in/self-message\r\n" \
+			"%s",
+			*text
+		);
+		g_free(*text);
+		*text = new;
 	}
 }
 
