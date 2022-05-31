@@ -51,6 +51,7 @@ static GHashTable *znc_conns;
 
 static void irc_sending_text_cb(PurpleConnection *gc, char **text, void *p) {
 	struct znc_conn *znc;
+	char *new;
 
 	if(purple_connection_get_state(gc) != PURPLE_CONNECTING) {
 		return;
@@ -64,7 +65,7 @@ static void irc_sending_text_cb(PurpleConnection *gc, char **text, void *p) {
 		znc = g_new0(struct znc_conn, 1);
 		g_hash_table_insert(znc_conns, gc, znc);
 
-		char *new = g_strdup_printf(
+		new = g_strdup_printf(
 			"CAP REQ :znc.in/server-time-iso\r\n" \
 			"CAP REQ :znc.in/self-message\r\n" \
 			"%s",
