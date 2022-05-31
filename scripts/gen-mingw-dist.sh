@@ -7,6 +7,8 @@ OUTPUT="$1"
 PLUGIN="$2"
 PLUGIN_DLL="$3"
 
+STRIP="${STRIP:-strip}"
+
 TEMPDIR=$(mktemp -d)
 trap "rm -rf '$TEMPDIR'" EXIT
 
@@ -14,9 +16,9 @@ mkdir -p $TEMPDIR/$PLUGIN/plugins
 cp src/$PLUGIN_DLL $TEMPDIR/$PLUGIN/plugins
 
 if [[ $(uname -s) == CYGWIN* ]]; then
-	strip "$(cygpath -w $TEMPDIR/$PLUGIN/plugins/$PLUGIN_DLL)"
+	$STRIP "$(cygpath -w $TEMPDIR/$PLUGIN/plugins/$PLUGIN_DLL)"
 else
-	strip $TEMPDIR/$PLUGIN/plugins/$PLUGIN_DLL
+	$STRIP $TEMPDIR/$PLUGIN/plugins/$PLUGIN_DLL
 fi
 
 GETTEXT_PKG=$(awk -F= '/GETTEXT_PACKAGE=/ {print $2}' configure.ac);

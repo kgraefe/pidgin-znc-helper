@@ -43,6 +43,7 @@ endif
 dist: $(PLUGIN_WIN32_ZIP)
 
 $(PLUGIN_WIN32_ZIP): build
+	STRIP=$(STRIP) \
 	./scripts/gen-mingw-dist.sh $@ pidgin-znc-helper pidgin-znchelper.dll
 
 clean:
