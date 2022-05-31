@@ -1,0 +1,65 @@
+name: Windows Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-windows:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://kgraefe/pidgin2-windev:2.13.0-1
+      volumes:
+        - ${{ github.workspace }}:${{ github.workspace }}
+      options: --user root
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: git permissions
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
+      - name: build
+        run: |
+          echo "CFLAGS=-Werror" > local.mak
+          make -f Makefile.mingw
+      - name: dist
+        run: |
+          make -f Makefile.mingw dist
+          echo "artifact=$(echo pidgin-znc-helper-*-win32.zip)" >> $GITHUB_ENV
+      - name: upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.artifact }}
+          path: ${{ env.artifact }}
+          if-no-files-found: error
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install pidgin-dev intltool
+      - name: autogen
+        run: ./autogen.sh
+      - name: configure
+        run: ./configure CFLAGS="-Werror"
+      - name: build
+        run: make all
+      - name: dist
+        run: |
+          make dist
+          echo "artifact=$(echo pidgin-znc-helper-*.tar.gz)" >> $GITHUB_ENV
+      - name: upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.artifact }}
+          path: ${{ env.artifact }}
+          if-no-files-found: error
