@@ -1,5 +1,11 @@
 # Pidgin ZNC Helper Changes
 
+## Version 1.10 (2022-06-03)
+- This broken initialization with the IRC rate limiting introduced in Pidgin
+  2.14.9. Note that due to [a bug in Pidgin
+  2.14.9](https://issues.imfreedom.org/issue/PIDGIN-17626) the plugin does not
+  work in this version. Use Pidgin 2.14.10 instead.
+
 ## Version 1.9 (2019-12-20)
 - Add option to hide the "playback" messages (Github #12, thanks to Patrick
   Thomas)
