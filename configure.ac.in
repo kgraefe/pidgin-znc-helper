@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.61)
-AC_INIT(pidgin-znc-helper, @@VERSION@@, konradgraefe@aol.com)
+AC_INIT(pidgin-znc-helper, @@VERSION@@, kgraefe@paktolos.net)
 AM_INIT_AUTOMAKE([foreign])
 AC_CONFIG_SRCDIR([src/znchelper.c])
 AC_CONFIG_HEADER([config.h])
@@ -14,7 +14,7 @@ AC_DEFINE_UNQUOTED(PLUGIN_VERSION, ["@@VERSION@@"], [Define the plugin version])
 AC_DEFINE_UNQUOTED(PLUGIN_WEBSITE, ["https://github.com/kgraefe/pidgin-znc-helper"], [Define the plugin website])
 AC_DEFINE_UNQUOTED(PLUGIN_ID, ["gtk-freakazoid-znchelper"], [Define the plugin ID])
 AC_DEFINE_UNQUOTED(PLUGIN_STATIC_NAME, ["znc-helper"], [Define the plugin name])
-AC_DEFINE_UNQUOTED(PLUGIN_AUTHOR, ["Konrad Gräfe <konradgraefe@aol.com>"], [Define the plugin author])
+AC_DEFINE_UNQUOTED(PLUGIN_AUTHOR, ["Konrad Gräfe <kgraefe@paktolos.net>"], [Define the plugin author])
 
 # Checks for programs.
 AC_PROG_CC

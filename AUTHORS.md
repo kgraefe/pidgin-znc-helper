@@ -1,14 +1,14 @@
 # Pidgin ZNC Helper Authors
 
 ## Developers
-- Konrad Gräfe <konradgraefe@aol.com>
+- Konrad Gräfe <kgraefe@paktolos.net>
 
 ## Patch writers
 - Patrick Thomas <pwthomas95@zoho.com>
 
 ## Translators
 ### German (de)
-- Konrad Gräfe <konradgraefe@aol.com>, 2019
+- Konrad Gräfe <kgraefe@paktolos.net>, 2019
 - Mario Siegmann <mario_siegmann@web.de>, 2016
 
 ### Lithuanian (lt)

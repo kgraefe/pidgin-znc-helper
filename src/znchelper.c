@@ -1,4 +1,4 @@
-/* Copyright (C) 2009-2019 Konrad Gräfe <konradgraefe@aol.com>
+/* Copyright (C) 2009-2022 Konrad Gräfe <kgraefe@paktolos.net>
  *
  * This software may be modified and distributed under the terms
  * of the GPLv2 license. See the COPYING file for details.
